@@ -1,0 +1,972 @@
+<meta charset="utf-8">
+<title>AGI HW2 한국어 가이드</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Nanum+Pen+Script&display=swap">
+<style>
+  :root {
+    --ground: #F5F7FA;
+    --paper: #FFFFFF;
+    --ink: #1B2230;
+    --ink-soft: #4B5566;
+    --rule: #D8E0EA;
+    --grid: rgba(52, 104, 170, 0.07);
+    --pen: #2A55C9;
+    --pen-soft: #E8EEFC;
+    --hl: #FFE36A;
+    --warn: #B8342A;
+    --warn-bg: #FCEDEB;
+    --ok: #2B7A4B;
+    --ok-bg: #E7F4EC;
+    --amber: #9A6200;
+    --amber-bg: #FFF4DC;
+    --sans: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --hand: "Nanum Pen Script", "Apple SD Gothic Neo", cursive;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #10141B;
+      --paper: #171C25;
+      --ink: #E3E8F0;
+      --ink-soft: #A2ACBC;
+      --rule: #2A3341;
+      --grid: rgba(120, 160, 225, 0.05);
+      --pen: #8FB1FF;
+      --pen-soft: #1D2638;
+      --hl: rgba(240, 200, 60, 0.34);
+      --warn: #FF8E80;
+      --warn-bg: #2B1816;
+      --ok: #72D39B;
+      --ok-bg: #14261C;
+      --amber: #F2C063;
+      --amber-bg: #2A2112;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #10141B;
+    --paper: #171C25;
+    --ink: #E3E8F0;
+    --ink-soft: #A2ACBC;
+    --rule: #2A3341;
+    --grid: rgba(120, 160, 225, 0.05);
+    --pen: #8FB1FF;
+    --pen-soft: #1D2638;
+    --hl: rgba(240, 200, 60, 0.34);
+    --warn: #FF8E80;
+    --warn-bg: #2B1816;
+    --ok: #72D39B;
+    --ok-bg: #14261C;
+    --amber: #F2C063;
+    --amber-bg: #2A2112;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background-color: var(--ground);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.75;
+    padding-inline: 20px;
+    padding-block: 40px 72px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+
+  h1, h2, h3 { text-wrap: balance; line-height: 1.35; margin: 0; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.6rem); font-weight: 700; letter-spacing: -0.01em; }
+  h2 { font-size: 1.45rem; font-weight: 700; }
+  h3 { font-size: 1.1rem; font-weight: 700; }
+  p { margin: 0; }
+  a { color: var(--pen); text-underline-offset: 3px; }
+  a:focus-visible, input:focus-visible, button:focus-visible { outline: 2px solid var(--pen); outline-offset: 2px; }
+
+  mark { background: linear-gradient(transparent 52%, var(--hl) 52%); color: inherit; padding: 0 2px; }
+  .en { font-family: var(--mono); font-size: 0.86em; color: var(--ink-soft); }
+  .eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+
+  /* 손글씨 메모 = "쉽게 말하면" */
+  .easy {
+    font-family: var(--hand);
+    font-size: 1.42rem;
+    line-height: 1.4;
+    color: var(--pen);
+  }
+  .easy::before { content: "쉽게 말하면 → "; }
+
+  section { display: flex; flex-direction: column; gap: 18px; }
+  .section-head { display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+
+  /* Header */
+  header { display: flex; flex-direction: column; gap: 18px; }
+  .lede { font-size: 1.12rem; color: var(--ink-soft); max-width: 62ch; }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0;
+  }
+  .facts div { background: var(--paper); padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; }
+  .facts dt { font-size: 0.78rem; color: var(--ink-soft); letter-spacing: 0.04em; }
+  .facts dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .countdown {
+    align-self: flex-start;
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--pen-soft);
+    color: var(--pen);
+    font-variant-numeric: tabular-nums;
+  }
+  .countdown.late { background: var(--warn-bg); color: var(--warn); }
+
+  /* 내 선택 배너 */
+  .pick {
+    background: var(--paper);
+    border: 2px solid var(--pen);
+    border-radius: 8px;
+    padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .pick-badge {
+    align-self: flex-start;
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+    background: var(--pen); color: var(--paper);
+    padding: 3px 10px; border-radius: 999px;
+  }
+  .pick .q { font-size: 1.05rem; }
+
+  /* Analogy panel */
+  .analogy {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+  tr:last-child td { border-bottom: 0; }
+  th { font-size: 0.8rem; color: var(--ink-soft); font-weight: 500; letter-spacing: 0.04em; background: var(--ground); }
+  td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td .easy { font-size: 1.25rem; display: block; margin-top: 2px; }
+  td .easy::before { content: ""; }
+
+  /* Purpose translation */
+  .translation { border-left: 3px solid var(--rule); padding-left: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .translation ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 4px; }
+
+  /* Steps */
+  ol.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
+  ol.steps > li {
+    display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: 14px;
+    padding: 18px 0; border-top: 1px solid var(--rule);
+  }
+  ol.steps > li:last-child { border-bottom: 1px solid var(--rule); }
+  .step-no { font-family: var(--mono); font-weight: 500; color: var(--pen); font-size: 0.95rem; padding-top: 2px; }
+  .step-body { display: flex; flex-direction: column; gap: 8px; }
+  .step-body h3 { font-size: 1.05rem; }
+  .step-body ul { margin: 0; padding-left: 1.2em; }
+
+  /* Topic grid */
+  .topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .topic {
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px;
+    display: flex; flex-direction: column; gap: 4px; font-size: 0.93rem;
+  }
+  .topic .no { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft); }
+  .topic strong { font-size: 0.98rem; }
+  .topic .link-tag { font-family: var(--mono); font-size: 0.74rem; color: var(--amber); }
+  .topic.mine { border: 2px solid var(--pen); background: var(--pen-soft); }
+  .topic.mine .no { color: var(--pen); font-weight: 500; }
+  .topic.mine .no::after { content: "  ← 내 선택"; }
+  .topic.locked { opacity: 0.6; border-style: dashed; }
+
+  /* Paper lists */
+  .papers { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .paper-col { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .paper-col h3 { font-size: 0.95rem; font-family: var(--mono); color: var(--pen); }
+  .paper-col ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 6px; font-size: 0.93rem; }
+
+  .storyline { display: flex; flex-direction: column; gap: 14px; }
+  .storyline .beat { display: grid; grid-template-columns: 6.2rem minmax(0, 1fr); gap: 14px; }
+  .storyline .when { font-family: var(--mono); font-size: 0.82rem; color: var(--ink-soft); padding-top: 3px; }
+
+  /* Evidence badges */
+  .ev { display: inline-block; font-family: var(--mono); font-size: 0.74rem; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+  .ev.peer { background: var(--ok-bg); color: var(--ok); }
+  .ev.pre { background: var(--amber-bg); color: var(--amber); }
+  .ev.claim { background: var(--warn-bg); color: var(--warn); }
+
+  .example {
+    background: var(--paper); border: 1px dashed var(--rule); border-radius: 6px; padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .eq { font-family: var(--mono); font-size: 0.92rem; background: var(--ground); border-radius: 4px; padding: 10px 12px; line-height: 1.9; overflow-x: auto; white-space: nowrap; }
+
+  /* Bad answers */
+  .bad { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .bad li {
+    background: var(--warn-bg); border-radius: 6px; padding: 14px 16px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .bad li strong { color: var(--warn); }
+
+  /* Checklist */
+  .checklist { list-style: none; margin: 0; padding: 0; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; }
+  .checklist li { border-bottom: 1px solid var(--rule); }
+  .checklist li:last-child { border-bottom: 0; }
+  .checklist li.group { padding: 8px 16px; background: var(--ground); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--ink-soft); }
+  .checklist label { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; padding: 12px 16px; cursor: pointer; align-items: start; }
+  .checklist input { width: 18px; height: 18px; margin-top: 5px; accent-color: var(--ok); }
+  .checklist input:checked + span { color: var(--ink-soft); text-decoration: line-through; text-decoration-color: var(--ok); }
+  .checklist small { display: block; color: var(--ink-soft); font-size: 0.86rem; }
+  .progress { font-family: var(--mono); font-size: 0.85rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .progress.done { color: var(--ok); }
+
+  .grade-plus td:first-child { color: var(--ok); font-weight: 700; }
+  .grade-typed td:first-child { color: var(--warn); font-weight: 700; }
+
+  .callout {
+    border: 1px solid var(--warn); border-radius: 6px; padding: 16px 18px;
+    display: flex; flex-direction: column; gap: 8px; background: var(--paper);
+  }
+  .callout h3 { color: var(--warn); }
+
+  .tip { background: var(--pen-soft); border-radius: 6px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+  .tip ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 4px; }
+  .phrases { font-family: var(--mono); font-size: 0.88rem; }
+
+  footer { font-size: 0.85rem; color: var(--ink-soft); border-top: 1px solid var(--rule); padding-top: 16px; display: flex; flex-direction: column; gap: 4px; }
+
+  @media (max-width: 520px) {
+    body { font-size: 15.5px; padding-block: 28px 56px; }
+    ol.steps > li { grid-template-columns: 2.4rem minmax(0, 1fr); gap: 10px; }
+    .storyline .beat { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .easy { font-size: 1.3rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <span class="eyebrow">AGI · AI5102 · 2026 Fall · Homework 2 🎤</span>
+    <h1>연구 줄기 하나, 수업 한 번으로 가르치기</h1>
+    <p class="lede">2인 1팀으로 수업 한 번(90분)을 맡습니다. AGI와 관련된 연구 줄기 하나를 골라, 그 줄기가 어떻게 여기까지 왔는지 따라가고, 2026년 지금 어디에 서 있는지 반 전체에 보여 주는 과제입니다.</p>
+    <dl class="facts">
+      <div><dt>팀 신청 마감</dt><dd>10/9 (금) 23:59</dd></div>
+      <div><dt>발표 기간</dt><dd>10/28 – 12/2</dd></div>
+      <div><dt>형식</dt><dd>2인 팀 발표</dd></div>
+      <div><dt>시간</dt><dd>9:00–10:30</dd></div>
+      <div><dt>언어</dt><dd>영어</dd></div>
+      <div><dt>제출처</dt><dd>신청 시트 하나</dd></div>
+      <div><dt>배점</dt><dd>전체 성적의 25%</dd></div>
+    </dl>
+    <span class="countdown" id="countdown">팀 신청 마감: 2026-10-09 23:59 KST</span>
+  </header>
+
+  <section aria-labelledby="s-pick">
+    <div class="pick">
+      <span class="pick-badge">내 선택 · TOPIC 1</span>
+      <h2 id="s-pick">Looped Transformers &amp; Latent Reasoning</h2>
+      <p class="q"><mark>토큰을 더 쓰는 대신 레이어를 재사용해서, 모델이 더 오래 “생각”할 수 있을까?</mark></p>
+      <p style="color: var(--ink-soft); font-size: 0.93rem;">주제 상세 번역과 준비 제안은 <a href="#s-topic1">아래 “Topic 1 깊이 보기”</a>로 바로 이동. 신청 시트에 팀 이름·날짜와 함께 이 주제를 적어야 확정됩니다.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-idea">
+    <div class="section-head">
+      <span class="eyebrow">핵심 아이디어</span>
+      <h2 id="s-idea">드라마 “지난 시즌 요약”과 “이번 시즌”을 맡는다고 생각하세요</h2>
+    </div>
+    <div class="analogy">
+      <p>긴 드라마의 새 시즌이 시작되면 “지난 이야기”가 먼저 나옵니다. 잘 만든 요약은 사건을 나열하지 않습니다. <mark>“이 사건 때문에 다음 사건이 일어날 수밖에 없었다”</mark>는 인과의 끈으로 묶습니다.</p>
+      <p>이 과제의 “줄기(thread)”가 바로 그 끈입니다. <strong>각 논문이 앞 논문의 한계에 대한 답</strong>이 되도록 이어 붙이고, 마지막에는 최근 몇 달 사이의 결과까지 닿아야 합니다.</p>
+      <p>Session A는 “지난 시즌 요약”, Session B는 “이번 시즌”입니다. 두 사람이 따로 만든 두 편이 아니라, <strong>한 편의 이야기를 두 사람이 이어서 진행</strong>하는 구조여야 합니다.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-purpose">
+    <div class="section-head">
+      <span class="eyebrow">원문 번역 · Purpose of this assignment</span>
+      <h2 id="s-purpose">이 과제를 내는 이유</h2>
+    </div>
+    <div class="translation">
+      <p>아래 주제들은 각각 하나의 <strong>줄기</strong>입니다. 각 논문이 바로 앞 논문의 한계에 답하는 논문들의 연속이고, 최근 몇 달의 결과로 끝납니다.</p>
+      <p>2026년에 여러분이 AI에 관해 읽게 될 것 중 상당수는 연구실 블로그 글, 시스템 카드, 아직 동료 심사를 거치지 않은 프리프린트로 도착하며, 그중 일부는 <mark>과대광고(hype)</mark>입니다. 이 과제는 두 가지 능력을 훈련합니다.</p>
+      <ul>
+        <li>연구 흐름 하나를 <strong>기원부터 최전선까지</strong> 따라가는 능력.</li>
+        <li>다른 사람에게 <strong>무엇이 확립된 것이고, 무엇이 주장에 불과한지</strong>, 그리고 그 전체가 일반 지능을 만드는 데 왜 중요한지 설명하는 능력.</li>
+      </ul>
+      <p>수업을 직접 가르쳐 보는 것이 내가 그 주제를 정말 이해했는지 확인하는 가장 빠른 방법입니다.</p>
+    </div>
+    <p class="easy">논문 요약 대회가 아니다. “왜 이 논문이 앞 논문 다음에 나와야 했나”를 잇고, “측정된 것 vs 말뿐인 것”을 갈라서 보여 주기.</p>
+  </section>
+
+  <section aria-labelledby="s-deliver">
+    <div class="section-head">
+      <span class="eyebrow">원문 번역 · Deliverables</span>
+      <h2 id="s-deliver">언제, 무엇을 내나: 세 번의 마감</h2>
+    </div>
+    <p>모든 것은 <a href="https://docs.google.com/spreadsheets/d/1YHLwhNTMd4PqTmIwAkLIpyR7Cq2-rCIQyP7AbFH-Bd4/edit" target="_blank" rel="noopener">신청 시트(Google Sheets)</a> <strong>한 곳</strong>에 적습니다.</p>
+    <ol class="steps">
+      <li>
+        <span class="step-no">①</span>
+        <div class="step-body">
+          <h3>10/9 (금) 23:59까지 · 팀 구성 + 신청</h3>
+          <p>2인 1팀을 만들고 시트에 <strong>이름 두 명, 날짜 하나, 주제 하나</strong>를 적습니다. 다른 팀과 겹치지 않는다면 나중에 바꿀 수 있습니다.</p>
+          <ul>
+            <li>두 팀이 같은 주제를 고르는 건 <strong>권장하지 않습니다</strong>.</li>
+            <li>마감까지 짝을 못 찾으면 <strong>스태프가 짝을 배정</strong>합니다.</li>
+          </ul>
+          <p class="easy">Topic 1은 먼저 적는 팀이 사실상 가져간다. 빨리 시트에 이름 올리기.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-no">②</span>
+        <div class="step-body">
+          <h3>발표 최소 24시간 전 · 논문 목록 + 슬라이드 링크</h3>
+          <p>다룰 논문(Session A, Session B 각각)과 슬라이드 링크(<strong>Google Slides 권장</strong>)를 시트에 적습니다.</p>
+          <p>반 친구들이 미리 읽었으면 하는 논문이 하나 있다면 <span class="en">pre-reading</span> 칸에 적습니다(<strong>선택 사항</strong>).</p>
+          <p><mark>24시간 전까지 시트에 슬라이드가 없으면 10% 감점</mark>입니다.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-no">③</span>
+        <div class="step-body">
+          <h3>발표 당일 · 영어로 발표</h3>
+          <p>팀원 한 명이 세션 하나씩 맡습니다(아래 형식 참고).</p>
+          <p>준비에 AI 어시스턴트를 써도 됩니다. 단, <strong>두 발표자 모두 슬라이드의 어떤 내용이든 질문을 받으면 답할 수 있어야</strong> 합니다.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="s-format">
+    <div class="section-head">
+      <span class="eyebrow">원문 번역 · Format (one class, 9:00–10:30)</span>
+      <h2 id="s-format">수업 90분은 이렇게 나뉩니다</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>파트</th><th>누가</th><th>시간</th><th>무엇을 다루나</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Session A</strong><br><span class="en">How we got here</span></td>
+            <td>발표자 A</td>
+            <td class="num">~30분</td>
+            <td>나머지 발표 전체가 기대는 아이디어들. 이 줄기를 세운 몇 편의 논문과, <strong>각 논문이 왜 필요했는지</strong>. <mark>핵심 메커니즘 최소 하나를 깊이</mark> 설명(그림, 수식, 또는 손으로 풀어 보는 예제).<span class="easy">“지난 시즌 요약” + 엔진 하나 뜯어 보여 주기</span></td>
+          </tr>
+          <tr>
+            <td><strong>Session B</strong><br><span class="en">Where it stands now</span></td>
+            <td>발표자 B</td>
+            <td class="num">~30분</td>
+            <td>A가 깔아 둔 것 위에 쌓는 최근 결과. 무엇이 새로운지, <strong>무엇이 주장이고 무엇이 측정된 것인지</strong>, 무엇이 아직 열려 있는지.<span class="easy">“이번 시즌” + 팩트체크</span></td>
+          </tr>
+          <tr>
+            <td><strong>Discussion</strong></td>
+            <td>둘 다</td>
+            <td class="num">~20분</td>
+            <td>열린 질문 2–3개로 반 전체 토론을 이끕니다. 그중 <strong>최소 하나는 수업 앞부분 내용과 연결</strong>해야 합니다: 일반화, ARC-AGI, 지능 측정, 안전성 중 하나.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ul style="margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 4px;">
+      <li>A/B 구분은 <strong>느슨합니다</strong>. 별개의 발표 두 개가 아니라 <strong>한 발표 안의 두 역할</strong>로 생각하세요. 경계선은 팀이 정합니다.</li>
+      <li>엄격한 연도 기준은 없고, 어느 정도 겹쳐도 됩니다. 예: B가 A의 메커니즘을 짧게 다시 짚은 뒤 확장해도 됩니다.</li>
+      <li>B가 A가 끝낸 지점에서 이어받도록 <strong>발표를 함께 기획</strong>하세요.</li>
+      <li>남는 시간(약 10분)은 전환과 스태프 코멘트용입니다.</li>
+      <li>슬라이드·발표 요령은 <strong>10/7 TA 세션 “How to prepare your talk”</strong>를 참고하라고 안내되어 있습니다.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="s-schedule">
+    <div class="section-head">
+      <span class="eyebrow">원문 번역 · Schedule</span>
+      <h2 id="s-schedule">발표 일정 (팀당 하루)</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>팀</th><th>날짜</th><th>발표까지 준비 기간 (10/9 기준)</th></tr></thead>
+        <tbody>
+          <tr><td>Team 1</td><td class="num">10/28 (수)</td><td class="num">19일 · 중간고사 주간(10/19, 10/21) 포함</td></tr>
+          <tr><td>Team 2</td><td class="num">11/2 (월)</td><td class="num">24일</td></tr>
+          <tr><td>Team 3</td><td class="num">11/9 (월)</td><td class="num">31일</td></tr>
+          <tr><td>Team 4</td><td class="num">11/16 (월)</td><td class="num">38일</td></tr>
+          <tr><td>Team 5</td><td class="num">11/23 (월)</td><td class="num">45일</td></tr>
+          <tr><td>Team 6</td><td class="num">11/30 (월)</td><td class="num">52일</td></tr>
+          <tr><td>Team 7</td><td class="num">12/2 (수)</td><td class="num">54일</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>두 팀이 모두 동의하면 날짜를 맞바꿀 수 있습니다. 시트만 고치면 됩니다. <span style="color: var(--ink-soft); font-size: 0.9rem;">(세 번째 열은 원문에 없는 계산입니다.)</span></p>
+  </section>
+
+  <section aria-labelledby="s-topics">
+    <div class="section-head">
+      <span class="eyebrow">원문 번역 · Topics</span>
+      <h2 id="s-topics">주제 12개 중 하나 고르기</h2>
+    </div>
+    <p>각 주제에는 출발점 논문 몇 편과 확장할 수 있는 짧은 스토리라인이 붙어 있습니다. 논문의 A/B 표시는 <strong>제안일 뿐</strong>이고, 필수 읽기 목록도 아닙니다. <mark>직접 논문을 찾고 골라야 하며</mark>, 제시된 논문은 빼도 됩니다.</p>
+    <div class="topics">
+      <div class="topic mine"><span class="no">01</span><strong>Looped Transformers &amp; Latent Reasoning</strong><span>토큰을 더 쓰는 대신 레이어를 재사용해 더 오래 생각할 수 있을까?</span></div>
+      <div class="topic"><span class="no">02</span><strong>Mechanistic Interpretability</strong><span>네트워크 안에서 실제로 무엇이 계산되나? 모델이 그걸 말해 줄 수 있나?</span></div>
+      <div class="topic"><span class="no">03</span><strong>Post-training &amp; Alignment</strong><span>사전학습 모델이 어시스턴트가 되는 과정, 그리고 보상이 실수로 가르치는 것.</span></div>
+      <div class="topic"><span class="no">04</span><strong>World Models &amp; Planning</strong><span>세계 모델을 배우고, 그걸로 계획하고, 그 안에서 훈련하기.</span></div>
+      <div class="topic"><span class="no">05</span><strong>Agents &amp; Cognitive Architectures</strong><span>손으로 만든 마음(SOAR, ACT-R)에서 며칠씩 혼자 일하는 LLM 에이전트까지.</span></div>
+      <div class="topic"><span class="no">06</span><strong>AI for Science: AlphaFold</strong><span>단백질 구조 예측에서 새 분자 설계까지.</span></div>
+      <div class="topic"><span class="no">07</span><strong>AI for Mathematics</strong><span>검증이 가장 깨끗한 분야라, 다른 모든 분야의 선행 지표.</span></div>
+      <div class="topic"><span class="no">08</span><strong>Continual Learning &amp; Memory</strong><span>벤치마크 만점 모델은 왜 신입사원처럼 일하면서 배우지 못하나?</span></div>
+      <div class="topic"><span class="no">09</span><strong>Recursive Self-Improvement</strong><span>AI를 개선하는 AI. 무엇이 있고, 무엇이 측정됐고, “재귀”는 무슨 뜻이어야 하나.</span><span class="link-tag">↔ Topic 1과 “재귀”의 다른 의미</span></div>
+      <div class="topic"><span class="no">10</span><strong>Scheming, Monitoring &amp; Control</strong><span>모델이 의도치 않은 목표를 좇으면 알아챌 수 있나, 멈출 수 있나?</span><span class="link-tag">↔ Topic 1의 CoT 모니터링 토론</span></div>
+      <div class="topic"><span class="no">11</span><strong>Defining &amp; Forecasting AGI</strong><span>무엇을 AGI로 치고, 무슨 근거로 도래 시점을 예측하나?</span></div>
+      <div class="topic"><span class="no">12</span><strong>Embodied AI</strong><span>밀레니엄 문제는 푸는데 빨래는 못 갠다. 왜?</span></div>
+      <div class="topic locked"><span class="no">✕</span><strong>선택 불가</strong><span>TA 세션이 다루는 주제(meta-learning·trustworthy ML, model poisoning·unlearning)는 고를 수 없습니다.</span></div>
+      <div class="topic"><span class="no">+</span><strong>직접 제안</strong><span>시트의 Topics 탭에 한 줄 설명과 함께 적기. 같은 모양(A: 어떻게 왔나 / B: 지금 어디인가)이어야 함.</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-topic1">
+    <div class="section-head">
+      <span class="eyebrow">원문 번역 · Topic 1 깊이 보기 · 내 주제</span>
+      <h2 id="s-topic1">Looped Transformers &amp; Latent Reasoning</h2>
+    </div>
+    <p class="easy">문제집 한 권을 다 풀고 끝내는 대신, 같은 연습장을 여러 번 다시 들여다보며 답을 고쳐 가는 방식. 생각을 “종이에 써서(토큰)” 하지 않고 “머릿속에서(hidden state)” 되새김질한다.</p>
+
+    <div class="papers">
+      <div class="paper-col">
+        <h3>A 제안 · How we got here</h3>
+        <ul>
+          <li><a href="https://arxiv.org/abs/1807.03819" target="_blank" rel="noopener">Universal Transformers</a> <span class="en">1807.03819</span></li>
+          <li><a href="https://arxiv.org/abs/2301.13196" target="_blank" rel="noopener">Looped Transformers as Programmable Computers</a> <span class="en">2301.13196</span></li>
+          <li><a href="https://arxiv.org/abs/2502.05171" target="_blank" rel="noopener">Huginn: Scaling up Test-Time Compute with Latent Reasoning</a> <span class="en">2502.05171</span></li>
+        </ul>
+      </div>
+      <div class="paper-col">
+        <h3>B 제안 · Where it stands now</h3>
+        <ul>
+          <li><a href="https://arxiv.org/abs/2507.10524" target="_blank" rel="noopener">Mixture-of-Recursions</a> <span class="en">2507.10524</span></li>
+          <li><a href="https://arxiv.org/abs/2510.25741" target="_blank" rel="noopener">Ouro: Scaling Latent Reasoning via Looped Language Models</a> <span class="en">2510.25741</span></li>
+          <li><a href="https://yifanzhang-pro.github.io/recurrent-looped-tranformer/" target="_blank" rel="noopener">Recurrent Looped Transformer</a> <span class="en">project page</span></li>
+          <li>GPT-6 Astra 논쟁 (<a href="https://sebastianraschka.com/blog/2026/openai-astra-looped-transformers.html" target="_blank" rel="noopener">Raschka 블로그</a>)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>원문 예시 스토리라인 번역</h3>
+    <div class="storyline">
+      <div class="beat">
+        <span class="when">2018 · 기원</span>
+        <p>계보는 <strong>Universal Transformers</strong>(Dehghani et al., 2018)에서 시작합니다. 깊이 방향 가중치 공유<span class="en">(depth-wise weight tying)</span>와 토큰별 적응형 정지<span class="en">(per-token adaptive halting)</span>를 결합했습니다. <mark>서로 다른 블록을 더 쌓는 대신 같은 블록을 반복 적용한다</mark>는 기본 동작이 이미 여기에 완전히 들어 있습니다.</p>
+      </div>
+      <div class="beat">
+        <span class="when">2023–24 · 이론</span>
+        <p>이론적 근거는 나중에 나왔습니다. <strong>Looped Transformers as Programmable Computers</strong>(Giannou et al., ICML 2023)는 looped transformer가 범용 프로그래머블 컴퓨터를 에뮬레이션할 수 있음을 보였습니다. <strong>Looped Transformers are Better at Learning Learning Algorithms</strong>(Yang et al., ICLR 2024)는 그 실험적 짝입니다. 둘 다 <strong>ARC-AGI</strong>와 잘 어울립니다. <em>반복 계산은 왜 알고리즘적 추론에 맞아야 하는가?</em></p>
+      </div>
+      <div class="beat">
+        <span class="when">2025 · 돌파</span>
+        <p>순진한 루핑은 오랫동안 “안 된다”는 평판이었습니다. 보통 네트워크에서는 층마다 역할이 굳어지는데(앞쪽 층은 특징 추출, 뒤쪽 층은 결정), 루프 블록은 패스마다 <strong>모든 역할을 번갈아</strong> 해야 합니다. <strong>Huginn</strong>(Geiping et al., 2025)은 이를 구조로 풀었습니다: <mark>prelude, r번 도는 recurrent core, coda</mark>. 3.5B 모델을 32회 반복으로 돌리면 대략 50B급 성능에 맞먹는다고 <strong>보고</strong>되었습니다.</p>
+      </div>
+      <div class="beat">
+        <span class="when">2025 · 확장</span>
+        <p><strong>Mixture-of-Recursions</strong>(Bae et al., NeurIPS 2025)는 라우터가 토큰마다 서로 다른 재귀 깊이를 배정하게 하고, <strong>Ouro</strong>(Zhu et al., 2025)는 루핑을 대규모 사전학습에 넣었습니다. 이것은 chain-of-thought와는 <strong>다른 종류의 test-time scaling</strong>입니다. <mark>CoT는 모델 밖에 토큰을 써서 생각하고, recurrent depth는 모델 안에서 hidden state를 반복해서 생각합니다.</mark></p>
+      </div>
+      <div class="beat">
+        <span class="when">2026.09 · 헤드라인</span>
+        <p>OpenAI의 <strong>GPT-6 Astra</strong>가 recurrent depth를 쓴다는 보도가 헤드라인이 됐습니다. 다만 <strong>OpenAI는 아키텍처를 확인하지 않았습니다.</strong> 토론할 만한 두 갈래:</p>
+      </div>
+      <div class="beat">
+        <span class="when"></span>
+        <ul style="margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 4px;">
+          <li><strong>얼마나 새로운가?</strong> Sebastian Raschka는 이것이 오랜 족보를 가진 <span class="en">layer reuse</span>에 해당한다고 주장합니다.</li>
+          <li><strong>추론이 hidden state 안에서 더 많이 일어나면 CoT 모니터링은 어떻게 되나?</strong> (Topic 10 참고)</li>
+        </ul>
+      </div>
+      <div class="beat">
+        <span class="when">2026.09 · 사례</span>
+        <p><strong>Recurrent Looped Transformer</strong>(Princeton, 2026년 9월)는 빠르게 퍼졌지만, <mark>분석적 비용 계산만 있고 측정 결과는 없는 설계 문서</mark>입니다. 그래서 <strong>바이럴과 검증을 구분하는 좋은 사례 연구</strong>가 됩니다.</p>
+      </div>
+      <div class="beat">
+        <span class="when">용어 주의</span>
+        <p>“재귀<span class="en">(recursion)</span>”는 두 가지 뜻으로 쓰입니다. <strong>네트워크 내부</strong>의 재귀(이 주제)와 <strong>시스템 수준</strong>의 재귀(Topic 9, AI가 AI를 개선).</p>
+      </div>
+    </div>
+
+    <h3>원문 참고문헌 (8개)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>문헌</th><th>출처</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://arxiv.org/abs/1807.03819" target="_blank" rel="noopener">Universal Transformers</a></td><td class="num">arXiv:1807.03819</td></tr>
+          <tr><td><a href="https://arxiv.org/abs/2301.13196" target="_blank" rel="noopener">Looped Transformers as Programmable Computers</a></td><td class="num">arXiv:2301.13196</td></tr>
+          <tr><td><a href="https://arxiv.org/abs/2311.12424" target="_blank" rel="noopener">Looped Transformers are Better at Learning Learning Algorithms</a></td><td class="num">arXiv:2311.12424</td></tr>
+          <tr><td><a href="https://arxiv.org/abs/2502.05171" target="_blank" rel="noopener">Scaling up Test-Time Compute with Latent Reasoning (Huginn)</a></td><td class="num">arXiv:2502.05171</td></tr>
+          <tr><td><a href="https://arxiv.org/abs/2507.10524" target="_blank" rel="noopener">Mixture-of-Recursions</a></td><td class="num">arXiv:2507.10524</td></tr>
+          <tr><td><a href="https://arxiv.org/abs/2510.25741" target="_blank" rel="noopener">Scaling Latent Reasoning via Looped Language Models (Ouro)</a></td><td class="num">arXiv:2510.25741</td></tr>
+          <tr><td><a href="https://yifanzhang-pro.github.io/recurrent-looped-tranformer/" target="_blank" rel="noopener">Recurrent Looped Transformer</a></td><td class="num">project page</td></tr>
+          <tr><td><a href="https://sebastianraschka.com/blog/2026/openai-astra-looped-transformers.html" target="_blank" rel="noopener">Sebastian Raschka — OpenAI Astra and Looped Transformers</a></td><td class="num">blog</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-claims">
+    <div class="section-head">
+      <span class="eyebrow">원문 기반 정리 · claim vs evidence</span>
+      <h2 id="s-claims">Topic 1에서 “확립 vs 주장”을 가르는 표</h2>
+    </div>
+    <p>채점 기준의 “claims and evidence are kept apart”를 바로 쓸 수 있게, <strong>원문이 각 항목에 대해 말한 근거 수준</strong>만 옮겨 정리했습니다. 발표 슬라이드에서 이런 배지를 쓰면 B 세션의 핵심 요구가 자연스럽게 충족됩니다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>항목</th><th>원문이 말하는 내용</th><th>근거 수준</th></tr></thead>
+        <tbody>
+          <tr><td>Giannou et al.</td><td>looped transformer가 범용 컴퓨터를 에뮬레이션할 수 있다</td><td><span class="ev peer">ICML 2023 · 이론</span></td></tr>
+          <tr><td>Yang et al.</td><td>위 이론의 실험적 짝</td><td><span class="ev peer">ICLR 2024 · 실험</span></td></tr>
+          <tr><td>Mixture-of-Recursions</td><td>라우터가 토큰별 재귀 깊이 배정</td><td><span class="ev peer">NeurIPS 2025</span></td></tr>
+          <tr><td>Huginn</td><td>3.5B × 32회 반복 ≈ 50B급 성능</td><td><span class="ev pre">“reported” · 원문 표현 그대로</span></td></tr>
+          <tr><td>Ouro</td><td>루핑을 대규모 사전학습에 통합</td><td><span class="ev pre">2025 · 원문에 학회 표기 없음</span></td></tr>
+          <tr><td>Recurrent Looped Transformer</td><td>빠르게 확산됨</td><td><span class="ev claim">측정 결과 없음 · 설계 문서</span></td></tr>
+          <tr><td>GPT-6 Astra</td><td>recurrent depth 사용</td><td><span class="ev claim">보도 · OpenAI 미확인</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="easy">초록 배지는 “남들이 검증함”, 노랑은 “저자가 그렇게 보고함”, 빨강은 “아직 말뿐”. 발표 때 숫자 옆에 항상 이 색을 붙이기.</p>
+  </section>
+
+  <section aria-labelledby="s-plan">
+    <div class="tip">
+      <span class="eyebrow">원문에 없는 제안 · 참고용</span>
+      <h3 id="s-plan">Topic 1을 A/B로 나누는 한 가지 방법</h3>
+      <ul>
+        <li><strong>Session A (~30분)</strong>: UT(같은 블록 반복 + halting) → Giannou·Yang(왜 반복이 알고리즘에 맞나: 이론과 실험) → “순진한 루핑은 왜 실패했나” → <mark>Huginn의 prelude/core/coda를 깊이 설명</mark>(필수 “핵심 메커니즘”으로 쓰기 좋음).</li>
+        <li><strong>Session B (~30분)</strong>: Huginn 30초 리캡 → MoR(토큰마다 깊이가 다름) → Ouro(사전학습 규모) → CoT vs recurrent depth 비교 → Recurrent Looped Transformer를 “바이럴 vs 검증” 사례로 → Astra 논쟁(새로운가? 모니터링은?).</li>
+        <li><strong>Discussion (~20분)</strong>: 아래 질문 초안 중 2–3개. ARC-AGI 연결 하나, 안전성(CoT 모니터링) 연결 하나를 넣으면 “수업 앞부분과 연결” 조건을 확실히 채웁니다.</li>
+      </ul>
+      <p>각 발표자는 <strong>자기 세션으로 따로 채점</strong>되므로, 팀원과 누가 A/B를 맡을지 먼저 정해 두세요. 이론·수식에 강하면 A, 최신 동향·비판적 읽기에 강하면 B가 어울립니다.</p>
+    </div>
+    <div class="example">
+      <span class="eyebrow">Session A 메커니즘 후보 · Huginn 재귀 구조</span>
+      <p>입력 토큰 <span class="en">x</span>를 prelude <span class="en">P</span>가 임베딩하고, recurrent core <span class="en">R</span>이 그 임베딩을 매 반복마다 다시 받아 상태를 갱신하며, coda <span class="en">C</span>가 마지막 상태를 출력으로 바꿉니다.</p>
+      <div class="eq">e = P(x)<br>s₀ ~ 𝒩(0, σ²I)<br>sᵢ = R(e, sᵢ₋₁),  i = 1, …, r<br>p = C(sᵣ)</div>
+      <p style="color: var(--ink-soft); font-size: 0.9rem;">슬라이드에 쓰기 전 원 논문(arXiv:2502.05171) 수식과 표기를 직접 대조하세요. 핵심 포인트: (1) 매 반복마다 입력 <span class="en">e</span>가 다시 주입되고, (2) 반복 횟수 <span class="en">r</span>을 테스트 시점에 늘리면 파라미터는 그대로인 채 연산량만 늘어난다는 것.</p>
+      <p class="easy">“층 32개짜리 건물” 대신 “층 하나를 32번 오르내리는 엘리베이터”. 입구(prelude)와 출구(coda)는 따로 두고, 가운데 층만 반복.</p>
+    </div>
+    <div class="tip">
+      <span class="eyebrow">원문에 없는 제안 · 토론 질문 초안</span>
+      <ul class="phrases">
+        <li>[ARC-AGI] Does iterated computation give an inductive bias for algorithmic tasks like ARC, or is it just more compute?</li>
+        <li>[Safety] If more reasoning moves into hidden states, what replaces chain-of-thought monitoring?</li>
+        <li>[Measuring intelligence] Is “thinking longer” by looping closer to skill-acquisition efficiency, or to brute-force search?</li>
+        <li>[Novelty] Is recurrent depth a new idea, or layer reuse with a long pedigree (Raschka)? What would count as evidence either way?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-vault">
+    <div class="section-head">
+      <span class="eyebrow">내 vault에 이미 있는 관련 노트</span>
+      <h2 id="s-vault">이미 정리해 둔 논문 3편</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>노트</th><th>한 줄 요약 (노트의 Comment)</th><th>쓸 곳</th></tr></thead>
+        <tbody>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLooped%20Transformers%20as%20Programmable%20Computers">Looped Transformers as Programmable Computers</a><br><span class="en">2301.13196 · 2023</span></td><td>어텐션 역설계 + 단일 루프로 13층 이하 트랜스포머가 범용 컴퓨터(SUBLEQ→FLEQ)를 에뮬레이션함을 구성적으로 증명</td><td>A · 원문 제시 논문</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FReasoning%20with%20Latent%20Thoughts%20-%20On%20the%20Power%20of%20Looped%20Transformers">Reasoning with Latent Thoughts</a><br><span class="en">2502.17416 · 2025</span></td><td>추론은 깊이를 요구하나 파라미터는 덜 요구한다. looped transformer(k⊗L)의 추론 귀납편향과 CoT 시뮬레이션 이론</td><td>A→B 다리 · CoT vs 루프 비교에 유용</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FFixed-Point%20Reasoners%20-%20Stable%20and%20Adaptive%20Deep%20Looped%20Transformers">Fixed-Point Reasoners</a><br><span class="en">2606.18206 · 2026</span></td><td>pre-norm + 잔차 스케일링으로 신호 전파 문제를 풀고, fixed-point 수렴을 halting 기제로 삼아 7M으로 27M 계층형 baseline을 능가</td><td>B · 2026 최신 결과, UT의 halting과 연결</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color: var(--ink-soft); font-size: 0.9rem;">원문 목록에 없는 2편(Saunshi 계열, Fixed-Point Reasoners)은 “직접 논문을 찾고 고르라”는 요구를 채우는 데 쓸 수 있습니다. 위 링크는 Obsidian 앱에서 열립니다.</p>
+  </section>
+
+  <section aria-labelledby="s-reading">
+    <div class="section-head">
+      <span class="eyebrow">paper-radar · 2026-10-07 · 초록 기준 선별</span>
+      <h2 id="s-reading">발표용 읽기 목록 38편</h2>
+    </div>
+    <p>발표 줄기 순서대로 묶었습니다. 제목 링크는 vault 노트(Obsidian 앱에서 열림), 오른쪽 번호는 arXiv 원문입니다. <strong>★1–8</strong>은 가이드에 없는 논문 중 먼저 읽을 8편의 우선순위입니다. 한 줄 설명은 초록 기준이며 숫자는 저자 보고값입니다. 슬라이드에 쓰기 전에 노트의 원문 위치를 확인하세요.</p>
+
+    <h3>Session A — How we got here</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>논문</th><th>출처</th><th>역할</th><th>한 줄 (초록 기준)</th></tr></thead>
+        <tbody>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FAdaptive%20Computation%20Time%20for%20Recurrent%20Neural%20Networks">Adaptive Computation Time for Recurrent Neural Networks (Graves)</a><br><span class="en"><a href="https://arxiv.org/abs/1603.08983">1603.08983</a> · 2016-03</span></td><td>새로 찾음</td><td>전사</td><td>halting(언제 멈출지 배우기)의 원조. UT의 per-token halting이 여기서 왔다.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FALBERT%20-%20A%20Lite%20BERT%20for%20Self-supervised%20Learning%20of%20Language%20Representations">ALBERT</a><br><span class="en"><a href="https://arxiv.org/abs/1909.11942">1909.11942</a> · 2019-09</span></td><td>새로 찾음</td><td>대비</td><td>층 간 가중치 공유를 &quot;파라미터 절약&quot; 목적으로 씀. 같은 공유를 &quot;더 오래 생각&quot; 목적으로 쓰는 루프와 대비용.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FUniversal%20Transformers">Universal Transformers</a><br><span class="en"><a href="https://arxiv.org/abs/1807.03819">1807.03819</a> · 2018-07</span></td><td>가이드 제시</td><td>기원</td><td>같은 블록 반복 + 토큰별 halting. 줄기의 출발점.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FDeep%20Equilibrium%20Models">Deep Equilibrium Models</a><br><span class="en"><a href="https://arxiv.org/abs/1909.01377">1909.01377</a> · 2019-09</span></td><td>새로 찾음</td><td>이론 렌즈</td><td>무한히 반복한 층의 고정점(fixed point)을 직접 푼다. B의 fixed-point 계열(STARS, Done Right II, Fixed-Point Reasoners)의 전제.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FEnd-to-end%20Algorithm%20Synthesis%20with%20Recurrent%20Networks%20-%20Logical%20Extrapolation%20Without%20Overthinking">End-to-end Algorithm Synthesis with Recurrent Networks: Logical Extrapolation Without Overthinking</a> <strong>★3</strong><br><span class="en"><a href="https://arxiv.org/abs/2202.05826">2202.05826</a> · 2022-02</span></td><td>새로 찾음</td><td>핵심 전사</td><td>반복 횟수를 늘려 더 어려운 문제로 외삽, &quot;overthinking&quot; 문제와 입력 재주입(recall)으로 해결. Huginn의 매 반복 입력 주입이 여기서 이어진다.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLooped%20Transformers%20as%20Programmable%20Computers">Looped Transformers as Programmable Computers</a><br><span class="en"><a href="https://arxiv.org/abs/2301.13196">2301.13196</a> · 2023-01</span></td><td>기존 노트</td><td>이론</td><td>루프 트랜스포머가 범용 컴퓨터를 에뮬레이션(구성적 증명).</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLooped%20Transformers%20are%20Better%20at%20Learning%20Learning%20Algorithms">Looped Transformers are Better at Learning Learning Algorithms</a><br><span class="en"><a href="https://arxiv.org/abs/2311.12424">2311.12424</a> · 2023-11</span></td><td>가이드 제시</td><td>실험</td><td>위 이론의 실험적 짝(in-context learning).</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLooped%20Transformers%20for%20Length%20Generalization">Looped Transformers for Length Generalization</a><br><span class="en"><a href="https://arxiv.org/abs/2409.15647">2409.15647</a> · 2024-09</span></td><td>새로 찾음</td><td>실험</td><td>적응적 반복 횟수로 길이 일반화. &quot;반복은 알고리즘에 맞다&quot;의 직접 증거.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FReasoning%20with%20Latent%20Thoughts%20-%20On%20the%20Power%20of%20Looped%20Transformers">Reasoning with Latent Thoughts: On the Power of Looped Transformers</a><br><span class="en"><a href="https://arxiv.org/abs/2502.17416">2502.17416</a> · 2025-02</span></td><td>기존 노트</td><td>A→B 다리</td><td>추론은 깊이가 필요하지 파라미터가 아니다. 루프가 CoT를 시뮬레이션.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FTraining%20Large%20Language%20Models%20to%20Reason%20in%20a%20Continuous%20Latent%20Space">Training Large Language Models to Reason in a Continuous Latent Space (Coconut)</a><br><span class="en"><a href="https://arxiv.org/abs/2412.06769">2412.06769</a> · 2024-12</span></td><td>기존 노트</td><td>대비</td><td>&quot;가로&quot; 잠재 추론(hidden state를 다음 입력으로). 루프의 &quot;세로&quot; 반복과 비교.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FScaling%20up%20Test-Time%20Compute%20with%20Latent%20Reasoning%20-%20A%20Recurrent%20Depth%20Approach">Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach (Huginn)</a><br><span class="en"><a href="https://arxiv.org/abs/2502.05171">2502.05171</a> · 2025-02</span></td><td>가이드 제시</td><td>핵심 메커니즘</td><td>prelude / recurrent core / coda.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Session B — 확장 (Where it stands now)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>논문</th><th>출처</th><th>역할</th><th>한 줄 (초록 기준)</th></tr></thead>
+        <tbody>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FRelaxed%20Recursive%20Transformers%20-%20Effective%20Parameter%20Sharing%20with%20Layer-wise%20LoRA">Relaxed Recursive Transformers</a><br><span class="en"><a href="https://arxiv.org/abs/2410.20672">2410.20672</a> · 2024-10</span></td><td>새로 찾음</td><td>MoR 전사</td><td>사전학습 모델을 재귀 모델로 변환 + 층별 LoRA로 공유 제약 완화. MoR 저자(Bae)의 직전 작업.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FMixture-of-Recursions%20-%20Learning%20Dynamic%20Recursive%20Depths%20for%20Adaptive%20Token-Level%20Computation">Mixture-of-Recursions</a><br><span class="en"><a href="https://arxiv.org/abs/2507.10524">2507.10524</a> · 2025-07</span></td><td>가이드 제시</td><td>확장</td><td>라우터가 토큰마다 재귀 깊이 배정.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FScaling%20Latent%20Reasoning%20via%20Looped%20Language%20Models">Scaling Latent Reasoning via Looped Language Models (Ouro)</a><br><span class="en"><a href="https://arxiv.org/abs/2510.25741">2510.25741</a> · 2025-10</span></td><td>가이드 제시</td><td>확장</td><td>루핑을 7.7T 토큰 사전학습에. 1.4B/2.6B가 최대 12B급과 맞먹는다는 저자 주장.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FTeaching%20Pretrained%20Language%20Models%20to%20Think%20Deeper%20with%20Retrofitted%20Recurrence">Teaching Pretrained Language Models to Think Deeper with Retrofitted Recurrence</a><br><span class="en"><a href="https://arxiv.org/abs/2511.07384">2511.07384</a> · 2025-11</span></td><td>새로 찾음</td><td>확장</td><td>기존 모델을 재귀 모델로 개조. 재귀 횟수 커리큘럼.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FScaling%20Laws%20for%20Looped%20Mixture%20of%20Experts">Scaling Laws for Looped Mixture of Experts</a> <strong>★7</strong><br><span class="en"><a href="https://arxiv.org/abs/2609.40316">2609.40316</a> · 2026-09</span></td><td>새로 찾음</td><td>최전선</td><td>루프·MoE 공동 scaling law. &quot;recurrence ~2x total-parameter efficiency&quot;는 저자 주장.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FThe%20Surprising%20Effectiveness%20of%20Shared%20Memory%20in%20Looped%20Transformers">The Surprising Effectiveness of Shared Memory in Looped Transformers</a><br><span class="en"><a href="https://arxiv.org/abs/2610.02383">2610.02383</a> · 2026-10</span></td><td>새로 찾음</td><td>효율</td><td>반복마다 KV cache가 늘어나는 비용 문제. 첫 반복만 cache 기록.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FBridging%20the%20Gap%20Between%20Latent%20and%20Explicit%20Reasoning%20with%20Looped%20Transformers">Bridging the Gap Between Latent and Explicit Reasoning with Looped Transformers (LOTUS)</a> <strong>★2</strong><br><span class="en"><a href="https://arxiv.org/abs/2606.31779">2606.31779</a> · 2026-06</span></td><td>새로 찾음</td><td>CoT vs 루프</td><td>3B에서 잠재 CoT가 명시적 CoT와의 격차를 처음 메웠다는 저자 주장. 루프 latent를 LM head로 투사하면 추론 단계가 복원됨.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Session B — 팩트체크 · 메커니즘 (주장 vs 측정)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>논문</th><th>출처</th><th>역할</th><th>한 줄 (초록 기준)</th></tr></thead>
+        <tbody>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLatent%20Chain-of-Thought%20Decoding%20the%20Depth-Recurrent%20Transformer">Latent Chain-of-Thought? Decoding the Depth-Recurrent Transformer</a> <strong>★5</strong><br><span class="en"><a href="https://arxiv.org/abs/2507.02199">2507.02199</a> · 2025-07</span></td><td>새로 찾음</td><td>팩트체크</td><td>Huginn-3.5B 내부에서 해석 가능한 latent CoT 증거가 &quot;제한적&quot;, 재귀 깊이 증가 이득은 &quot;marginal&quot;이라는 보고. Huginn 주장의 반대편.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FA%20Mechanistic%20Analysis%20of%20Looped%20Reasoning%20Language%20Models">A Mechanistic Analysis of Looped Reasoning Language Models</a> <strong>★1</strong><br><span class="en"><a href="https://arxiv.org/abs/2604.11791">2604.11791</a> · 2026-04</span></td><td>새로 찾음</td><td>메커니즘</td><td>루프 블록의 각 층이 서로 다른 고정점으로 수렴, 피드포워드 모델의 추론 단계를 반복마다 되풀이. 가이드의 &quot;루프 블록은 패스마다 모든 역할을 해야 한다&quot; 설명에 대한 실측 답.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FShared%20Weights%2C%20Selected%20Computations%20-%20How%20Looped%20Transformers%20Route%20What%20Each%20Loop%20Does">Shared Weights, Selected Computations: How Looped Transformers Route What Each Loop Does</a><br><span class="en"><a href="https://arxiv.org/abs/2609.39892">2609.39892</a> · 2026-09</span></td><td>새로 찾음</td><td>메커니즘</td><td>같은 가중치라도 반복마다 같은 연산을 하지는 않는다. 진입 hidden state가 어떤 전이를 할지 고른다.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FUnderstanding%20Dynamic%20Compute%20Allocation%20in%20Recurrent%20Transformers">Understanding Dynamic Compute Allocation in Recurrent Transformers</a><br><span class="en"><a href="https://arxiv.org/abs/2602.08864">2602.08864</a> · 2026-02</span></td><td>새로 찾음</td><td>팩트체크</td><td>난이도에 맞춘 연산 배분은 생기지만 알고리즘적 일반화로 이어지지는 않는다는 보고.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FAdaptive%20Depth%20in%20Looped%20Transformers%20-%20Diagnosing%20Learned%20Halting%20Gates%20and%20Trajectory%20Readouts">Adaptive Depth in Looped Transformers: Diagnosing Learned Halting Gates and Trajectory Readouts</a><br><span class="en"><a href="https://arxiv.org/abs/2607.20519">2607.20519</a> · 2026-07</span></td><td>새로 찾음</td><td>팩트체크</td><td>학습된 halting gate가 단순 사후 confidence readout보다 낫지 않은 경우가 많다(Ouro 포함).</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FStabilizing%20Recurrent%20Dynamics%20for%20Test-Time%20Scalable%20Latent%20Reasoning%20in%20Looped%20Language%20Models">Stabilizing Recurrent Dynamics for Test-Time Scalable Latent Reasoning in Looped Language Models (STARS)</a> <strong>★8</strong><br><span class="en"><a href="https://arxiv.org/abs/2605.26733">2605.26733</a> · 2026-05</span></td><td>새로 찾음</td><td>한계</td><td>반복을 늘리면 성능이 정점 후 붕괴. &quot;더 오래 생각 = 더 좋음&quot;이 자동이 아니다. ICML 2026.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FTowards%20Looped%20Models%20Done%20Right%2C%20Part%20II%20-%20Rethinking%20at%20Fixed%20Points">Towards Looped Models Done Right, Part II: Rethinking at Fixed Points</a><br><span class="en"><a href="https://arxiv.org/abs/2610.06833">2610.06833</a> · 2026-10</span></td><td>새로 찾음</td><td>최전선</td><td>Huginn의 depth prior·input injection을 개선. Part I은 arXiv 제목 검색에서 못 찾음.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FFixed-Point%20Reasoners%20-%20Stable%20and%20Adaptive%20Deep%20Looped%20Transformers">Fixed-Point Reasoners: Stable and Adaptive Deep Looped Transformers</a><br><span class="en"><a href="https://arxiv.org/abs/2606.18206">2606.18206</a> · 2026-06</span></td><td>기존 노트</td><td>최전선</td><td>fixed-point 수렴을 halting으로.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Discussion — ARC-AGI 연결</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>논문</th><th>출처</th><th>역할</th><th>한 줄 (초록 기준)</th></tr></thead>
+        <tbody>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FHierarchical%20Reasoning%20Model">Hierarchical Reasoning Model (HRM)</a><br><span class="en"><a href="https://arxiv.org/abs/2506.21734">2506.21734</a> · 2025-06</span></td><td>새로 찾음</td><td>ARC</td><td>두 재귀 모듈, 27M, ARC-AGI. 뇌 비유 설계.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FHierarchical%20Reasoning%20Models%20-%20Perspectives%20and%20Misconceptions">Hierarchical Reasoning Models: Perspectives and Misconceptions</a><br><span class="en"><a href="https://arxiv.org/abs/2510.00355">2510.00355</a> · 2025-09</span></td><td>새로 찾음</td><td>ARC 팩트체크</td><td>HRM 오해 정리. v2에서 일부 결과 오류로 결론 수정(arXiv comments).</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLess%20is%20More%20-%20Recursive%20Reasoning%20with%20Tiny%20Networks">Less is More: Recursive Reasoning with Tiny Networks (TRM)</a> <strong>★6</strong><br><span class="en"><a href="https://arxiv.org/abs/2510.04871">2510.04871</a> · 2025-10</span></td><td>기존 노트</td><td>ARC</td><td>2층 7M으로 ARC-AGI-1 45% / ARC-AGI-2 8%(저자 보고). HRM의 계층 구조 불필요.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLoopViT%20-%20Scaling%20Visual%20ARC%20with%20Looped%20Transformers">LoopViT: Scaling Visual ARC with Looped Transformers</a><br><span class="en"><a href="https://arxiv.org/abs/2602.02156">2602.02156</a> · 2026-02</span></td><td>새로 찾음</td><td>ARC</td><td>18M으로 ARC-AGI-1 65.8%(저자 보고). entropy 기반 Dynamic Exit.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FWhat%20Limits%20Recursive%20Reasoning%20Models%20-%20Optimization%2C%20Architecture%20and%20Test-Time%20Scaling">What Limits Recursive Reasoning Models: Optimization, Architecture and Test-Time Scaling</a><br><span class="en"><a href="https://arxiv.org/abs/2609.39967">2609.39967</a> · 2026-09</span></td><td>새로 찾음</td><td>ARC 팩트체크</td><td>HRM/TRM/URM을 통일 파이프라인에서 비교. 성능은 계층 구조가 아니라 최적화·안정화 레시피에 달렸다는 주장.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FDissecting%20Hierarchical%20Reasoning%20Models%20-%20A%20Mechanistic%20Study">Dissecting Hierarchical Reasoning Models: A Mechanistic Study</a><br><span class="en"><a href="https://arxiv.org/abs/2609.22197">2609.22197</a> · 2026-08</span></td><td>새로 찾음</td><td>ARC 팩트체크</td><td>단일 상태 재귀 트랜스포머가 HRM과 비슷. HRM = 퍼즐 특화 반복 정제.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Discussion — 안전성(CoT 모니터링) 연결</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>논문</th><th>출처</th><th>역할</th><th>한 줄 (초록 기준)</th></tr></thead>
+        <tbody>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FChain%20of%20Thought%20Monitorability%20-%20A%20New%20and%20Fragile%20Opportunity%20for%20AI%20Safety">Chain of Thought Monitorability: A New and Fragile Opportunity for AI Safety</a><br><span class="en"><a href="https://arxiv.org/abs/2507.11473">2507.11473</a> · 2025-07</span></td><td>새로 찾음</td><td>안전</td><td>CoT 모니터링이 왜 중요하고 왜 깨지기 쉬운지. 토론 질문 [Safety]의 전제.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FOn%20the%20Chain-of-Thought%20Monitorability%20of%20Looped%20Language%20Models">On the Chain-of-Thought Monitorability of Looped Language Models</a> <strong>★4</strong><br><span class="en"><a href="https://arxiv.org/abs/2610.02741">2610.02741</a> · 2026-10</span></td><td>새로 찾음</td><td>안전</td><td>루프 깊이를 늘리면 일부 stress-test 과제에서 모니터링 가능성 하락, 그러나 루프 모델이 체계적으로 덜 모니터링 가능하다는 증거는 없다는 보고. Astra 토론의 실측 근거.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLooped%20Transformers%20under%20the%20Jacobian%20Lens%20-%20Does%20the%20Global%20Workspace%20Survive%20Recurrence%3F">Looped Transformers under the Jacobian Lens: Does the Global Workspace Survive Recurrence?</a><br><span class="en"><a href="https://arxiv.org/abs/2609.01924">2609.01924</a> · 2026-09</span></td><td>새로 찾음</td><td>해석가능성</td><td>Ouro·Huginn에서 workspace 표현이 반복 구간에 생기지만 접근 방식이 다르다.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>여유 있으면</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>논문</th><th>출처</th><th>역할</th><th>한 줄 (초록 기준)</th></tr></thead>
+        <tbody>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FA%20Survey%20on%20Latent%20Reasoning">A Survey on Latent Reasoning</a><br><span class="en"><a href="https://arxiv.org/abs/2507.06203">2507.06203</a> · 2025-07</span></td><td>새로 찾음</td><td>지도</td><td>잠재 추론 전체 지형. 발표 범위 잡기용 skim.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FDecoding%20Looped%20Transformers%20Better%20for%20%28Almost%29%20Free">Decoding Looped Transformers Better for (Almost) Free (LoopCD)</a><br><span class="en"><a href="https://arxiv.org/abs/2610.02185">2610.02185</a> · 2026-10</span></td><td>새로 찾음</td><td>효율</td><td>이른 반복의 예측과 대비해 디코딩.</td></tr>
+          <tr><td><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FRetrofitting%20Recurrent%20Depth%20into%20a%20Pretrained%20Language%20Model%20-%20Installation%2C%20Extrapolation%2C%20Transfer%2C%20and%20Retention%20at%20Two%20Parameter%20Budgets">Retrofitting Recurrent Depth into a Pretrained Language Model</a><br><span class="en"><a href="https://arxiv.org/abs/2608.11233">2608.11233</a> · 2026-07</span></td><td>새로 찾음</td><td>확장</td><td>단독 저자. Qwen2.5-0.5B 개조. 저자 주장 많음, 우선순위 낮음.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color: var(--ink-soft); font-size: 0.9rem;">Recurrent Looped Transformer 프로젝트 페이지와 Raschka 블로그는 논문이 아니라 이 목록에서 뺐습니다(위 Topic 1 절의 링크 사용). 선별 근거와 점수는 비공개 radar 파일 <code>_wiki/radar/scans/2026-10-07-looped-transformer-reading-list.md</code>에 있습니다.</p>
+  </section>
+
+  <section aria-labelledby="s-order">
+    <div class="section-head">
+      <span class="eyebrow">원문에 없는 제안 · 읽는 순서</span>
+      <h2 id="s-order">정리한 논문, 이 순서로 읽기</h2>
+    </div>
+    <p>앞 논문의 한계가 다음 논문의 출발점이 되도록 묶었습니다. 발표의 줄기 순서와 같습니다. <strong>정독</strong>은 노트를 끝까지 읽고 원문 핵심 그림까지 확인할 것, 훑기는 노트의 개요와 핵심 그림만 볼 것입니다. 링크는 모두 vault 노트(Obsidian 앱)입니다.</p>
+    <ol class="steps">
+      <li>
+        <span class="step-no">0</span>
+        <div class="step-body">
+          <h3>지도 펴기</h3>
+          <p class="en">이 분야 전체가 어떻게 생겼나?</p>
+          <ol start="1">
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FA%20Survey%20on%20Latent%20Reasoning">A Survey on Latent Reasoning</a> · 훑기<br><span style="color: var(--ink-soft);">목차와 분류 그림만. 직접 실험 비교가 없는 서베이라 수치 근거로는 쓰지 않는다.</span></li>
+          </ol>
+        </div>
+      </li>
+      <li>
+        <span class="step-no">1</span>
+        <div class="step-body">
+          <h3>기원: 같은 블록을 반복하고, 언제 멈출지 배운다</h3>
+          <p class="en">UT의 두 재료(가중치 공유, halting)는 어디서 왔나?</p>
+          <ol start="2">
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FAdaptive%20Computation%20Time%20for%20Recurrent%20Neural%20Networks">Adaptive Computation Time (Graves 2016)</a> · 훑기<br><span style="color: var(--ink-soft);">halting(멈출 확률을 누적해 반복을 끝내는 방법)의 원형. UT가 그대로 가져다 쓴다.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FUniversal%20Transformers">Universal Transformers</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">줄기의 출발점. 같은 블록 반복 + 토큰별 halting. A 발표의 첫 그림.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FALBERT%20-%20A%20Lite%20BERT%20for%20Self-supervised%20Learning%20of%20Language%20Representations">ALBERT</a> · 훑기<br><span style="color: var(--ink-soft);">층 간 가중치 공유를 &quot;파라미터 절약&quot; 용도로 쓴 사례. 같은 공유를 &quot;더 오래 생각&quot; 용도로 쓰는 루프와 대비.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FDeep%20Equilibrium%20Models">Deep Equilibrium Models</a> · 훑기<br><span style="color: var(--ink-soft);">반복을 무한히 하면 고정점에 도달한다는 관점. 뒤의 STARS·Fixed-Point·Done Right II를 읽을 때 전제.</span></li>
+          </ol>
+        </div>
+      </li>
+      <li>
+        <span class="step-no">2</span>
+        <div class="step-body">
+          <h3>왜 반복이 알고리즘에 맞나</h3>
+          <p class="en">반복 횟수를 늘리면 더 어려운 문제를 풀 수 있나? 이론적으로 가능한가?</p>
+          <ol start="6">
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FEnd-to-end%20Algorithm%20Synthesis%20with%20Recurrent%20Networks%20-%20Logical%20Extrapolation%20Without%20Overthinking">End-to-end Algorithm Synthesis… Without Overthinking (Bansal 2022)</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">반복을 늘려 더 큰 문제로 외삽, 너무 오래 돌리면 망가지는 overthinking, 입력 재주입(recall)으로 해결. Huginn이 매 반복 입력을 다시 넣는 이유가 여기서 나온다.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLooped%20Transformers%20as%20Programmable%20Computers">Looped Transformers as Programmable Computers</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">루프 트랜스포머가 범용 컴퓨터를 흉내 낼 수 있다는 구성적 증명. &quot;가능하다&quot;의 이론 근거.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLooped%20Transformers%20are%20Better%20at%20Learning%20Learning%20Algorithms">Looped Transformers are Better at Learning Learning Algorithms</a> · 훑기<br><span style="color: var(--ink-soft);">위 이론의 실험적 짝(in-context learning). 캡션과 본문의 일부 값이 달라 노트에 표시됨.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLooped%20Transformers%20for%20Length%20Generalization">Looped Transformers for Length Generalization</a> · 훑기<br><span style="color: var(--ink-soft);">적응적 반복 횟수로 길이 일반화. &quot;반복은 알고리즘에 맞다&quot;의 직접 증거.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FReasoning%20with%20Latent%20Thoughts%20-%20On%20the%20Power%20of%20Looped%20Transformers">Reasoning with Latent Thoughts</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">추론에는 파라미터보다 깊이가 필요하다, 루프가 CoT를 흉내 낸다는 이론. A에서 B로 넘어가는 다리.</span></li>
+          </ol>
+        </div>
+      </li>
+      <li>
+        <span class="step-no">3</span>
+        <div class="step-body">
+          <h3>핵심 메커니즘: Huginn과 그 반론</h3>
+          <p class="en">A 발표에서 깊이 설명할 엔진은 무엇이고, 그 주장은 얼마나 믿을 만한가?</p>
+          <ol start="11">
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FScaling%20up%20Test-Time%20Compute%20with%20Latent%20Reasoning%20-%20A%20Recurrent%20Depth%20Approach">Huginn: Recurrent Depth Approach</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">prelude / recurrent core / coda 식과 매 반복 입력 주입. 수식은 노트에 원문 표기 그대로 있다. A의 핵심 메커니즘 슬라이드.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FTraining%20Large%20Language%20Models%20to%20Reason%20in%20a%20Continuous%20Latent%20Space">Coconut (Continuous Latent Space)</a> · 훑기<br><span style="color: var(--ink-soft);">hidden state를 다음 입력 토큰으로 넘기는 &quot;가로&quot; 잠재 추론. 루프의 &quot;세로&quot; 반복과 비교용.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLatent%20Chain-of-Thought%20Decoding%20the%20Depth-Recurrent%20Transformer">Latent Chain-of-Thought? Decoding the Depth-Recurrent Transformer</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">Huginn 직후에 바로 읽는다. 해석 가능한 잠재 CoT의 증거가 제한적이었다는 보고. &quot;없다&quot;가 아니라 &quot;찾지 못했다&quot;는 점에 주의.</span></li>
+          </ol>
+        </div>
+      </li>
+      <li>
+        <span class="step-no">4</span>
+        <div class="step-body">
+          <h3>확장: 크게, 빠르게, 토큰마다 다르게</h3>
+          <p class="en">2025–26년에 루프는 어디까지 커졌나? (B 발표의 본론)</p>
+          <ol start="14">
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FRelaxed%20Recursive%20Transformers%20-%20Effective%20Parameter%20Sharing%20with%20Layer-wise%20LoRA">Relaxed Recursive Transformers</a> · 훑기<br><span style="color: var(--ink-soft);">사전학습 모델을 재귀 모델로 바꾸고 층별 LoRA로 공유 제약을 푼다. MoR의 직전 작업.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FMixture-of-Recursions%20-%20Learning%20Dynamic%20Recursive%20Depths%20for%20Adaptive%20Token-Level%20Computation">Mixture-of-Recursions</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">라우터가 토큰마다 재귀 깊이를 배정. 본문 서술과 Table 4의 강조 행이 어긋나는 곳이 노트에 표시됨.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FScaling%20Latent%20Reasoning%20via%20Looped%20Language%20Models">Ouro: Looped Language Models</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">루핑을 7.7T 토큰 사전학습에 넣었다. &quot;1.4B/2.6B가 최대 12B급&quot;은 저자 주장. 표 간 수치 불일치가 노트에 표시됨.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FTeaching%20Pretrained%20Language%20Models%20to%20Think%20Deeper%20with%20Retrofitted%20Recurrence">Retrofitted Recurrence</a> · 훑기<br><span style="color: var(--ink-soft);">기존 모델을 재귀 모델로 개조. Huginn과의 비교는 같은 조건 재평가가 아니라 공개 수치 인용.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FScaling%20Laws%20for%20Looped%20Mixture%20of%20Experts">Scaling Laws for Looped MoE</a> · 훑기<br><span style="color: var(--ink-soft);">&quot;2배 큰 MoE와 맞먹는다&quot;는 BBH·GSM8K 평균 기준. 14개 벤치 전체 평균은 46.9 대 50.2로 뒤집힌다.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FThe%20Surprising%20Effectiveness%20of%20Shared%20Memory%20in%20Looped%20Transformers">Shared Memory in Looped Transformers</a> · 훑기<br><span style="color: var(--ink-soft);">반복마다 KV cache가 늘어나는 비용 문제와 해법. 실용 관점.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FBridging%20the%20Gap%20Between%20Latent%20and%20Explicit%20Reasoning%20with%20Looped%20Transformers">LOTUS: Bridging Latent and Explicit Reasoning</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">CoT vs 루프 비교 슬라이드용. &quot;CoT를 넘었다&quot;는 3B에서만 성립한다는 점을 같이 말한다.</span></li>
+          </ol>
+        </div>
+      </li>
+      <li>
+        <span class="step-no">5</span>
+        <div class="step-body">
+          <h3>팩트체크: 루프 안에서 실제로 무슨 일이 일어나나</h3>
+          <p class="en">&quot;반복 = 더 오래 생각&quot;은 측정으로도 맞나? (B의 주장 vs 측정)</p>
+          <ol start="21">
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FA%20Mechanistic%20Analysis%20of%20Looped%20Reasoning%20Language%20Models">A Mechanistic Analysis of Looped Reasoning LMs</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">루프 층마다 서로 다른 고정점으로 수렴하고, 반복마다 일반 모델의 추론 단계를 되풀이한다. 과제 정확도는 직접 재지 않았다.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FShared%20Weights%2C%20Selected%20Computations%20-%20How%20Looped%20Transformers%20Route%20What%20Each%20Loop%20Does">Shared Weights, Selected Computations</a> · 훑기<br><span style="color: var(--ink-soft);">같은 가중치라도 반복마다 같은 연산을 하지 않는다. 진입 hidden state가 할 일을 고른다.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FUnderstanding%20Dynamic%20Compute%20Allocation%20in%20Recurrent%20Transformers">Understanding Dynamic Compute Allocation</a> · 훑기<br><span style="color: var(--ink-soft);">어려운 토큰에 연산을 더 주는 배분은 생기지만 알고리즘 일반화로 이어지지 않는다.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FAdaptive%20Depth%20in%20Looped%20Transformers%20-%20Diagnosing%20Learned%20Halting%20Gates%20and%20Trajectory%20Readouts">Adaptive Depth: Diagnosing Learned Halting Gates</a> · 훑기<br><span style="color: var(--ink-soft);">학습된 halting gate가 단순 사후 confidence보다 낫지 않은 경우가 많다(Ouro 포함). UT·ACT의 halting과 연결.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FStabilizing%20Recurrent%20Dynamics%20for%20Test-Time%20Scalable%20Latent%20Reasoning%20in%20Looped%20Language%20Models">STARS: Stabilizing Recurrent Dynamics</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">반복을 늘리면 성능이 정점 후 무너진다. &quot;오래 생각할수록 좋다&quot;가 자동이 아니라는 근거. 서론 수치는 표로 재현되지 않는다는 표시 있음.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FFixed-Point%20Reasoners%20-%20Stable%20and%20Adaptive%20Deep%20Looped%20Transformers">Fixed-Point Reasoners</a> · 훑기<br><span style="color: var(--ink-soft);">고정점 수렴을 halting 기제로 쓴다. DEQ·STARS와 같은 계열.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FTowards%20Looped%20Models%20Done%20Right%2C%20Part%20II%20-%20Rethinking%20at%20Fixed%20Points">Towards Looped Models Done Right, Part II</a> · 훑기<br><span style="color: var(--ink-soft);">Huginn의 depth prior와 입력 주입을 개선한 최신 결과(2026-10).</span></li>
+          </ol>
+        </div>
+      </li>
+      <li>
+        <span class="step-no">6</span>
+        <div class="step-body">
+          <h3>토론 1: ARC-AGI</h3>
+          <p class="en">반복 계산은 ARC 같은 알고리즘 과제에 귀납 편향을 주나, 아니면 연산을 더 쓸 뿐인가?</p>
+          <ol start="28">
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FHierarchical%20Reasoning%20Model">Hierarchical Reasoning Model (HRM)</a> · 훑기<br><span style="color: var(--ink-soft);">두 재귀 모듈, 뇌 비유 설계. 구성요소별 ablation과 seed 수가 없다.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FHierarchical%20Reasoning%20Models%20-%20Perspectives%20and%20Misconceptions">HRM: Perspectives and Misconceptions</a> · 훑기<br><span style="color: var(--ink-soft);">HRM 오해 정리. v1 결과 오류로 결론을 바꾼 v2 기준. Sudoku만 실험.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLess%20is%20More%20-%20Recursive%20Reasoning%20with%20Tiny%20Networks">Less is More: Tiny Recursive Model (TRM)</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">2층 7M으로 HRM을 넘었다는 보고. 계층 구조가 필요 없다는 첫 증거.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLoopViT%20-%20Scaling%20Visual%20ARC%20with%20Looped%20Transformers">LoopViT</a> · 훑기<br><span style="color: var(--ink-soft);">ARC-AGI-1에서 18M 루프 ViT. entropy 기반으로 반복을 멈춘다.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FWhat%20Limits%20Recursive%20Reasoning%20Models%20-%20Optimization%2C%20Architecture%20and%20Test-Time%20Scaling">What Limits Recursive Reasoning Models</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">HRM·TRM·URM을 같은 파이프라인에서 비교. 성능은 구조보다 최적화 레시피에 달렸다는 주장. Table 2 값이 원 보고값과 같다는 의문 표시 있음.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FDissecting%20Hierarchical%20Reasoning%20Models%20-%20A%20Mechanistic%20Study">Dissecting HRM: A Mechanistic Study</a> · 훑기<br><span style="color: var(--ink-soft);">단일 상태 재귀 트랜스포머가 HRM과 비슷하다. HRM은 퍼즐 특화 반복 정제.</span></li>
+          </ol>
+        </div>
+      </li>
+      <li>
+        <span class="step-no">7</span>
+        <div class="step-body">
+          <h3>토론 2: 안전성 (CoT 모니터링)</h3>
+          <p class="en">추론이 hidden state로 들어가면 CoT 모니터링은 어떻게 되나? (Astra 논쟁)</p>
+          <ol start="34">
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FChain%20of%20Thought%20Monitorability%20-%20A%20New%20and%20Fragile%20Opportunity%20for%20AI%20Safety">Chain of Thought Monitorability</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">CoT 모니터링이 왜 중요하고 왜 깨지기 쉬운지. 토론 질문의 전제. position paper라 실험 수치는 없다.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FOn%20the%20Chain-of-Thought%20Monitorability%20of%20Looped%20Language%20Models">On the CoT Monitorability of Looped LMs</a> · <strong>정독</strong><br><span style="color: var(--ink-soft);">루프를 깊게 하면 일부 스트레스 테스트에서 모니터링이 떨어지지만, 루프 모델이 체계적으로 덜 감시 가능하다는 증거는 없다. Astra 토론의 실측 근거.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FLooped%20Transformers%20under%20the%20Jacobian%20Lens%20-%20Does%20the%20Global%20Workspace%20Survive%20Recurrence%3F">Looped Transformers under the Jacobian Lens</a> · 훑기<br><span style="color: var(--ink-soft);">Ouro·Huginn에서 workspace 표현이 반복 구간에 생기지만 접근 방식이 다르다. 해석가능성 쪽 보충.</span></li>
+          </ol>
+        </div>
+      </li>
+      <li>
+        <span class="step-no">8</span>
+        <div class="step-body">
+          <h3>여유 있으면</h3>
+          <ol start="37">
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FDecoding%20Looped%20Transformers%20Better%20for%20%28Almost%29%20Free">Decoding Looped Transformers Better for (Almost) Free</a> · 훑기<br><span style="color: var(--ink-soft);">이른 반복의 예측과 대비해 디코딩. 초록의 Huginn 수치는 특정 실행 기준선이라는 점 주의.</span></li>
+            <li><a href="obsidian://open?vault=obsidian-notes&amp;file=Public%2FAI%2FPapers%2FRetrofitting%20Recurrent%20Depth%20into%20a%20Pretrained%20Language%20Model%20-%20Installation%2C%20Extrapolation%2C%20Transfer%2C%20and%20Retention%20at%20Two%20Parameter%20Budgets">Retrofitting Recurrent Depth into a Pretrained LM</a> · 훑기<br><span style="color: var(--ink-soft);">단독 저자. 결과는 루프 수를 정답 깊이로 강제해서 얻었다(스스로 고르면 9.11%).</span></li>
+          </ol>
+        </div>
+      </li>
+    </ol>
+    <div class="tip">
+      <span class="eyebrow">시간이 없을 때</span>
+      <h3>최소 경로 10편</h3>
+      <p>Universal Transformers → Bansal 2022 → Programmable Computers → Huginn → Latent CoT? → Mixture-of-Recursions → Ouro → Mechanistic Analysis → TRM → CoT Monitorability of Looped LMs. 줄기(기원 → 이론 → 엔진 → 반론 → 확장 → 내부 → 토론 두 갈래)가 끊기지 않는 가장 짧은 길입니다.</p>
+      <p><strong>팀으로 나눠 읽기:</strong> 단계 0–3은 A 발표자, 단계 4–5는 B 발표자가 정독하고, 단계 6–7(토론)은 둘이 같이 읽습니다. 두 사람 모두 슬라이드 전체 질문에 답해야 하므로, 상대 담당 구간은 최소 경로에 든 논문만이라도 훑어 둡니다.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-bad">
+    <div class="section-head">
+      <span class="eyebrow">원문 번역 · Talks that will not score well</span>
+      <h2 id="s-bad">이렇게 발표하면 점수 낮음</h2>
+    </div>
+    <ul class="bad">
+      <li><strong>줄기 없이 논문을 한 편씩 요약</strong><span>모든 논문에 대해, 청중은 <em>그 논문이 앞 논문 다음에 왜 나와야 했는지</em> 알 수 있어야 합니다.</span></li>
+      <li><strong>초록을 소리 내어 읽거나, 글자로 꽉 찬 슬라이드</strong></li>
+      <li><strong>연구실 발표를 사실처럼 반복</strong><span>어떤 근거가 뒷받침하고 어떤 근거는 없는지 말하지 않는 경우. Topic 1에서는 Astra와 Recurrent Looped Transformer가 바로 이 함정입니다.</span></li>
+      <li><strong>서로 다른 두 팀이 했어도 똑같았을 A와 B</strong><span>B는 A가 설명한 것 위에 쌓아야 합니다.</span></li>
+      <li><strong>시간 초과</strong><span>중간에 끊깁니다.</span></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="s-checklist">
+    <div class="section-head">
+      <span class="eyebrow">원문 기반 · 할 일 체크리스트</span>
+      <h2 id="s-checklist">마감별 체크리스트</h2>
+    </div>
+    <p>원문의 요구 사항을 마감 순서로 옮겼습니다. 체크하면 이 브라우저에 저장됩니다. <span class="progress" id="progress"></span></p>
+    <ul class="checklist" id="checklist">
+      <li class="group">① 10/9 (금) 23:59까지</li>
+      <li><label><input type="checkbox" id="c-partner"><span><strong>짝(팀원 1명)</strong>을 구했다<small>못 구하면 마감 후 스태프가 배정.</small></span></label></li>
+      <li><label><input type="checkbox" id="c-sheet"><span>시트에 <strong>이름 두 명 · 날짜 하나 · 주제 하나</strong>를 적었다<small>주제: Topic 1 Looped Transformers &amp; Latent Reasoning.</small></span></label></li>
+      <li><label><input type="checkbox" id="c-dup"><span>다른 팀이 <strong>Topic 1을 먼저 적지 않았는지</strong> 확인했다<small>중복은 “권장하지 않음”. 겹치면 계획 조정.</small></span></label></li>
+      <li><label><input type="checkbox" id="c-role"><span>팀원과 <strong>누가 A, 누가 B</strong>를 맡을지 정했다<small>각자 자기 세션으로 채점됨.</small></span></label></li>
+      <li class="group">준비 기간</li>
+      <li><label><input type="checkbox" id="c-ta"><span>10/7 TA 세션 <strong>“How to prepare your talk”</strong>를 들었다</span></label></li>
+      <li><label><input type="checkbox" id="c-thread"><span>논문마다 “<strong>앞 논문의 어떤 한계에 답하나</strong>”를 한 줄로 적어 줄기를 만들었다</span></label></li>
+      <li><label><input type="checkbox" id="c-mech"><span>A: 핵심 메커니즘 하나를 <strong>그림·수식·예제</strong>로 깊이 설명하는 슬라이드가 있다</span></label></li>
+      <li><label><input type="checkbox" id="c-claim"><span>B: 결과마다 <strong>주장 vs 측정</strong>을 구분해 표시했다</span></label></li>
+      <li><label><input type="checkbox" id="c-disc"><span>토론 질문 <strong>2–3개</strong>, 그중 하나 이상은 <strong>일반화·ARC-AGI·지능 측정·안전성</strong>과 연결</span></label></li>
+      <li><label><input type="checkbox" id="c-qa"><span>두 사람 모두 <strong>슬라이드 전체 내용</strong>에 대한 질문에 답할 수 있다<small>AI 어시스턴트 사용은 허용.</small></span></label></li>
+      <li><label><input type="checkbox" id="c-rehearse"><span>영어로 <strong>시간 재며 리허설</strong>했다 (A ~30분, B ~30분, 토론 ~20분)</span></label></li>
+      <li class="group">② 발표 최소 24시간 전</li>
+      <li><label><input type="checkbox" id="c-papers"><span>시트에 <strong>Session A, Session B 논문 목록</strong>을 적었다</span></label></li>
+      <li><label><input type="checkbox" id="c-slides"><span>시트에 <strong>슬라이드 링크</strong>(Google Slides 권장)를 올렸다<small>빠지면 10% 감점.</small></span></label></li>
+      <li><label><input type="checkbox" id="c-pre"><span>(선택) <strong>pre-reading</strong> 칸에 미리 읽을 논문 하나를 적었다</span></label></li>
+      <li class="group">③ 발표 당일</li>
+      <li><label><input type="checkbox" id="c-day"><span><strong>영어로</strong>, 한 사람이 한 세션씩 발표하고 토론을 함께 이끌었다</span></label></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="s-grade">
+    <div class="section-head">
+      <span class="eyebrow">원문 번역 · Grading Criteria (25%)</span>
+      <h2 id="s-grade">채점 기준</h2>
+    </div>
+    <p>각 발표자는 <strong>자기 세션</strong>으로 채점됩니다. 토론 파트는 팀이 공유합니다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>등급</th><th>점수</th><th>기준</th></tr></thead>
+        <tbody>
+          <tr class="grade-plus"><td>Check Plus</td><td class="num">22–25%</td><td>줄기가 분명하고, 메커니즘 하나를 <strong>반 친구들이 스스로 재구성할 수 있을 만큼</strong> 잘 설명했고, <strong>주장과 근거를 분리</strong>했으며, 토론이 주제를 수업의 나머지 부분과 연결함.</td></tr>
+          <tr><td>Check</td><td class="num">17–21%</td><td>무난함. <strong>대부분의 발표가 여기</strong>에 해당할 것으로 예상.</td></tr>
+          <tr><td>Check Minus</td><td class="num">12–16%</td><td>줄기 없는 요약 나열, 핵심 메커니즘의 얕은 설명, 또는 <strong>시간 관리 실패</strong>.</td></tr>
+          <tr class="grade-typed"><td>슬라이드 미등록</td><td class="num">−10%</td><td>발표 24시간 전까지 시트에 슬라이드가 없으면 10% 감점.</td></tr>
+          <tr><td>미발표</td><td class="num">0%</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="easy">Check Plus 네 조건 = 줄기 · 재구성 가능한 메커니즘 · 주장/근거 분리 · 수업과 연결. 이 네 개만 체크리스트처럼 챙기면 된다.</p>
+    <p>참고로 이 과목은 과제가 성적의 100%이고, HW2가 그중 25%입니다(HW1은 15%).</p>
+  </section>
+
+  <section aria-labelledby="s-check">
+    <div class="callout">
+      <h3 id="s-check">직접 확인해 봐야 할 것</h3>
+      <p><strong>강의 메인 페이지와 HW2 페이지가 아직 어긋납니다.</strong> 일정표에는 “HW2 (Due: 10/9)”로 올라와 있지만, 메인 페이지 Homeworks 칸에는 여전히 “<span class="en">HW 2: TBD</span>”라고 적혀 있습니다. 기준은 HW2 페이지(10/9 금 23:59 신청)로 보는 게 안전합니다.</p>
+      <p><strong>신청 마감을 놓쳤을 때의 지각 규칙은 원문에 없습니다.</strong> 일반 지각 규칙(24h −10% 등)이 신청에도 적용되는지, 아니면 스태프 배정으로 끝나는지 불분명하니 마감 전에 신청하는 것이 유일하게 안전한 선택입니다.</p>
+      <p><strong>Topic 1과 Topic 10이 GPT-6 Astra를 공유합니다.</strong> Topic 10 스토리라인도 Astra 시스템 카드(“모니터링이 더 어렵다”)로 끝납니다. 다른 팀이 Topic 10을 고르면 내용이 겹치지 않게 서로 조율하는 게 좋습니다.</p>
+      <p><strong>Huginn 수식·수치는 원 논문에서 직접 확인하세요.</strong> 이 가이드의 수식 블록은 정리용이며, “3.5B × 32 ≈ 50B”는 원문도 <span class="en">“was reported”</span>로 표현한 저자 보고 수치입니다.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-tip">
+    <div class="tip">
+      <span class="eyebrow">원문에 없는 제안 · 참고용</span>
+      <h3 id="s-tip">영어 발표에서 자주 쓸 표현</h3>
+      <ul class="phrases">
+        <li>This paper exists because the previous one could not …</li>
+        <li>Here is the one mechanism you need for the rest of the talk.</li>
+        <li>This number is reported by the authors; it has not been independently reproduced.</li>
+        <li>This is a design document — there are no measured results yet.</li>
+        <li>Chain-of-thought thinks by writing tokens; recurrent depth thinks by iterating hidden states.</li>
+        <li>Picking up where [A] left off, …</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>원문: <a href="https://sundong.kim/courses/agi26f/hw2/" target="_blank" rel="noopener">sundong.kim/courses/agi26f/hw2</a> · 신청 시트: <a href="https://docs.google.com/spreadsheets/d/1YHLwhNTMd4PqTmIwAkLIpyR7Cq2-rCIQyP7AbFH-Bd4/edit" target="_blank" rel="noopener">Google Sheets</a> · 일정: <a href="https://sundong.kim/courses/agi26f/" target="_blank" rel="noopener">강의 페이지</a></span>
+    <span>2026-10-03에 원문을 직접 확인해 옮긴 비공식 한국어 정리입니다. 규칙이 헷갈리면 항상 영어 원문이 기준입니다.</span>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var deadlines = [
+      { at: new Date("2026-10-09T23:59:00+09:00").getTime(), label: "팀 신청 마감" }
+    ];
+    var el = document.getElementById("countdown");
+    function tick() {
+      var now = Date.now();
+      var h = 3600000, d = 24 * h;
+      var next = deadlines.filter(function (x) { return x.at > now; })[0];
+      if (next) {
+        var diff = next.at - now;
+        var days = Math.floor(diff / d);
+        var hours = Math.floor((diff % d) / h);
+        el.textContent = next.label + " D-" + (days + (diff % d > 0 ? 1 : 0)) + " · 남은 시간 " + days + "일 " + hours + "시간";
+        el.classList.remove("late");
+      } else {
+        el.textContent = "팀 신청 마감 지남 · 시트에서 발표 날짜와 24시간 전 마감을 확인하세요";
+        el.classList.add("late");
+      }
+    }
+    tick();
+    setInterval(tick, 60000);
+
+    var KEY = "agi26f-hw2-checklist";
+    var boxes = Array.prototype.slice.call(document.querySelectorAll("#checklist input"));
+    var progress = document.getElementById("progress");
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { saved = {}; }
+    function render() {
+      var n = boxes.filter(function (b) { return b.checked; }).length;
+      progress.textContent = "(" + n + " / " + boxes.length + ")";
+      progress.classList.toggle("done", n === boxes.length);
+    }
+    boxes.forEach(function (b) {
+      if (saved[b.id]) b.checked = true;
+      b.addEventListener("change", function () {
+        saved[b.id] = b.checked;
+        try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+        render();
+      });
+    });
+    render();
+  })();
+</script>
