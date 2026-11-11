@@ -1,0 +1,18 @@
+{
+  "original_slides": 149,
+  "inserted_slides": 4,
+  "inserted_positions": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "original_slide_note_media_parts_byte_identical": true,
+  "changed_package_metadata_only": [
+    "[Content_Types].xml",
+    "docProps/app.xml",
+    "ppt/_rels/presentation.xml.rels",
+    "ppt/presentation.xml"
+  ],
+  "output": "/Users/bagjuhyeon/Workspace/looped-transformer-talk/build/out/looped-transformers-updated-20261108.pptx"
+}
