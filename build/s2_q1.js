@@ -51,7 +51,7 @@ module.exports = function () {
   }
 
   const UT_ITEMS = [
-      { label: "Each position keeps a state, and attention mixes them.", body: "h₁…hₘ start as the token embeddings.", box: [0, 0.15, 0.29, 0.8] },
+      { label: "Each position keeps a state, and attention mixes them.", body: "The states h₁, h₂, … start as the token embeddings.", box: [0, 0.15, 0.29, 0.8] },
       { label: "A transition function updates every position.", body: "Hᵗ = LayerNorm(Aᵗ + Transition(Aᵗ)).", box: [0.3, 0.2, 0.53, 0.78] },
       { label: "Then the same block runs again.", body: "The time axis counts refinement steps, not tokens.", box: [0.53, 0.2, 1.0, 0.95] },
       { label: "Weights are tied across positions and steps.", body: "With T fixed, this is a T-layer Transformer whose layers share weights.", box: [0.14, 0, 0.92, 0.22] },

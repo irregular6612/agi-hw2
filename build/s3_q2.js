@@ -215,7 +215,6 @@ module.exports = function () {
         text(s, [{ text: h, options: { bold: true, breakLine: true } }, { text: b, options: { color: T.gray, fontSize: 17 } }], { x: 1.1, y, w: 10.2, h: 1.3 }, { fontSize: 22 });
         text(s, q, { x: 11.5, y, w: 1.4, h: 0.6 }, { fontSize: 22, bold: true, color: T.gold, align: "right" });
       });
-      text(s, "And the headline from the start, “GPT-6 Astra loops,” is still unchecked.", { x: 1.1, y: 6.3, w: 11.8, h: 0.45 }, { fontSize: 18, color: T.gray });
     },
   });
 };

@@ -320,3 +320,8 @@ flowchart LR
 - ICLR 장의 Impact 도형 삭제.
 - Session B 노트는 `build/script/session_b.ko.md`로 옮기고, 핸드오프 다음 장부터 순서대로 붙인다(쪽번호 변화에 안전).
 - 최종 덱 92장. Session A 25:09 / 25:00, Session B 24:40.
+
+### 2026-11-22 (v8.2) 제출본: Google Slides 사본과 수업 시트
+- Google Slides 사본: https://docs.google.com/presentation/d/1zwXAHwl6mUyBt7JcUn8uQV_2mBMcW-tJzXsGJ5skZko/edit (링크가 있는 사람 보기 가능). 92장, 노트 포함.
+- 변환 뒤 고친 것(원본과 사본 모두): 로드맵 "Mixture-of-/Recursions" 줄바꿈, UT 1단계의 hₘ 깨짐 → "The states h₁, h₂, …", 65장 "GPT-6 Astra loops … still unchecked" 줄과 대본 문장 삭제.
+- 수업 시트 Team 5 행: I11 슬라이드 링크, J11 Session A 논문(UT, Giannou, Huginn), K11 Session B 논문(MoR, Ouro, RLT).

@@ -486,7 +486,7 @@
    "Giannou: a loop is a computer",
    "Chain of thoughtthink in tokens",
    "Huginn 3.5B",
-   "Mixture-of-Recursions",
+   "Mixture-of-\nRecursions",
    "Ouro, 7.7T tokens",
    "Can we train language models to use these loops? Huginn trains a looped language model, MoR chooses loops per token, and Ouro tests larger scale pretraining with learned stopping."
   ],
@@ -519,7 +519,7 @@
    "Giannou: a loop is a computer",
    "Chain of thoughtthink in tokens",
    "Huginn 3.5B",
-   "Mixture-of-Recursions",
+   "Mixture-of-\nRecursions",
    "Ouro, 7.7T tokens",
    "Recurrent Looped Transformer",
    "GPT-6 Astra reportunconfirmed",
@@ -654,7 +654,7 @@
    "Q2 · UT · 4/15",
    "Universal Transformers reuse one block again and again",
    "Dehghani, Gouws, Vinyals, Uszkoreit, Kaiser, \"Universal Transformers\", ICLR 2019, Fig. 1 and Sec. 2",
-   "1  Each position keeps a state, and attention mixes them. h₁…hₘ start as the token embeddings."
+   "1  Each position keeps a state, and attention mixes them. The states h₁, h₂, … start as the token embeddings."
   ],
   "notes": null,
   "script": "UT의 Figure 1은 왼쪽부터 읽습니다. 세로로 놓인 h₁부터 hₘ은 위치마다 하나씩 있는 상태이고, 토큰 임베딩에서 출발합니다. 위첨자 t는 몇 번째 반복인지를 뜻합니다. 금색 상자 안에서 엇갈리는 화살표가 self-attention이고, 모든 위치의 정보를 서로 섞습니다."
@@ -1448,11 +1448,10 @@
    "→ Ouro",
    "3",
    "Can we still read what it thinks?The authors note that latent reasoning costs oversight compared with a written chain of thought.",
-   "→ Q4",
-   "And the headline from the start, “GPT-6 Astra loops,” is still unchecked."
+   "→ Q4"
   ],
   "notes": "Presenter switch here. Each open question maps to what Session B covers next.",
-  "script": "Huginn이 남긴 질문은 세 가지입니다. 첫째는 토큰마다 깊이를 스스로 고를 수 있느냐입니다. 지금은 출력 변화를 KL로 재서 문턱 아래면 멈출 뿐, 멈추는 법을 배우지 않습니다. 이건 MoR로 이어집니다. 둘째는 규모를 키워도 통하는지, 몇 번 돌려야 하는지입니다. 루프 없는 비교 모델이 180B 토큰까지뿐이라 800B에서는 맞대어 볼 상대가 없고, 이건 Ouro가 받습니다.\n\n셋째는 속에서 하는 생각을 읽을 수 있느냐로, 저자들도 글로 쓴 chain of thought보다 감독이 어렵다고 적었고 Q4에서 다룹니다. 처음 본 Astra 헤드라인도 아직 확인되지 않았습니다. 여기서부터 Huginn 위에 쌓인 연구는 다음 발표자가 이어서 소개하겠습니다."
+  "script": "Huginn이 남긴 질문은 세 가지입니다. 첫째는 토큰마다 깊이를 스스로 고를 수 있느냐입니다. 지금은 출력 변화를 KL로 재서 문턱 아래면 멈출 뿐, 멈추는 법을 배우지 않습니다. 이건 MoR로 이어집니다. 둘째는 규모를 키워도 통하는지, 몇 번 돌려야 하는지입니다. 루프 없는 비교 모델이 180B 토큰까지뿐이라 800B에서는 맞대어 볼 상대가 없고, 이건 Ouro가 받습니다.\n\n셋째는 속에서 하는 생각을 읽을 수 있느냐로, 저자들도 글로 쓴 chain of thought보다 감독이 어렵다고 적었고 Q4에서 다룹니다. 여기서부터 Huginn 위에 쌓인 연구는 다음 발표자가 이어서 소개하겠습니다."
  },
  {
   "n": 66,

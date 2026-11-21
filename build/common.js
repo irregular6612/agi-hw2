@@ -20,7 +20,7 @@ const RM_NODES = {
   GI: { c: 2, y: 3.3, t: "Giannou: a loop is a computer", kind: "core", era: 2 },
   COT: { c: 2, y: 4.75, t: "Chain of thought", sub: "think in tokens", kind: "alt", era: 2 },
   HU: { c: 3, y: 3.3, t: "Huginn 3.5B", kind: "core", era: 3 },
-  MOR: { c: 4, y: 2.5, t: "Mixture-of-Recursions", kind: "core", era: 3 },
+  MOR: { c: 4, y: 2.5, t: "Mixture-of-\nRecursions", kind: "core", era: 3 },
   OU: { c: 4, y: 4.1, t: "Ouro, 7.7T tokens", kind: "core", era: 3 },
   RLT: { c: 5, y: 2.5, t: "Recurrent Looped Transformer", kind: "core", era: 4 },
   AS: { c: 5, y: 4.1, t: "GPT-6 Astra report", sub: "unconfirmed", kind: "rumor", era: 4 },
