@@ -1,57 +1,62 @@
-// §3 Q2 — Can we train a looped model so that extra loops help at test time?  (Session A, mechanism in depth)
+// Part 3 begins — Q3: how do we build a looped LM? Huginn closes Session A; the presenter switches after the handoff.
 const { T, add, figSeq, image, spotlight, text, remark } = require("./lib");
 const { cover, answer } = require("./common");
 
 const YANG = 'Yang, Lee, Nowak, Papailiopoulos, "Looped Transformers are Better at Learning Learning Algorithms", ICLR 2024';
 const HUG = 'Geiping et al., "Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach", arXiv:2502.05171 (2025)';
 
+const OPTIONAL = false;   // optional slides cut for time
+
 module.exports = function () {
-  cover("Q2", "Q1 showed that loops can compute in principle. Now: can gradient descent find those weights, and does the model actually get better when we let it loop more at test time?");
+  cover("Q3", "From idea to a working language model. Huginn is the first recipe at scale; after it, the second presenter takes over.");
+
+  if (OPTIONAL) {   // Yang cut for time (storyline v6): one line on the Giannou proof slide instead
+  figSeq({
+      crumb: ["Q3", "Yang"], cite: `${YANG}, Fig. 1 and Sec. 4.1`,
+      title: "One looped layer learns in-context regression",
+      fig: "yang-fig1.png", layout: "top",
+      items: [
+        { label: "The task: regression in context.", body: "The prompt holds (x, y) pairs from a hidden w; the model predicts y for a new x.", box: [0, 0, 1, 0.4] },
+        { label: "A 12-layer Transformer solves it in one pass.", body: "It learns roughly the closed-form answer, which needs a matrix inverse.", box: [0, 0.41, 0.48, 0.99] },
+        { label: "Yang et al. loop one layer instead.", body: "The ⊕ adds the prompt back before every pass: Yₜ₊₁ = M(Yₜ + P).", box: [0.5, 0.41, 0.99, 0.73] },
+        { label: "Each pass can act like one gradient-descent step.", body: "Gradient descent is repeated matrix products, which one block can apply again and again.", box: [0.5, 0.75, 0.99, 0.99] },
+      ],
+      remark: "Giannou hand-set the weights of a looped Transformer; Yang trains them. Only the last 15 of 20 loops are supervised.",
+      notes: [
+        "Setup from Garg et al. 2022: linear regression in context, d = 20, k = 40 examples.",
+        "The 12-layer GPT-2 baseline has 9.48M parameters.",
+        "Input injection is the key design choice. Remember the ⊕; Huginn will reuse it.",
+        "This is the authors' motivation, an analogy, not a proof that the loop implements GD.",
+        "Training loss is averaged over the last T of b iterations (b = 20, T = 15), like truncated backprop through time.",
+      ],
+    });
+  
+    figSeq({
+      crumb: ["Q3", "Yang"], cite: `${YANG}, Fig. 3 (values read from the plot)`,
+      title: "Without input injection, loops drift past training",
+      fig: "yang-fig3.png",
+      items: [
+        { label: "Weight tying alone: Yₜ₊₁ = M(Yₜ).", body: "Error is lowest at the trained loop count (dashed), then climbs toward 1 by 100 loops.", box: [0.18, 0.13, 1.0, 0.62] },
+        { label: "With injection: Yₜ₊₁ = M(Yₜ + P).", body: "Error stays near 10⁻³ out to 100 loops: a fixed point, not drift.", box: [0.18, 0.74, 1.0, 0.86] },
+      ],
+      remark: "Feeding the input into every pass is what makes extra loops safe.",
+    });
+  
+    figSeq({
+      crumb: ["Q3", "Yang"], cite: `${YANG}, Fig. 2 and Sec. 5.2`,
+      title: "One looped layer matches 12 layers with 1/12 the parameters",
+      fig: "yang-fig2.png", layout: "top",
+      items: [
+        { label: "Error falls to about 10⁻³ within 20–30 loops, and stays there to 100.", box: [0, 0, 0.36, 1] },
+        { label: "Looped (0.79M params) and 12-layer (9.48M) curves overlap.", body: "Both track least squares across 0–40 examples.", box: [0.38, 0, 0.99, 1] },
+      ],
+      remark: "Parameters were saved; compute was not. Twenty passes of one layer cost more than one pass of twelve, and FLOPs are not reported.",
+    });
+  
+  }
 
   figSeq({
-    crumb: ["Q2", "Yang"], cite: `${YANG}, Fig. 1 and Sec. 4.1`,
-    title: "One looped layer learns in-context regression",
-    fig: "yang-fig1.png", layout: "top",
-    items: [
-      { label: "The task: regression in context.", body: "The prompt holds (x, y) pairs from a hidden w; the model predicts y for a new x.", box: [0, 0, 1, 0.4] },
-      { label: "A 12-layer Transformer solves it in one pass.", body: "It learns roughly the closed-form answer, which needs a matrix inverse.", box: [0, 0.41, 0.48, 0.99] },
-      { label: "Yang et al. loop one layer instead.", body: "The ⊕ adds the prompt back before every pass: Yₜ₊₁ = M(Yₜ + P).", box: [0.5, 0.41, 0.99, 0.73] },
-      { label: "Each pass can act like one gradient-descent step.", body: "Gradient descent is repeated matrix products, which one block can apply again and again.", box: [0.5, 0.75, 0.99, 0.99] },
-    ],
-    remark: "Giannou hand-set the weights of a looped Transformer; Yang trains them. Only the last 15 of 20 loops are supervised.",
-    notes: [
-      "Setup from Garg et al. 2022: linear regression in context, d = 20, k = 40 examples.",
-      "The 12-layer GPT-2 baseline has 9.48M parameters.",
-      "Input injection is the key design choice. Remember the ⊕; Huginn will reuse it.",
-      "This is the authors' motivation, an analogy, not a proof that the loop implements GD.",
-      "Training loss is averaged over the last T of b iterations (b = 20, T = 15), like truncated backprop through time.",
-    ],
-  });
-
-  figSeq({
-    crumb: ["Q2", "Yang"], cite: `${YANG}, Fig. 3 (values read from the plot)`,
-    title: "Without input injection, loops drift past training",
-    fig: "yang-fig3.png",
-    items: [
-      { label: "Weight tying alone: Yₜ₊₁ = M(Yₜ).", body: "Error is lowest at the trained loop count (dashed), then climbs toward 1 by 100 loops.", box: [0.18, 0.13, 1.0, 0.62] },
-      { label: "With injection: Yₜ₊₁ = M(Yₜ + P).", body: "Error stays near 10⁻³ out to 100 loops: a fixed point, not drift.", box: [0.18, 0.74, 1.0, 0.86] },
-    ],
-    remark: "Feeding the input into every pass is what makes extra loops safe.",
-  });
-
-  figSeq({
-    crumb: ["Q2", "Yang"], cite: `${YANG}, Fig. 2 and Sec. 5.2`,
-    title: "One looped layer matches 12 layers with 1/12 the parameters",
-    fig: "yang-fig2.png", layout: "top",
-    items: [
-      { label: "Error falls to about 10⁻³ within 20–30 loops, and stays there to 100.", box: [0, 0, 0.36, 1] },
-      { label: "Looped (0.79M params) and 12-layer (9.48M) curves overlap.", body: "Both track least squares across 0–40 examples.", box: [0.38, 0, 0.99, 1] },
-    ],
-    remark: "Parameters were saved; compute was not. Twenty passes of one layer cost more than one pass of twelve, and FLOPs are not reported.",
-  });
-
-  figSeq({
-    crumb: ["Q2", "Huginn"], cite: `${HUG}, Fig. 2 and Sec. 3.1–3.2`,
+    crumb: ["Q3", "Huginn"], cite: `${HUG}, Fig. 2 and Sec. 3.1–3.2`,
     title: "Huginn: embed once, loop a core r times, decode once",
     fig: "huginn-fig2.png", layout: "top",
     items: [
@@ -73,7 +78,7 @@ module.exports = function () {
   });
 
   add({
-    crumb: ["Q2", "Huginn"], cite: `${HUG}, Sec. 3.1`,
+    crumb: ["Q3", "Huginn"], cite: `${HUG}, Sec. 3.1`,
     title: "Only the middle is looped: first and last layers differ",
     notes: "Read the quote, then flag the grey box clearly as our framing. The course page states the 'every role' reason as fact; the paper never tests it.",
     draw: (s) => {
@@ -91,7 +96,7 @@ module.exports = function () {
   });
 
   figSeq({
-    crumb: ["Q2", "Huginn"], cite: `${HUG}, Fig. 3, Eq. 1–2 and Sec. 3.3`,
+    crumb: ["Q3", "Huginn"], cite: `${HUG}, Fig. 3, Eq. 1–2 and Sec. 3.3`,
     title: "Train on random loop counts; backprop only the last 8",
     fig: "huginn-fig3.png",
     items: [
@@ -102,20 +107,22 @@ module.exports = function () {
     notes: ["τ ~ N(log r̄ − ½σ², σ), r ~ Poisson(e^τ) + 1, with r̄ = 32 and σ = ½.", "Truncated backprop, k = 8. One r per micro-batch, synchronized across workers."],
   });
 
+  if (OPTIONAL) {   // failed runs: cut in v7 (keep only key Huginn results)
   figSeq({
-    crumb: ["Q2", "Huginn"], cite: `${HUG}, Fig. 5 and Sec. 4.3`,
-    title: "Two failed runs: states collapsed, or the loop was ignored",
-    fig: "huginn-fig5.png", layout: "top",
-    items: [
-      { label: "Bad Run 1: every token's state became the same.", body: "Hidden-state correlation (middle, orange) sat at 1.0, and the loss stalled.", box: [0.27, 0.03, 0.56, 0.84] },
-      { label: "Bad Run 2: the model learned to ignore its loop.", body: "Validation perplexity (right, green) was the same at 1 and at 32 recurrences.", box: [0.58, 0.03, 0.96, 0.84] },
-      { label: "The main run fixed norms and lowered the learning rate.", body: "Its states stay distinct (blue, middle), and more recurrence gives lower perplexity (blue, right)." },
-    ],
-    remark: "Looping at scale is fragile. Both failures came from normalization and learning rate, not from the idea.",
-  });
+      crumb: ["Q3", "Huginn"], cite: `${HUG}, Fig. 5 and Sec. 4.3`,
+      title: "Two failed runs: states collapsed, or the loop was ignored",
+      fig: "huginn-fig5.png", layout: "top",
+      items: [
+        { label: "Bad Run 1: every token's state became the same.", body: "Hidden-state correlation (middle, orange) sat at 1.0, and the loss stalled.", box: [0.27, 0.03, 0.56, 0.84] },
+        { label: "Bad Run 2: the model learned to ignore its loop.", body: "Validation perplexity (right, green) was the same at 1 and at 32 recurrences.", box: [0.58, 0.03, 0.96, 0.84] },
+        { label: "The main run fixed norms and lowered the learning rate.", body: "Its states stay distinct (blue, middle), and more recurrence gives lower perplexity (blue, right)." },
+      ],
+      remark: "Looping at scale is fragile. Both failures came from normalization and learning rate, not from the idea.",
+    });
+  }
 
   figSeq({
-    crumb: ["Q2", "Huginn"], cite: `${HUG}, Fig. 7 and Table 4`,
+    crumb: ["Q3", "Huginn"], cite: `${HUG}, Fig. 7 and Table 4`,
     title: "Accuracy rises with loops, then saturates task by task",
     fig: "huginn-fig7.png",
     items: [
@@ -128,7 +135,7 @@ module.exports = function () {
   });
 
   figSeq({
-    crumb: ["Q2", "Huginn"], cite: `${HUG}, Fig. 11 and Sec. 7`,
+    crumb: ["Q3", "Huginn"], cite: `${HUG}, Fig. 11 and Sec. 7`,
     title: "Each token converges at its own pace",
     fig: "huginn-fig11.png",
     items: [
@@ -139,38 +146,30 @@ module.exports = function () {
     notes: ["The final state s* is computed at r = 128. Prompt: an unsafe request about making a bomb."],
   });
 
+  if (OPTIONAL) {   // latent shapes: cut in v7 (keep only key Huginn results)
   figSeq({
-    crumb: ["Q2", "Huginn"], cite: `${HUG}, Fig. 12 and Sec. 7 (qualitative, a few prompts)`,
-    title: "Latent thoughts take shapes: fixed points, orbits, sliders",
-    fig: "huginn-fig12.png",
-    figBox: { x: T.X, y: 1.3, w: 6.6, h: 5.6 }, textBox: { x: 7.4, y: 1.45, w: 5.5, h: 5.4 },
-    items: [
-      { label: "Fixed point: “deeper” settles to one spot.", box: [0, 0, 1, 0.33] },
-      { label: "Orbit: the number “3” keeps circling.", body: "Like the periodic number features in small arithmetic models (Nanda et al., 2022).", box: [0, 0.345, 1, 0.665] },
-      { label: "Slider: “wrong” drifts in one direction.", body: "The authors suggest it could count passes.", box: [0.34, 0.68, 0.65, 1.0] },
-    ],
-    remark: "These are pictures of a few prompts, not a measurement. Whether an orbit does computation is open.",
-    notes: ["PCA of one token's state across passes; dark to bright is iteration order; red × is the centre of mass."],
-  });
-
-  answer("Q2", {
-    short: "Yes — within the depth it was trained for.",
-    evidence: [
-      { t: "Re-injecting the input keeps a loop stable past training.", src: "Yang Fig. 3 (toy regression)" },
-      { t: "Random r and truncated backprop trained a 3.5B looped LM.", src: "Huginn Sec. 3.3" },
-      { t: "GSM8K CoT 0.00 → 42.08 from r = 1 to 32; easy tasks saturate by r ≈ 8.", src: "Huginn Table 4, Fig. 7" },
-      { t: "One run, after two failed ones, with no matched non-looped baseline at 800B tokens.", src: "Huginn Sec. 4.2–4.3", kind: "but" },
-    ],
-  });
+      crumb: ["Q3", "Huginn"], cite: `${HUG}, Fig. 12 and Sec. 7 (qualitative, a few prompts)`,
+      title: "Latent thoughts take shapes: fixed points, orbits, sliders",
+      fig: "huginn-fig12.png",
+      figBox: { x: T.X, y: 1.3, w: 6.6, h: 5.6 }, textBox: { x: 7.4, y: 1.45, w: 5.5, h: 5.4 },
+      items: [
+        { label: "Fixed point: “deeper” settles to one spot.", box: [0, 0, 1, 0.33] },
+        { label: "Orbit: the number “3” keeps circling.", body: "Like the periodic number features in small arithmetic models (Nanda et al., 2022).", box: [0, 0.345, 1, 0.665] },
+        { label: "Slider: “wrong” drifts in one direction.", body: "The authors suggest it could count passes.", box: [0.34, 0.68, 0.65, 1.0] },
+      ],
+      remark: "These are pictures of a few prompts, not a measurement. Whether an orbit does computation is open.",
+      notes: ["PCA of one token's state across passes; dark to bright is iteration order; red × is the centre of mass."],
+    });
+  }
 
   add({
-    crumb: ["Q2", "Handoff"], title: "Huginn leaves three questions for Session B",
+    crumb: ["Q3", "Handoff"], title: "Huginn leaves three questions for Session B",
     cite: `${HUG}, Sec. 4.2, 6.1 and App. A`,
-    notes: "Hand over to the second presenter here. Each open question maps to the next sections: 1 and 2 to Q3, 3 to Q4.",
+    notes: "Presenter switch here. Each open question maps to what Session B covers next.",
     draw: (s) => {
       const items = [
-        ["Is it worth the compute?", "The only non-looped twin stops at 180B tokens; at 800B there is no matched baseline.", "→ Q3"],
-        ["Can each token choose its own depth?", "Early exit is a zero-shot KL threshold, not something the model learns.", "→ Q3"],
+        ["Can each token choose its own depth?", "Early exit is a zero-shot KL threshold, not something the model learns.", "→ MoR"],
+        ["Does it hold at scale, and how many loops?", "The only non-looped twin stops at 180B tokens; at 800B there is no matched baseline.", "→ Ouro"],
         ["Can we still read what it thinks?", "The authors note that latent reasoning costs oversight compared with a written chain of thought.", "→ Q4"],
       ];
       items.forEach(([h, b, q], i) => {
@@ -179,6 +178,7 @@ module.exports = function () {
         text(s, [{ text: h, options: { bold: true, breakLine: true } }, { text: b, options: { color: T.gray, fontSize: 17 } }], { x: 1.1, y, w: 10.2, h: 1.3 }, { fontSize: 22 });
         text(s, q, { x: 11.5, y, w: 1.4, h: 0.6 }, { fontSize: 22, bold: true, color: T.gold, align: "right" });
       });
+      text(s, "And the headline from the start, “GPT-6 Astra loops,” is still unchecked.", { x: 1.1, y: 6.3, w: 11.8, h: 0.45 }, { fontSize: 18, color: T.gray });
     },
   });
 };

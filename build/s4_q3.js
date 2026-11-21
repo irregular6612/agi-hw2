@@ -1,7 +1,9 @@
 // §4 Q3 — Does looping pay off at scale — per parameter, and per FLOP?  (Session B)
-const { T, add, figSeq, text, table, bars, linePlot, remark } = require("./lib");
+const { T, add, figSeq, text, table, bars, linePlot, remark, image } = require("./lib");
 const { cover, answer } = require("./common");
 
+const RLT = 'Zhang, Feng, Qin, Kung, Wang, "Recurrent Looped Transformer", arXiv:2610.07591 (2026); tech report of 12 Sept 2026';
+const ASTRA = "Efrati & Palazzolo, The Information, 2 Sept 2026; OpenAI, GPT-6 Astra System Card, 3 Sept 2026; Raschka, Ahead of AI, 2 & 9 Sept 2026";
 const SAU = 'Saunshi, Dikkala, Li, Kumar, Reddi, "Reasoning with Latent Thoughts: On the Power of Looped Transformers", ICLR 2025';
 const MOR = 'Bae, Kim, Bayat, et al., "Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation", arXiv:2507.10524 (2025)';
 const OURO = 'Zhu, Wang, Hua, et al., "Scaling Latent Reasoning via Looped Language Models", arXiv:2510.25741 (2025)';
@@ -16,28 +18,28 @@ function ouroMMLU(s, box, reveal) {
   return { X, Y, xm };
 }
 
-module.exports = function () {
-  cover("Q3", "Session B starts here. Pick up Huginn's first two open questions: is it worth the compute, and can each token choose its depth?");
+const OPTIONAL = false;   // optional slides cut for time
 
-  // #52 Saunshi Table 3, three panels revealed one by one
-  const cols = (a, b, c) => [
-    { label: "12 layers\n(12⊗1)", value: a, color: T.base },
-    { label: "24 layers\n(24⊗1)", value: b, color: T.navy },
-    { label: "12 looped ×2\n(12⊗2)", value: c, color: T.gold },
+module.exports = function () {
+  // Session B opener: what later work stacks on Huginn (one row per build)
+  const stack = [
+    ["Huginn", "base", "One shared core, looped r times. r is set per run; early exit is a zero-shot KL threshold."],
+    ["+ MoR", "dynamic halting", "A router gives each token its own depth, learned in pretraining: UT/ACT's per-token halting. Only running tokens keep keys and values."],
+    ["+ Ouro", "scale", "A learned exit gate at every loop, and looping inside 7.7T-token pretraining."],
+    ["+ RLT", "across tokens", "The loop's state is carried from token to token: recurrence over time again."],
   ];
-  const panels = [
-    { title: "Math word problems ↑", bars: cols(26.7, 29.3, 34.3), max: 40, line: "Math: the looped model beats the 24-layer one, with half the parameters." },
-    { title: "Reasoning primitives ↑", bars: cols(35.7, 47.5, 51.2), max: 60, line: "Reasoning primitives: same pattern." },
-    { title: "Perplexity ↓", bars: cols(8.16, 7.4, 7.9), max: 10, fmt: (v) => v.toFixed(2), line: "Perplexity: the looped model closes only part of the gap." },
-  ];
-  for (let k = 0; k < 3; k++) {
+  for (let k = 0; k < stack.length; k++) {
     add({
-      crumb: ["Q3", "Saunshi"], cite: `${SAU}, Table 3 (1B-scale, 250B tokens of Pile)`,
-      title: "At 1B scale, looping lifts reasoning more than perplexity",
-      draw: (s) => {
-        panels.forEach((p, i) => bars(s, { x: T.X + i * 4.2, y: 1.35, w: 3.9, h: 4.2 }, { bars: p.bars, max: p.max, title: p.title, reveal: i <= k ? 3 : 0, fmt: p.fmt, current: 2, labelSize: 13 }));
-        text(s, panels.slice(0, k + 1).map((p, i) => ({ text: p.line, options: { bold: i === k, color: i === k ? T.ink : T.past, breakLine: true } })), { x: T.X, y: 5.75, w: 12.4, h: 1.2 }, { fontSize: 18, paraSpaceAfter: 4 });
-      },
+      crumb: ["Q3"], title: "What later work stacks on Huginn",
+      cite: "Geiping et al. 2025 (Huginn) Sec. 6.1; Bae et al. 2025 (MoR) Sec. 2; Zhu et al. 2025 (Ouro) Sec. 3; Zhang et al. 2026 (RLT) Fig. 1",
+      draw: (s) => stack.forEach(([who, tag, what], i) => {
+        if (i > k) return;
+        const y = 1.5 + i * 1.3, cur = i === k;
+        s.addShape("rect", { x: T.X, y, w: 12.4, h: 1.15, fill: { color: cur ? T.paleGold : "FFFFFF" }, line: { color: "D9D9D9", width: 0.75 } });
+        text(s, who, { x: T.X + 0.2, y, w: 1.7, h: 1.15 }, { fontSize: 22, bold: true, color: T.gold, valign: "middle" });
+        text(s, tag, { x: T.X + 1.9, y, w: 2.1, h: 1.15 }, { fontSize: 16, bold: true, color: cur ? T.ink : T.past, valign: "middle" });
+        text(s, what, { x: T.X + 4.0, y, w: 8.25, h: 1.15 }, { fontSize: 18, color: cur ? T.ink : T.past, valign: "middle" });
+      }),
     });
   }
 
@@ -46,13 +48,10 @@ module.exports = function () {
     title: "MoR gives each token its own number of loops",
     fig: "mor-fig2.png", layout: "top",
     items: [
-      { label: "Every token takes the first pass through one shared block.", body: "First and last layers stay unique; the middle block is reused.", box: [0.01, 0.62, 0.24, 0.87] },
-      { label: "Expert choice: a router keeps only the top-k tokens for each deeper pass.", body: "Dashed squares are tokens that stopped.", box: [0.01, 0.07, 0.24, 0.62] },
-      { label: "Token choice: one router decides each token's depth up front.", box: [0.3, 0.17, 0.74, 0.88] },
-      { label: "Only tokens still running store keys and values at that depth.", body: "Less KV memory, and attention only among active tokens.", box: [0.81, 0.04, 0.98, 0.47] },
-      { label: "Variant: reuse the first pass's keys and values at every depth.", box: [0.81, 0.5, 0.98, 0.88] },
+      { label: "A router gives each token its own number of passes through one shared block.", body: "UT/ACT's per-token halting, now learned during pretraining. Dashed squares are tokens that stopped.", box: [0.01, 0.07, 0.74, 0.88] },
+      { label: "Only tokens still running keep keys and values at that depth.", body: "Less KV memory, and attention only among active tokens.", box: [0.81, 0.04, 0.98, 0.88] },
     ],
-    remark: "This answers Huginn's second open question: depth is learned per token, during pretraining.",
+    remark: "This answers Huginn's first open question: depth is learned per token, during pretraining.",
   });
 
   // #58 MoR Table 3 rows
@@ -78,24 +77,45 @@ module.exports = function () {
     });
   }
 
+  if (OPTIONAL) {   // cut for time (storyline cut list); set OPTIONAL = true to restore
   figSeq({
-    crumb: ["Q3", "MoR"], cite: `${MOR}, Fig. 4a and App. E`,
-    title: "Up to 2.06× throughput, at one size",
-    fig: "mor-fig4.png", layout: "top",
-    items: [{ label: "At the largest batch that fits, MoR-4 decodes 2.06× faster than vanilla.", body: "Smaller KV caches allow bigger batches.", box: [0, 0, 0.3, 0.88] }],
-    remark: "One model size (360M); KV-update time is excluded; MoR-3 and MoR-4 lose a little log-likelihood.",
-  });
+      crumb: ["Q3", "MoR"], cite: `${MOR}, Fig. 4a and App. E`,
+      title: "Up to 2.06× throughput, at one size",
+      fig: "mor-fig4.png", layout: "top",
+      items: [{ label: "At the largest batch that fits, MoR-4 decodes 2.06× faster than vanilla.", body: "Smaller KV caches allow bigger batches.", box: [0, 0, 0.3, 0.88] }],
+      remark: "One model size (360M); KV-update time is excluded; MoR-3 and MoR-4 lose a little log-likelihood.",
+    });
+  }
+
+  // #52 Saunshi Table 3, three panels revealed one by one
+  const cols = (a, b, c) => [
+    { label: "12 layers\n(12⊗1)", value: a, color: T.base },
+    { label: "24 layers\n(24⊗1)", value: b, color: T.navy },
+    { label: "12 looped ×2\n(12⊗2)", value: c, color: T.gold },
+  ];
+  const panels = [
+    { title: "Math word problems ↑", bars: cols(26.7, 29.3, 34.3), max: 40, line: "Math: the looped model beats the 24-layer one, with half the parameters." },
+    { title: "Reasoning primitives ↑", bars: cols(35.7, 47.5, 51.2), max: 60, line: "Reasoning primitives: same pattern." },
+    { title: "Perplexity ↓", bars: cols(8.16, 7.4, 7.9), max: 10, fmt: (v) => v.toFixed(2), line: "Perplexity: the looped model closes only part of the gap." },
+  ];
+  for (let k = 0; k < 3; k++) {
+    add({
+      crumb: ["Q3", "Saunshi"], cite: `${SAU}, Table 3 (1B-scale, 250B tokens of Pile)`,
+      title: "At 1B scale, looping lifts reasoning more than perplexity",
+      draw: (s) => {
+        panels.forEach((p, i) => bars(s, { x: T.X + i * 4.2, y: 1.35, w: 3.9, h: 4.2 }, { bars: p.bars, max: p.max, title: p.title, reveal: i <= k ? 3 : 0, fmt: p.fmt, current: 2, labelSize: 13 }));
+        text(s, panels.slice(0, k + 1).map((p, i) => ({ text: p.line, options: { bold: i === k, color: i === k ? T.ink : T.past, breakLine: true } })), { x: T.X, y: 5.75, w: 12.4, h: 1.2 }, { fontSize: 18, paraSpaceAfter: 4 });
+      },
+    });
+  }
 
   figSeq({
     crumb: ["Q3", "Ouro"], cite: `${OURO}, Fig. 3 and Sec. 3`,
     title: "Ouro trains an exit gate for every loop",
     fig: "ouro-fig3.png", layout: "top",
     items: [
-      { label: "The whole stack is looped, up to 4 times.", body: "Ouro-1.4B is 24 layers × 4 loops, trained on 7.7T tokens.", box: [0.02, 0.06, 0.4, 0.66] },
-      { label: "Every loop has an LM head and an exit gate.", body: "The gate gives the probability of stopping at that step.", box: [0.02, 0.7, 0.41, 0.85] },
-      { label: "Loss = expected loss over exit steps − β · entropy.", body: "Without the entropy term, the gate learns to always run all loops.", box: [0.09, 0.86, 0.33, 0.96] },
-      { label: "At inference, sum exit probabilities until they pass a threshold.", body: "One knob trades compute for accuracy.", box: [0.47, 0.7, 0.72, 0.89] },
-      { label: "Then exit early; the remaining loops never run.", box: [0.73, 0.15, 0.98, 0.9] },
+      { label: "The whole stack is looped up to 4 times, with an exit gate at every loop.", body: "Ouro-1.4B is 24 layers × 4 loops, trained on 7.7T tokens.", box: [0.02, 0.06, 0.41, 0.85] },
+      { label: "At inference, exit once the summed exit probability passes a threshold.", body: "One knob trades compute for accuracy.", box: [0.47, 0.15, 0.98, 0.9] },
     ],
     remark: "Huginn's KL heuristic becomes a learned gate, at trillion-token scale.",
   });
@@ -152,15 +172,39 @@ module.exports = function () {
     });
   }
 
+  if (OPTIONAL) {   // cut for time (storyline cut list); set OPTIONAL = true to restore
   figSeq({
-    crumb: ["Q3", "Ouro"], cite: `${OURO}, Fig. 6, Sec. 6 and App. B.2 (≤ 40M params, best of 3 seeds)`,
-    title: "Loops don't store more knowledge; they use it better",
-    fig: "ouro-fig6.png", layout: "top",
+      crumb: ["Q3", "Ouro"], cite: `${OURO}, Fig. 6, Sec. 6 and App. B.2 (≤ 40M params, best of 3 seeds)`,
+      title: "Loops don't store more knowledge; they use it better",
+      fig: "ouro-fig6.png", layout: "top",
+      items: [
+        { label: "Storage: looped and non-looped both hold about 2 bits per parameter.", box: [0, 0, 0.52, 1] },
+        { label: "Manipulation: on depth-24 arithmetic trees, Loop (3⊗4) scores 92.2 vs 34.8 for 12 distinct layers.", box: [[0.6, 0.17, 1.0, 0.25], [0.6, 0.592, 1.0, 0.655]] },
+      ],
+      remark: "Toy models only. Linking this to Ouro's benchmark wins is an extrapolation.",
+    });
+  }
+
+  figSeq({
+    crumb: ["Q3", "RLT"], cite: `${RLT}, Fig. 1`,
+    title: "RLT, Sept 12: “infinite temporal depth,” zero experiments",
+    fig: "rlt-architecture.png", layout: "top",
     items: [
-      { label: "Storage: looped and non-looped both hold about 2 bits per parameter.", box: [0, 0, 0.52, 1] },
-      { label: "Manipulation: on depth-24 arithmetic trees, Loop (3⊗4) scores 92.2 vs 34.8 for 12 distinct layers.", box: [[0.6, 0.17, 1.0, 0.25], [0.6, 0.592, 1.0, 0.655]] },
+      { label: "A causal encoder reads all tokens in parallel.", box: [0.01, 0.03, 0.37, 0.84] },
+      { label: "A recurrent decoder carries its state from token to token.", body: "After t tokens, the path has passed through t decoder stacks.", box: [0.37, 0.03, 0.99, 0.84] },
     ],
-    remark: "Toy models only. Linking this to Ouro's benchmark wins is an extrapolation.",
+    remark: "The report itself: “realized reasoning gains, hardware efficiency, and RL scaling remain to be established.”",
+  });
+
+  figSeq({
+    crumb: ["Q3", "RLT"], cite: `${RLT}, length-generalization figure (≈26M params, seeds 42–44)`,
+    title: "RLT, October: three-seed toy results, failures included",
+    fig: "rlt-length-generalization.png",
+    items: [
+      { label: "Parity: trained on ≤ 40 bits, 100% at 256 bits.", body: "The Transformer baseline (dashed) falls to chance, 50%.", box: [0.02, 0.08, 0.49, 0.5] },
+      { label: "But standard S5 stays at chance, and addition fails past 8 digits.", body: "One task scored 18%, 20% or 99% depending on the seed." },
+    ],
+    remark: "[ours] RLT gets depth by reading more tokens. It thinks deeper across tokens, not longer per token, so it does not answer our guiding question.",
   });
 
   answer("Q3", {
@@ -172,6 +216,31 @@ module.exports = function () {
       { t: "Going past the trained depth lowers accuracy.", src: "Ouro Table 10", kind: "but" },
     ],
   });
+
+  // Is it new? (Raschka) — idea from 2018, recipe and scale are new
+  for (let k = 0; k < 2; k++) {
+    add({
+      crumb: ["Is it new?"], title: "Is it new? The idea is from 2018; recipe and scale are new",
+      cite: `Raschka, Ahead of AI, 2 Sept 2026; Kaplan et al. 2020, Sec. 3.2.1; Geiping et al. 2025; Zhu et al. 2025; ${'Dehghani et al., "Universal Transformers", ICLR 2019, Fig. 1'}`,
+      draw: (s) => {
+        const r = image(s, "ut-fig1.png", { x: T.X, y: 1.3, w: 12.4, h: 3.1 });
+        text(s, "Universal Transformers, 2018: one block, applied again and again", { x: T.X, y: r.y + r.h + 0.05, w: 12.4, h: 0.35 }, { fontSize: 14, color: T.gray, align: "center" });
+        text(s, [
+          { text: "Raschka: ", options: { bold: true } },
+          { text: "“just reusing layers in the transformer block,” “a tiny architectural tweak.”", options: { breakLine: true } },
+          { text: "Kaplan et al. (2020) already ran Universal Transformers in their scaling-law study.", options: { color: T.gray } },
+        ], { x: T.X, y: 4.95, w: 6.0, h: 1.9 }, { fontSize: 19, paraSpaceAfter: 8, color: k === 0 ? T.ink : T.past });
+        if (k === 1) {
+          text(s, [
+            { text: "New since 2018", options: { bold: true, color: T.gold, breakLine: true } },
+            { text: "Recipe: input injection, random depth, truncated backprop, stable norms.", options: { bullet: { indent: 16 }, breakLine: true } },
+            { text: "Scale: 800B tokens (Huginn) to 7.7T tokens (Ouro).", options: { bullet: { indent: 16 } } },
+          ], { x: 6.85, y: 4.95, w: 6.0, h: 1.9 }, { fontSize: 19, paraSpaceAfter: 6 });
+        }
+      },
+    });
+  }
+
 };
 
 module.exports.ouroMMLU = ouroMMLU;

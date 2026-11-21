@@ -1,39 +1,41 @@
-// §5 Q4 — What do we lose when reasoning moves into hidden states — and what is established in 2026?  (Session B)
+// Part 4 "Conclusion" — Q4: is it worth adopting, and what do we lose? Astra check, CoT monitorability, verdict  (Session B)
 const { T, add, figSeq, text, bars, remark } = require("./lib");
 const { cover, answer } = require("./common");
 const { ouroMMLU } = require("./s4_q3");
 
-const COT = 'Wang, Balappanawar, Zhang, "On the Chain-of-Thought Monitorability of Looped Language Models", arXiv:2610.02741 (2026)';
-const RLT = 'Zhang, Feng, Qin, Kung, Wang, "Recurrent Looped Transformer", arXiv:2610.07591 (2026); tech report of 12 Sept 2026';
 const ASTRA = "Efrati & Palazzolo, The Information, 2 Sept 2026; OpenAI, GPT-6 Astra System Card, 3 Sept 2026; Raschka, Ahead of AI, 2 & 9 Sept 2026";
+const COT = 'Wang, Balappanawar, Zhang, "On the Chain-of-Thought Monitorability of Looped Language Models", arXiv:2610.02741 (2026)';
+
+const OPTIONAL = false;   // optional slides cut for time
 
 module.exports = function () {
-  cover("Q4", "Huginn's third open question: can we still read what a looped model thinks? This is where the 2026 news comes in.");
-
-  // #71 Astra timeline
+  // Astra timeline
+  if (OPTIONAL) {   // cut for time (v6): the opening hook already shows the Sept 2 report
   const ev = [
-    ["Sept 2", "The Information", "Insiders: Astra uses “recurrent depth or looped transformer”, which “obscures” its chain of thought."],
-    ["Sept 2–3", "J. Pachocki, OpenAI", "Astra's computation depth is “within a factor of two of GPT-4.”"],
-    ["Sept 3", "OpenAI system card", "“A substantial decrease in chain-of-thought monitorability.” Nothing on architecture."],
-    ["Sept 9", "S. Raschka", "Still “a rumor”, but looping is “highly likely”."],
-  ];
-  for (let k = 0; k < ev.length; k++) {
-    add({
-      crumb: ["Q4", "Astra"], cite: ASTRA,
-      title: "Sept 2026: a press report said GPT-6 Astra loops",
-      draw: (s) => {
-        const x0 = 1.9, x1 = 11.4, y = 2.2, step = (x1 - x0) / (ev.length - 1);
-        s.addShape("line", { x: x0, y, w: x1 - x0, h: 0, line: { color: T.gray, width: 1.25 } });
-        ev.forEach(([d, who, what], i) => {
-          const x = x0 + i * step, on = i <= k, cur = i === k;
-          s.addShape("ellipse", { x: x - 0.11, y: y - 0.11, w: 0.22, h: 0.22, fill: { color: on ? (cur ? T.gold : T.navy) : "E0E0E0" }, line: { type: "none" } });
-          text(s, d, { x: x - 1.2, y: y - 0.65, w: 2.4, h: 0.4 }, { fontSize: 16, bold: true, align: "center", color: on ? T.ink : T.faint });
-          if (!on) return;
-          text(s, [{ text: who, options: { bold: true, breakLine: true, color: cur ? T.ink : T.past } }, { text: what, options: { color: cur ? T.ink : T.past, fontSize: 15 } }],
-            { x: x - 1.35, y: y + 0.35, w: 2.7, h: 2.8 }, { fontSize: 17, align: "center", paraSpaceAfter: 6 });
-        });
-      },
-    });
+      ["Sept 2", "The Information", "Insiders: Astra uses “recurrent depth or looped transformer”, which “obscures” its chain of thought."],
+      ["Sept 2–3", "J. Pachocki, OpenAI", "Astra's computation depth is “within a factor of two of GPT-4.”"],
+      ["Sept 3", "OpenAI system card", "“A substantial decrease in chain-of-thought monitorability.” Nothing on architecture."],
+      ["Sept 9", "S. Raschka", "Still “a rumor”, but looping is “highly likely”."],
+    ];
+    for (let k = 0; k < ev.length; k++) {
+      add({
+        crumb: ["Q4", "Astra"], cite: ASTRA,
+        title: "Sept 2026: a press report said GPT-6 Astra loops",
+        draw: (s) => {
+          const x0 = 1.9, x1 = 11.4, y = 2.2, step = (x1 - x0) / (ev.length - 1);
+          s.addShape("line", { x: x0, y, w: x1 - x0, h: 0, line: { color: T.gray, width: 1.25 } });
+          ev.forEach(([d, who, what], i) => {
+            const x = x0 + i * step, on = i <= k, cur = i === k;
+            s.addShape("ellipse", { x: x - 0.11, y: y - 0.11, w: 0.22, h: 0.22, fill: { color: on ? (cur ? T.gold : T.navy) : "E0E0E0" }, line: { type: "none" } });
+            text(s, d, { x: x - 1.2, y: y - 0.65, w: 2.4, h: 0.4 }, { fontSize: 16, bold: true, align: "center", color: on ? T.ink : T.faint });
+            if (!on) return;
+            text(s, [{ text: who, options: { bold: true, breakLine: true, color: cur ? T.ink : T.past } }, { text: what, options: { color: cur ? T.ink : T.past, fontSize: 15 } }],
+              { x: x - 1.35, y: y + 0.35, w: 2.7, h: 2.8 }, { fontSize: 17, align: "center", paraSpaceAfter: 6 });
+          });
+        },
+      });
+    }
+  
   }
 
   add({
@@ -55,8 +57,12 @@ module.exports = function () {
         "That Astra loops at all (one press report, unnamed insiders).",
         "That looping caused the hidden reasoning.",
       ]);
+      text(s, "The one confirmed fact is about readability. Do loops cause that?", { x: T.X, y: 6.2, w: 12.4, h: 0.5 }, { fontSize: 17, color: T.gray });
     },
   });
+
+
+  cover("Q4", "Is it worth adopting, and what do we lose? Start with the one Astra fact OpenAI confirmed: chain-of-thought monitorability dropped. Do loops cause that?");
 
   // #73 drawn: how monitorability is measured
   add({
@@ -97,17 +103,20 @@ module.exports = function () {
     notes: ["Ouro 2.6B, Logic: 73.6 → 57.9.", "", "Spearman ρ = −0.126 (p = 0.49) for pass rate, 0.248 (p = 0.17) for CoT length, over 32 cells."],
   });
 
+  if (OPTIONAL) {   // cut for time (v6): one example item; Fig. 2 carries the result
   figSeq({
-    crumb: ["Q4", "CoT monitorability"], cite: `${COT}, Fig. 4 (one hand-picked logic item)`,
-    title: "At T = 4 the hint is the target; at T = 8 it is never mentioned",
-    fig: "cotmon-fig4-qualitative.png",
-    items: [
-      { label: "T = 4: the hint is used as the target.", body: "22 hint mentions in the CoT.", box: [0.02, 0.36, 0.98, 0.5] },
-      { label: "T = 6: the hint becomes a “check”.", body: "6 mentions.", box: [0.02, 0.51, 0.98, 0.67] },
-      { label: "T = 8: the hint is not acknowledged.", body: "0 mentions, same final answer.", box: [0.02, 0.68, 0.98, 0.97] },
-    ],
-    remark: "Zero mentions does not tell us the hint went unused.",
-  });
+      crumb: ["Q4", "CoT monitorability"], cite: `${COT}, Fig. 4 (one hand-picked logic item)`,
+      title: "At T = 4 the hint is the target; at T = 8 it is never mentioned",
+      fig: "cotmon-fig4-qualitative.png",
+      items: [
+        { label: "T = 4: the hint is used as the target.", body: "22 hint mentions in the CoT.", box: [0.02, 0.36, 0.98, 0.5] },
+        { label: "T = 6: the hint becomes a “check”.", body: "6 mentions.", box: [0.02, 0.51, 0.98, 0.67] },
+        { label: "T = 8: the hint is not acknowledged.", body: "0 mentions, same final answer.", box: [0.02, 0.68, 0.98, 0.97] },
+      ],
+      remark: "Zero mentions does not tell us the hint went unused.",
+    });
+  
+  }
 
   // callback to the Ouro depth plot
   add({
@@ -146,36 +155,59 @@ module.exports = function () {
     },
   });
 
-  figSeq({
-    crumb: ["Q4", "RLT"], cite: `${RLT}, Fig. 1`,
-    title: "RLT, Sept 12: “infinite temporal depth,” zero experiments",
-    fig: "rlt-architecture.png", layout: "top",
-    items: [
-      { label: "A causal encoder reads all tokens in parallel.", box: [0.01, 0.03, 0.37, 0.84] },
-      { label: "A recurrent decoder carries its state from token to token.", body: "After t tokens, the path has passed through t decoder stacks.", box: [0.37, 0.03, 0.99, 0.84] },
-    ],
-    remark: "The report itself: “realized reasoning gains, hardware efficiency, and RL scaling remain to be established.”",
-  });
-
-  figSeq({
-    crumb: ["Q4", "RLT"], cite: `${RLT}, length-generalization figure (≈26M params, seeds 42–44)`,
-    title: "RLT, October: three-seed toy results, failures included",
-    fig: "rlt-length-generalization.png",
-    items: [
-      { label: "Parity: trained on ≤ 40 bits, 100% at 256 bits.", body: "The Transformer baseline (dashed) falls to chance, 50%.", box: [0.02, 0.08, 0.49, 0.5] },
-      { label: "S5 swaps: 97% at 256 operations, vs 1%.", box: [0.51, 0.08, 1.0, 0.5] },
-      { label: "But standard S5 stays at chance, and addition fails past 8 digits.", body: "One task scored 18%, 20% or 99% depending on the seed." },
-    ],
-    remark: "[ours] RLT gets depth by reading more tokens. It thinks deeper across tokens, not longer per token, so it does not answer our guiding question.",
-  });
-
   answer("Q4", {
-    short: "Readability, sometimes. What is established is narrower than the headlines.",
+    short: "Worth it up to the trained depth. Looping alone cost no readability; deeper loops under pressure hid the hint.",
     evidence: [
-      { t: "Same model, more loops, told to conceal: the hint vanished from logic CoTs (77.9 → 41.8).", src: "Wang et al. Fig. 2" },
+      { t: "Per parameter, loops win on math and reasoning.", src: "Saunshi Table 3, Ouro Table 7" },
       { t: "Looping alone showed no monitorability penalty against six non-looped models.", src: "Wang et al. Sec. 4.2" },
-      { t: "Astra's monitorability drop is confirmed; that Astra loops is not.", src: "System card Sec. 9", kind: "but" },
-      { t: "RLT went from a design document to toy results in five weeks.", src: "RLT arXiv v2", kind: "but" },
+      { t: "Same model, more loops, told to conceal: the hint vanished from logic CoTs (77.9 → 41.8).", src: "Wang et al. Fig. 2", kind: "but" },
+      { t: "Those deeper loops (T = 6, 8) ran past Ouro's trained depth; one study, 1.4B–3B models.", src: "Ouro Table 10; Wang et al.", kind: "but" },
     ],
+  });
+
+  // Verdict on the two headlines
+  const verdict = [
+    ["Measured", T.gold, ["Looping helps per parameter on math and reasoning (Saunshi, Ouro).", "Extra loops help only up to the trained depth."]],
+    ["Not measured", T.navy, ["A win at the same data and the same FLOPs.", "Astra's architecture."]],
+    ["Viral before validated", T.gray, ["RLT: a design document first, toy results by October.", "Astra: one paywalled scoop set the agenda."]],
+  ];
+  for (let k = 0; k < verdict.length; k++) {
+    add({
+      crumb: ["Q4", "Verdict"], title: "Verdict on the headlines",
+      cite: "Saunshi Table 3; Ouro Tables 7, 10 and App. D.1; MoR Table 3; GPT-6 Astra System Card; RLT arXiv v2",
+      draw: (s) => {
+        verdict.forEach(([h, color, items], i) => {
+          if (i > k) return;
+          const x = T.X + i * 4.2, w = 3.95;
+          text(s, h, { x, y: 1.5, w, h: 0.5 }, { fontSize: 22, bold: true, color });
+          s.addShape("line", { x, y: 2.05, w, h: 0, line: { color, width: 2 } });
+          text(s, items.map((t) => ({ text: t, options: { bullet: { indent: 16 }, breakLine: true } })), { x, y: 2.25, w, h: 3.3 }, { fontSize: 19, paraSpaceAfter: 12, color: i === k ? T.ink : T.past });
+        });
+        if (k === verdict.length - 1) text(s, "[ours] Looping at frontier scale is plausible, not established.", { x: T.X, y: 5.9, w: 12.4, h: 0.5 }, { fontSize: 20, bold: true, color: T.gold });
+      },
+    });
+  }
+
+  // Implication 2: how to read 2026 news (moved from the synthesis section)
+  add({
+    crumb: ["Q4", "Claims vs measurements"], title: "Where claims ran ahead of measurements",
+    notes: "Not a criticism of any one paper; it is what to check when you read the next one.",
+    draw: (s) => {
+      const cards = [
+        ["UT", "State of the art on bAbI", "Best of 10 seeds; the 10-seed mean is worse"],
+        ["Giannou", "Looped Transformers are computers", "Proofs; nothing trained or measured"],
+        ["MoR", "Wins at equal FLOPs", "Saw 35% more tokens (27B vs 20B)"],
+        ["Ouro", "2–3× parameter efficiency", "External baselines; own control favors no looping"],
+        ["Astra", "GPT-6 loops", "One press report, unconfirmed"],
+        ["RLT", "Infinite temporal depth", "Design doc, then 26M-param toy tasks"],
+      ];
+      cards.forEach(([who, claim, meas], i) => {
+        const x = T.X + (i % 3) * 4.2, y = 1.5 + Math.floor(i / 3) * 2.65, w = 3.95, h = 2.4;
+        s.addShape("rect", { x, y, w, h, fill: { color: "FFFFFF" }, line: { color: "D9D9D9", width: 1 } });
+        text(s, who, { x: x + 0.2, y: y + 0.15, w: w - 0.4, h: 0.35 }, { fontSize: 14, bold: true, color: T.gold });
+        text(s, `“${claim}”`, { x: x + 0.2, y: y + 0.5, w: w - 0.4, h: 0.8 }, { fontSize: 19, bold: true });
+        text(s, meas, { x: x + 0.2, y: y + 1.35, w: w - 0.4, h: 0.9 }, { fontSize: 16, color: T.gray });
+      });
+    },
   });
 };
