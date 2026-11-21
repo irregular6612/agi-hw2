@@ -300,3 +300,8 @@ flowchart LR
 - Q2: UT·Giannou 앞에 질문 장. ACT는 UT 단계 5–8로(UT 그림 확대 → Graves Fig. 2). bAbI 셋업 장. UT remark 삭제. Giannou 표 제목 변경, 프로그램별 GIF 4개, Yang 전부 삭제.
 - Q3: Huginn 소개 장, 세 블록 장(수식 + 입출력 GIF), "가운데만 루프" 장 삭제.
 - 대본: 바뀐 41 build는 Astra, Astra 공개 장과 What we want는 직접 작성. Session A 26:04 / 25:00(1분 4초 초과), 줄일 곳은 미정.
+
+### 2026-11-22 (v7.7) Giannou 표 한 장으로
+- Giannou 프로그램 장을 표 한 장으로 합쳤다. 각 줄 가운데에 그 프로그램이 무엇인지만 보여 주는 그림(`figures/giannou-task-*.png`, `build/gif/make_task_icons.py`): SUBLEQ 명령 정의, 계산기 식과 연산, A·A⁻¹ = I, 손실 곡선을 내려가는 SGD.
+- 루프가 프로그램을 돌리는 GIF 4 build(이전 48–51)는 뺐다(GIF 파일과 대본은 보관). Theorem 5.4 장은 그대로.
+- Session A 24:40 / 25:00. 최종 덱 95장.

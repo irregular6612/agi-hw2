@@ -123,74 +123,34 @@ module.exports = function () {
   
   }
 
-  // What a looped network can run: overview, then one GIF per program (build/gif/make_gifs_giannou.py)
+  // What a looped network can run: one table, each row with a picture of what the program is (build/gif/make_task_icons.py)
   const PROGS = [
-    ["SUBLEQ (one-instruction computer)", "9", "2", "giannou_subleq.gif"],
-    ["Calculator: add, multiply, inverse, sqrt", "12", "m", "giannou_calculator.gif"],
-    ["Matrix inversion", "13", "1", "giannou_matrix_inverse.gif"],
-    ["SGD on a neural network", "13", "1", "giannou_sgd.gif"],
+    ["SUBLEQ", "one-instruction computer", "9", "2", "giannou-task-subleq.png"],
+    ["Calculator", "add, multiply, inverse, sqrt", "12", "m", "giannou-task-calculator.png"],
+    ["Matrix inversion", "", "13", "1", "giannou-task-matrix.png"],
+    ["SGD", "on a neural network", "13", "1", "giannou-task-sgd.png"],
   ];
-  for (let k = -1; k < PROGS.length; k++) {
-    add({
-      crumb: ["Q2", "Giannou"], cite: `${GIA}, Table 1, Lemmas 4, 12, 13, 15 and Thm. 4${k >= 0 ? "; animation ours, values illustrative" : ""}`,
-      title: "Looping lets one small fixed network run real programs",
-      notes: k < 0 ? "The paper abstract says 13 layers, Theorem 1 says fewer than 13; we write ≤ 13. These sizes are constructions on paper, not trained models." : undefined,
-      draw: (s) => {
-        const rows = PROGS.map(([p, l, h]) => [p, l, h]);
-        if (k < 0) {
-          table(s, { x: T.X, y: 1.55, w: 8.0 }, ["Program the looped network runs", "Layers", "Heads"], rows, { colW: [5.6, 1.2, 1.2], size: 18 });
-          text(s, "The depth stays fixed. A longer program just means more loops.", { x: 8.9, y: 1.6, w: 4.0, h: 2.0 }, { fontSize: 20, bold: true });
-          return;
-        }
-        const [p, l, h] = PROGS[k];
-        text(s, [
-          { text: `${k + 1} / ${PROGS.length}  `, options: { color: T.gray } },
-          { text: p, options: { bold: true, color: T.gold } },
-          { text: `   ${l} layers · ${h} head${h === "1" ? "" : "s"}`, options: { color: T.gray } },
-        ], { x: T.X, y: 1.25, w: 12.4, h: 0.5 }, { fontSize: 20 });
-        image(s, `gif/${PROGS[k][3]}`, { x: T.X, y: 1.85, w: 12.45, h: 5.1 });
-      },
-    });
-  }
-
-
-  if (OPTIONAL) {   // cut for time (storyline v6); set OPTIONAL = true to restore
-  figSeq({
-      crumb: ["Q2", "Saunshi"], cite: `${SAU}, Fig. 1 and Sec. 2`,
-      title: "Compare loops at equal parameters and at equal FLOPs",
-      fig: "saunshi-fig1.png", layout: "top",
-      items: [
-        { label: "Iso-param baseline (k ⊗ 1): k layers, run once.", box: [0.01, 0.03, 0.245, 0.97] },
-        { label: "Looped (k ⊗ L): the same k layers, run L times.", body: "Same parameters as the left, same depth as the right.", box: [0.25, 0.03, 0.47, 0.97] },
-        { label: "Iso-FLOP baseline (kL ⊗ 1): kL distinct layers.", body: "L times the parameters.", box: [0.47, 0.03, 0.725, 0.97] },
-        { label: "If looped ≈ iso-FLOP ≫ iso-param, the task needs depth, not parameters.", box: [0.01, 0.03, 0.725, 0.97] },
-      ],
-    });
-  
-    const addBars = [
-      { label: "1 layer, once\n(1 ⊗ 1)", value: 0.0, color: T.base },
-      { label: "12 layers, once\n(12 ⊗ 1)", value: 100.0, color: T.navy },
-      { label: "1 layer, 12 loops\n(1 ⊗ 12)", value: 99.6, color: T.gold },
-    ];
-    const addText = [
-      "One layer alone cannot add 32 three-digit numbers.",
-      "Twelve distinct layers solve it.",
-      "One layer looped 12 times solves it too, with 1/12 of the parameters.",
-    ];
-    for (let k = 0; k < 3; k++) {
-      add({
-        crumb: ["Q2", "Saunshi"], cite: `${SAU}, Table 1 (best of 3 seeds)`,
-        title: "One layer looped 12× adds as well as 12 distinct layers",
-        draw: (s) => {
-          text(s, "Accuracy (%), adding 32 numbers of 3 digits", { x: T.X, y: 1.35, w: 7, h: 0.4 }, { fontSize: 16, color: T.gray });
-          bars(s, { x: T.X, y: 1.8, w: 7.0, h: 5.0 }, { bars: addBars, max: 110, reveal: k + 1, current: k, labelSize: 15 });
-          text(s, addText.slice(0, k + 1).map((t, i) => ({ text: t, options: { color: i === k ? T.ink : T.past, bold: i === k, breakLine: true } })), { x: 8.1, y: 2.0, w: 4.8, h: 3.5 }, { fontSize: 19, paraSpaceAfter: 14 });
-          if (k === 2) remark(s, "The same holds for p-hop and i-GSM: depth, not parameters, is what these tasks need.", { x: 8.1, y: 4.6, w: 4.8, h: 1.6 });
-        },
+  add({
+    crumb: ["Q2", "Giannou"], cite: `${GIA}, Table 1, Lemmas 4, 12, 13, 15 and Thm. 4; pictures ours, values illustrative`,
+    title: "Looping lets one small fixed network run real programs",
+    notes: "The paper abstract says 13 layers, Theorem 1 says fewer than 13; we write ≤ 13. These sizes are constructions on paper, not trained models.",
+    draw: (s) => {
+      const X = [T.X, 3.6, 9.75, 11.3], Wd = [3.15, 6.15, 1.55, 1.55], y0 = 1.35, hh = 0.42, rh = 1.1;
+      s.addShape("rect", { x: T.X, y: y0, w: 12.4, h: hh, fill: { color: "F2F2F2" }, line: { type: "none" } });
+      ["Program", "What it is", "Layers", "Heads"].forEach((h, i) =>
+        text(s, h, { x: X[i] + 0.1, y: y0, w: Wd[i] - 0.1, h: hh }, { fontSize: 16, bold: true, valign: "middle" }));
+      PROGS.forEach(([name, sub, l, h, pic], r) => {
+        const y = y0 + hh + r * rh;
+        s.addShape("line", { x: T.X, y: y + rh, w: 12.4, h: 0, line: { color: T.faint, width: 1 } });
+        text(s, sub ? [{ text: name, options: { bold: true, breakLine: true } }, { text: sub, options: { color: T.gray, fontSize: 15 } }] : name,
+          { x: X[0] + 0.1, y, w: Wd[0] - 0.1, h: rh }, { fontSize: 18, bold: !sub, valign: "middle" });
+        image(s, pic, { x: X[1], y: y + 0.04, w: Wd[1], h: rh - 0.08 });
+        text(s, l, { x: X[2] + 0.1, y, w: Wd[2], h: rh }, { fontSize: 20, valign: "middle" });
+        text(s, h, { x: X[3] + 0.1, y, w: Wd[3], h: rh }, { fontSize: 20, valign: "middle" });
       });
-    }
-  
-  }
+      text(s, "The depth stays fixed. A longer program just means more loops.", { x: T.X, y: y0 + hh + 4 * rh + 0.1, w: 12.4, h: 0.45 }, { fontSize: 19, bold: true, color: T.gold });
+    },
+  });
 
   // callback to #3–4
   add({
