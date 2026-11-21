@@ -3,11 +3,14 @@
 ## s1_background/title#1
 안녕하십니까. Team 5의 발표를 시작하겠습니다. 오늘의 질문은 모델이 토큰을 더 쓰는 대신 같은 층을 다시 돌려서 더 오래 생각할 수 있는가입니다. 두 세션에 걸쳐 답하겠습니다.
 
-## s1_background/sept-2026-a-report-said-gpt-6-astra-loops-and-it#1
-출발점은 올해 9월 2일의 기사입니다. The Information은 내부자를 인용해 GPT-6 Astra가 루프 Transformer를 쓰고, 그 때문에 모델의 생각 과정인 chain of thought, 줄여서 CoT가 가려진다고 보도했습니다. 화면은 Raschka가 같은 날 블로그에 옮겨 실은 그림입니다.
+## s1_background/sept-2026-one-scoop-said-gpt-6-astra-loops-and-i#1
+출발점은 올해 9월 1일 미국 시각에 나온 The Information의 기사입니다. 제목은 OpenAI의 Astra에 쓰인 기술이 보안 우려를 낳는다는 내용입니다. 본문은 유료라 저희도 직접 읽지 못했고, 아래 문장은 다른 글에 옮겨 실린 부분입니다. 이름을 밝히지 않은 내부자를 인용해 Astra가 recurrent depth, 곧 루프 Transformer를 쓰고 그 때문에 생각 과정인 chain of thought, 줄여서 CoT가 가려진다고 썼습니다.
 
-## s1_background/sept-2026-a-report-said-gpt-6-astra-loops-and-it#2
-OpenAI는 이 구조를 확인하지 않았습니다. 출처는 이름을 밝히지 않은 내부자인데도 보도는 빠르게 퍼졌습니다. 저희는 이 문장을 주장으로만 두고 발표 끝에서 측정과 나란히 놓겠습니다.
+## s1_background/sept-2026-one-scoop-said-gpt-6-astra-loops-and-i#2
+이 기사 한 편이 이틀 만에 퍼졌습니다. 다음 날 TechCrunch가 같은 내용을 옮기면서 Redwood의 CEO가 깊이 우려한다고 쓴 글을 실었습니다. 같은 날 X에서는 루프 Transformer와 recurrent depth, Neuralese라는 말이 타임라인을 덮었다는 글이 돌았습니다. 9월 3일 Fortune은 OpenAI가 이 방법을 썼다고 사실처럼 적었고, OpenAI 출신 안전 연구자가 업계의 몇 안 되는 레드라인을 넘는다고 한 말을 인용했습니다.
+
+## s1_background/sept-2026-one-scoop-said-gpt-6-astra-loops-and-i#3
+오른쪽 세 건을 거슬러 올라가면 모두 왼쪽 기사 하나에 닿습니다. OpenAI는 시스템 카드에서 구조를 밝히지 않았고, 수석 과학자는 CoT 모니터링을 지켜 왔다는 말과 함께 구조는 나중에 공개하겠다고만 했습니다. 저희는 이 문장을 확인되지 않은 주장으로 두고 발표 끝에서 측정과 나란히 놓겠습니다.
 
 ## s1_background/research-followed-looped-papers-at-iclr-jumped-t#1
 연구 쪽 관심은 숫자로 확인할 수 있습니다. OpenReview 검색으로 ICLR 투고 가운데 제목이나 초록, 키워드에 ‘looped’가 들어간 논문을 셌습니다. 철회된 투고까지 넣은 값입니다. 2024년 3편, 2025년 4편, 2026년 11편으로 해마다 손에 꼽을 정도였습니다.

@@ -17,45 +17,70 @@
  },
  {
   "n": 2,
-  "key": "s1_background/sept-2026-a-report-said-gpt-6-astra-loops-and-it#1",
+  "key": "s1_background/sept-2026-one-scoop-said-gpt-6-astra-loops-and-i#1",
   "session": "A",
   "section": "s1_background",
-  "title": "Sept 2026: a report said GPT-6 Astra loops, and it went viral",
+  "title": "Sept 2026: one scoop said GPT-6 Astra loops, and it spread in two days",
   "crumb": [
    "Today"
   ],
-  "cite": "Efrati & Palazzolo, The Information, 2 Sept 2026, as reproduced in S. Raschka, “OpenAI Astra and Looped Transformers”, Ahead of AI, 2 Sept 2026, Fig. 1",
+  "cite": "The Information, 1 Sept 2026 (paywalled; body text as reproduced in Raschka, Ahead of AI, 2 Sept, Fig. 1); TechCrunch, 2 Sept; A. Volkov on X, 2 Sept; Fortune, 3 Sept",
   "onSlide": [
-   "Today · 1/6",
-   "Sept 2026: a report said GPT-6 Astra loops, and it went viral",
-   "Efrati & Palazzolo, The Information, 2 Sept 2026, as reproduced in S. Raschka, “OpenAI Astra and Looped Transformers”, Ahead of AI, 2 Sept 2026, Fig. 1",
-   "The Information, Sept 2OpenAI's Astra uses “recurrent depth or looped transformer,” which “obscures” its chain of thought."
+   "Today · 1/7",
+   "Sept 2026: one scoop said GPT-6 Astra loops, and it spread in two days",
+   "The Information, 1 Sept 2026 (paywalled; body text as reproduced in Raschka, Ahead of AI, 2 Sept, Fig. 1); TechCrunch, 2 Sept; A. Volkov on X, 2 Sept; Fortune, 3 Sept",
+   "The Information  Tue 1 Sept · paywalled · unnamed insiders“OpenAI Technique in ‘Astra’ Model Sparks Security Concerns”The technique, “known as recurrent depth or looped transformer,” obscures some or all of the chain of thought."
   ],
   "notes": null,
-  "script": "출발점은 올해 9월 2일의 기사입니다. The Information은 내부자를 인용해 GPT-6 Astra가 루프 Transformer를 쓰고, 그 때문에 모델의 생각 과정인 chain of thought, 줄여서 CoT가 가려진다고 보도했습니다. 화면은 Raschka가 같은 날 블로그에 옮겨 실은 그림입니다."
+  "script": "출발점은 올해 9월 1일 미국 시각에 나온 The Information의 기사입니다. 제목은 OpenAI의 Astra에 쓰인 기술이 보안 우려를 낳는다는 내용입니다. 본문은 유료라 저희도 직접 읽지 못했고, 아래 문장은 다른 글에 옮겨 실린 부분입니다. 이름을 밝히지 않은 내부자를 인용해 Astra가 recurrent depth, 곧 루프 Transformer를 쓰고 그 때문에 생각 과정인 chain of thought, 줄여서 CoT가 가려진다고 썼습니다."
  },
  {
   "n": 3,
-  "key": "s1_background/sept-2026-a-report-said-gpt-6-astra-loops-and-it#2",
+  "key": "s1_background/sept-2026-one-scoop-said-gpt-6-astra-loops-and-i#2",
   "session": "A",
   "section": "s1_background",
-  "title": "Sept 2026: a report said GPT-6 Astra loops, and it went viral",
+  "title": "Sept 2026: one scoop said GPT-6 Astra loops, and it spread in two days",
   "crumb": [
    "Today"
   ],
-  "cite": "Efrati & Palazzolo, The Information, 2 Sept 2026, as reproduced in S. Raschka, “OpenAI Astra and Looped Transformers”, Ahead of AI, 2 Sept 2026, Fig. 1",
+  "cite": "The Information, 1 Sept 2026 (paywalled; body text as reproduced in Raschka, Ahead of AI, 2 Sept, Fig. 1); TechCrunch, 2 Sept; A. Volkov on X, 2 Sept; Fortune, 3 Sept",
   "onSlide": [
-   "Today · 2/6",
-   "Sept 2026: a report said GPT-6 Astra loops, and it went viral",
-   "Efrati & Palazzolo, The Information, 2 Sept 2026, as reproduced in S. Raschka, “OpenAI Astra and Looped Transformers”, Ahead of AI, 2 Sept 2026, Fig. 1",
-   "The Information, Sept 2OpenAI's Astra uses “recurrent depth or looped transformer,” which “obscures” its chain of thought.",
-   "OpenAI has not confirmed it.We come back to this claim at the end of the talk."
+   "Today · 2/7",
+   "Sept 2026: one scoop said GPT-6 Astra loops, and it spread in two days",
+   "The Information, 1 Sept 2026 (paywalled; body text as reproduced in Raschka, Ahead of AI, 2 Sept, Fig. 1); TechCrunch, 2 Sept; A. Volkov on X, 2 Sept; Fortune, 3 Sept",
+   "The Information  Tue 1 Sept · paywalled · unnamed insiders“OpenAI Technique in ‘Astra’ Model Sparks Security Concerns”The technique, “known as recurrent depth or looped transformer,” obscures some or all of the chain of thought.",
+   "TechCrunch  Wed 2 Sept“OpenAI’s new reasoning technique alarms AI safety experts”Redwood CEO: “extremely concerned by the reporting”",
+   "X · @altryne  Wed 2 Sept“loop transformers”, “recurrent depth” and “Neuralese” all over the timeline",
+   "Fortune  Thu 3 SeptStates it as fact: OpenAI “has employed” recurrent depth in part of AstraEx-OpenAI safety researcher: “violating one of the few redlines”"
   ],
   "notes": null,
-  "script": "OpenAI는 이 구조를 확인하지 않았습니다. 출처는 이름을 밝히지 않은 내부자인데도 보도는 빠르게 퍼졌습니다. 저희는 이 문장을 주장으로만 두고 발표 끝에서 측정과 나란히 놓겠습니다."
+  "script": "이 기사 한 편이 이틀 만에 퍼졌습니다. 다음 날 TechCrunch가 같은 내용을 옮기면서 Redwood의 CEO가 깊이 우려한다고 쓴 글을 실었습니다. 같은 날 X에서는 루프 Transformer와 recurrent depth, Neuralese라는 말이 타임라인을 덮었다는 글이 돌았습니다. 9월 3일 Fortune은 OpenAI가 이 방법을 썼다고 사실처럼 적었고, OpenAI 출신 안전 연구자가 업계의 몇 안 되는 레드라인을 넘는다고 한 말을 인용했습니다."
  },
  {
   "n": 4,
+  "key": "s1_background/sept-2026-one-scoop-said-gpt-6-astra-loops-and-i#3",
+  "session": "A",
+  "section": "s1_background",
+  "title": "Sept 2026: one scoop said GPT-6 Astra loops, and it spread in two days",
+  "crumb": [
+   "Today"
+  ],
+  "cite": "The Information, 1 Sept 2026 (paywalled; body text as reproduced in Raschka, Ahead of AI, 2 Sept, Fig. 1); TechCrunch, 2 Sept; A. Volkov on X, 2 Sept; Fortune, 3 Sept",
+  "onSlide": [
+   "Today · 3/7",
+   "Sept 2026: one scoop said GPT-6 Astra loops, and it spread in two days",
+   "The Information, 1 Sept 2026 (paywalled; body text as reproduced in Raschka, Ahead of AI, 2 Sept, Fig. 1); TechCrunch, 2 Sept; A. Volkov on X, 2 Sept; Fortune, 3 Sept",
+   "The Information  Tue 1 Sept · paywalled · unnamed insiders“OpenAI Technique in ‘Astra’ Model Sparks Security Concerns”The technique, “known as recurrent depth or looped transformer,” obscures some or all of the chain of thought.",
+   "TechCrunch  Wed 2 Sept“OpenAI’s new reasoning technique alarms AI safety experts”Redwood CEO: “extremely concerned by the reporting”",
+   "X · @altryne  Wed 2 Sept“loop transformers”, “recurrent depth” and “Neuralese” all over the timeline",
+   "Fortune  Thu 3 SeptStates it as fact: OpenAI “has employed” recurrent depth in part of AstraEx-OpenAI safety researcher: “violating one of the few redlines”",
+   "All of it traces back to one paywalled scoop. OpenAI never confirmed the architecture. We return to this claim at the end."
+  ],
+  "notes": null,
+  "script": "오른쪽 세 건을 거슬러 올라가면 모두 왼쪽 기사 하나에 닿습니다. OpenAI는 시스템 카드에서 구조를 밝히지 않았고, 수석 과학자는 CoT 모니터링을 지켜 왔다는 말과 함께 구조는 나중에 공개하겠다고만 했습니다. 저희는 이 문장을 확인되지 않은 주장으로 두고 발표 끝에서 측정과 나란히 놓겠습니다."
+ },
+ {
+  "n": 5,
   "key": "s1_background/research-followed-looped-papers-at-iclr-jumped-t#1",
   "session": "A",
   "section": "s1_background",
@@ -65,7 +90,7 @@
   ],
   "cite": "OpenReview search API, term “looped” in title, abstract or keywords, all submissions incl. withdrawn and desk-rejected; retrieved 21 Nov 2026",
   "onSlide": [
-   "Today · 3/6",
+   "Today · 4/7",
    "Research followed: “looped” papers at ICLR jumped to 189",
    "OpenReview search API, term “looped” in title, abstract or keywords, all submissions incl. withdrawn and desk-rejected; retrieved 21 Nov 2026",
    "ICLR submissions mentioning “looped”",
@@ -82,7 +107,7 @@
   "script": "연구 쪽 관심은 숫자로 확인할 수 있습니다. OpenReview 검색으로 ICLR 투고 가운데 제목이나 초록, 키워드에 ‘looped’가 들어간 논문을 셌습니다. 철회된 투고까지 넣은 값입니다. 2024년 3편, 2025년 4편, 2026년 11편으로 해마다 손에 꼽을 정도였습니다."
  },
  {
-  "n": 5,
+  "n": 6,
   "key": "s1_background/research-followed-looped-papers-at-iclr-jumped-t#2",
   "session": "A",
   "section": "s1_background",
@@ -92,7 +117,7 @@
   ],
   "cite": "OpenReview search API, term “looped” in title, abstract or keywords, all submissions incl. withdrawn and desk-rejected; retrieved 21 Nov 2026",
   "onSlide": [
-   "Today · 4/6",
+   "Today · 5/7",
    "Research followed: “looped” papers at ICLR jumped to 189",
    "OpenReview search API, term “looped” in title, abstract or keywords, all submissions incl. withdrawn and desk-rejected; retrieved 21 Nov 2026",
    "ICLR submissions mentioning “looped”",
@@ -110,7 +135,7 @@
   "script": "ICLR 2027에서는 189편으로 뛰었습니다. 그중 175편은 이 단어를 모델 구조를 가리키는 데 씁니다. 이 수는 검색 색인으로 센 값이고 전체를 훑은 값은 아닙니다. 투고는 관심의 표시이고 결과는 심사와 재현을 거쳐야 나옵니다. Astra 보도와 시기는 가깝지만 보도가 이 증가를 불렀다고 볼 근거는 없습니다."
  },
  {
-  "n": 6,
+  "n": 7,
   "key": "s1_background/guiding-question#1",
   "session": "A",
   "section": "s1_background",
@@ -120,7 +145,7 @@
   ],
   "cite": "AGI26F HW2 course page, Looped Transformer topic",
   "onSlide": [
-   "Today · 5/6",
+   "Today · 6/7",
    "AGI26F HW2 course page, Looped Transformer topic",
    "Guiding question",
    "Can a model think longer by reusing its layers instead of writing more tokens?",
@@ -131,7 +156,7 @@
   "script": "수업이 준 질문도 이 주제를 가리킵니다. 오늘 발표는 루프가 무엇인지에서 시작해 무엇을 할 수 있는지를 거쳐 가져다 쓸 만한지에서 끝납니다. 각주처럼 여기서 재귀는 네트워크 안의 반복이고, Topic 9의 시스템 수준 자기 개선과는 층위가 다릅니다."
  },
  {
-  "n": 7,
+  "n": 8,
   "key": "s1_background/four-questions-for-today#1",
   "session": "A",
   "section": "s1_background",
@@ -141,7 +166,7 @@
   ],
   "cite": null,
   "onSlide": [
-   "Today · 6/6",
+   "Today · 7/7",
    "Four questions for today",
    "Q1",
    "Where do today's two ways to think deeper — more layers, longer CoT — get stuck?",
@@ -160,7 +185,7 @@
   "script": "이 흐름을 네 질문으로 쪼갰습니다. Q1과 Q2는 왜 루프가 필요하고 원리상 어디까지 가능한지를 묻습니다. Q3는 실제 언어 모델을 만드는 과정이고 Huginn까지만 이번 세션에서 다룹니다. Q4는 Astra 보도가 건드린 물음, 루프를 쓰면 무엇을 잃는가입니다."
  },
  {
-  "n": 8,
+  "n": 9,
   "key": "s1_background/what-we-want-ai-that-thinks-deeply-enough-to-sol#1",
   "session": "A",
   "section": "s1_background",
@@ -180,7 +205,7 @@
   "script": "Q1은 목표에서 출발합니다. 깊이 생각한다는 말을 답하기 전에 여러 단계의 계산을 거친다는 뜻으로 좁혔습니다. 이 정의는 논문에서 가져온 주장이 아니고 저희가 세운 틀입니다. 이 틀에서 보면 지금까지의 길은 둘입니다. 층을 더 쌓거나, 모델이 더 긴 CoT를 쓰게 하는 길입니다."
  },
  {
-  "n": 9,
+  "n": 10,
   "key": "s1_background/way-1-stack-more-layers-measured-by-scaling-laws#1",
   "session": "A",
   "section": "s1_background",
@@ -200,7 +225,7 @@
   "script": "첫 번째 길은 층 쌓기입니다. 깊은 네트워크가 더 깊이 생각한다는 믿음이 있었고, 그 진척은 scaling law로 쟀습니다. Kaplan 등은 2020년에 test loss가 파라미터, 데이터, 계산량에 대해 거듭제곱 법칙을 따른다고 측정했습니다."
  },
  {
-  "n": 10,
+  "n": 11,
   "key": "s1_background/way-1-stack-more-layers-measured-by-scaling-laws#2",
   "session": "A",
   "section": "s1_background",
@@ -221,7 +246,7 @@
   "script": "그런데 이 지표는 깊이를 가리키지 않았습니다. 성능은 규모에 강하게 의존하고 깊이 대 너비 같은 모양에는 약하게 의존했습니다. 여기서 성능은 test loss이고 추론 정확도와는 다른 지표입니다."
  },
  {
-  "n": 11,
+  "n": 12,
   "key": "s1_background/way-1-stack-more-layers-measured-by-scaling-laws#3",
   "session": "A",
   "section": "s1_background",
@@ -243,7 +268,7 @@
   "script": "Saunshi 등의 2025년 논문이 이 틈을 짚습니다. 많은 추론 문제는 큰 깊이가 필요하지만 파라미터가 많을 필요는 없습니다. 그런데 보통의 스택에서는 층 하나를 더하면 파라미터도 함께 늘어납니다. 깊이만 따로 살 방법이 없습니다."
  },
  {
-  "n": 12,
+  "n": 13,
   "key": "s1_background/the-price-depth-caps-a-transformer-s-steps-per-t#1",
   "session": "A",
   "section": "s1_background",
@@ -272,7 +297,7 @@
   "script": "깊이를 고정한 대가는 그림에 있습니다. 토큰 하나는 Layer 1부터 L까지 한 번 지나고 곧바로 답해야 하니, 패스 한 번에 밟을 수 있는 단계는 많아야 L개입니다. Universal Transformers 논문은 이를 두고 Transformer가 RNN의 반복 편향을 내려놓았다고 썼습니다. 더 많은 단계가 필요하면 토큰이나 패스를 늘려 일을 나누어야 합니다."
  },
  {
-  "n": 13,
+  "n": 14,
   "key": "s1_background/today-s-models-get-around-the-cap-by-writing-tok#1",
   "session": "A",
   "section": "s1_background",
@@ -292,7 +317,7 @@
   "script": "지금의 모델들은 토큰 쪽을 택했습니다. 이것이 두 번째 길이고 그림은 Saunshi 논문의 Figure 4 왼쪽입니다. 파란 막대가 모델 전체, 빨간 테두리가 방금 쓴 생각입니다. 패스마다 토큰 하나를 써서 다시 넣으니 단계가 늘면 토큰도 늘어납니다. Huginn의 저자들은 이를 낭비로 보았고 Ouro의 저자들은 문맥이 불어난다고 지적합니다."
  },
  {
-  "n": 14,
+  "n": 15,
   "key": "s1_background/rnns-read-step-by-step-transformers-read-all-at-#1",
   "session": "A",
   "section": "s1_background",
@@ -313,7 +338,7 @@
   "script": "그렇다면 Transformer는 왜 깊이를 고정한 채로 만들어졌을까요. 왼쪽 RNN은 매 걸음 같은 가중치를 써서 반복 계산을 자연스럽게 표현합니다. 오른쪽 Transformer는 시퀀스 전체를 병렬로 학습하고 어느 토큰이든 한 단계 만에 다른 토큰에 닿습니다."
  },
  {
-  "n": 15,
+  "n": 16,
   "key": "s1_background/rnns-read-step-by-step-transformers-read-all-at-#2",
   "session": "A",
   "section": "s1_background",
@@ -335,7 +360,7 @@
   "script": "약점은 장점의 뒷면입니다. RNN은 한 걸음씩 가야 해서 학습을 병렬로 나눌 수 없고 먼 정보는 기울기 소실로 흐려집니다. Transformer 쪽 첫 줄이 앞에서 본 상한입니다. attention 비용은 길이의 제곱으로 늘어납니다."
  },
  {
-  "n": 16,
+  "n": 17,
   "key": "s1_background/rnns-read-step-by-step-transformers-read-all-at-#3",
   "session": "A",
   "section": "s1_background",
@@ -358,7 +383,7 @@
   "script": "마지막 행은 inductive bias, 곧 모델이 미리 깔고 있는 가정입니다. RNN은 같은 규칙이 걸음마다 반복된다고 가정합니다. Transformer 칸은 저희 해석입니다. 순서가 위치 인코딩으로만 들어오니 순서나 거리에 대한 가정이 거의 없다고 보았습니다. 고정 깊이는 반복의 가정을 내려놓고 병렬 학습을 택한 결과입니다."
  },
  {
-  "n": 17,
+  "n": 18,
   "key": "s1_background/transformers-won-because-they-scale-the-bitter-l#1",
   "session": "A",
   "section": "s1_background",
@@ -378,7 +403,7 @@
   "script": "반복을 버린 쪽이 이긴 이유는 Sutton의 2019년 에세이가 요약합니다. 70년의 AI 연구에서 계산을 쓸수록 좋아지는 일반적인 방법, 곧 탐색과 학습이 큰 차이로 이겼다는 주장입니다. 실험 없는 에세이라 관점으로만 씁니다."
  },
  {
-  "n": 18,
+  "n": 19,
   "key": "s1_background/transformers-won-because-they-scale-the-bitter-l#2",
   "session": "A",
   "section": "s1_background",
@@ -399,7 +424,7 @@
   "script": "측정은 Kaplan 등의 2020년 논문에 있습니다. 파라미터를 맞추고 키우면 Transformer가 LSTM을 점점 앞섭니다. LSTM은 100토큰이 되기 전에 평평해집니다. 긴 문맥을 더 잘 쓴 쪽이 이긴 셈입니다."
  },
  {
-  "n": 19,
+  "n": 20,
   "key": "s1_background/transformers-won-because-they-scale-the-bitter-l#3",
   "session": "A",
   "section": "s1_background",
@@ -421,7 +446,7 @@
   "script": "세 번째 상자의 연결은 저희 해석입니다. Sutton의 글에는 Transformer라는 단어가 없습니다. 병렬 학습과 긴 문맥 모두 계산을 더 받아들이는 쪽이었다고 보았습니다. 루프가 같은 시험을 통과하는지는 발표 끝에서 다시 묻겠습니다."
  },
  {
-  "n": 20,
+  "n": 21,
   "key": "s1_background/a-looped-model-reuses-the-same-layers-instead#1",
   "session": "A",
   "section": "s1_background",
@@ -441,7 +466,7 @@
   "script": "루프 모델은 이 두 흐름 사이에 놓입니다. Figure 4 오른쪽에서는 같은 파란 막대를 다시 지날 때마다 모든 위치가 제자리에서 갱신되고, 빨간 테두리의 생각은 토큰을 쓰지 않습니다. RNN의 반복을 깊이 축으로 옮긴 모양이고 2018년 Universal Transformers의 설계입니다. 층을 더하지 않고 깊이를, 토큰을 쓰지 않고 단계를 얻으려는 시도입니다."
  },
  {
-  "n": 21,
+  "n": 22,
   "key": "s1_background/answer-to-q1#1",
   "session": "A",
   "section": "s1_background",
@@ -466,7 +491,7 @@
   "script": "두 길은 같은 곳에서 막힙니다. 층 쌓기는 깊이를 파라미터로 사고 CoT는 깊이를 토큰으로 삽니다. 토큰 하나가 패스 한 번에 거치는 깊이는 어느 쪽이든 L에 묶여 있습니다. 층 쪽은 지표가 깊이에 거의 반응하지 않았고, 늘리려 해도 파라미터가 따라 붙었습니다. CoT는 상한을 넘기는 하지만 넘는 단계마다 토큰을 써야 합니다. 남는 물음은 같은 층을 다시 돌려 이 상한을 토큰 없이 어디까지 넘을 수 있는가입니다."
  },
  {
-  "n": 22,
+  "n": 23,
   "key": "s1_background/roadmap-each-answer-raised-the-next-question#1",
   "session": "A",
   "section": "s1_background",
@@ -494,7 +519,7 @@
   "script": "Q2로 가기 전에 지금까지를 지도 한 장에 올려 두겠습니다. 화살표는 앞 단계가 남긴 질문이고 금색 상자 여섯 개가 오늘 다룰 논문입니다. 왼쪽 뿌리에는 RNN과 Transformer, 그리고 언제 멈출지 배우는 ACT가 있습니다."
  },
  {
-  "n": 23,
+  "n": 24,
   "key": "s1_background/roadmap-each-answer-raised-the-next-question#2",
   "session": "A",
   "section": "s1_background",
@@ -523,7 +548,7 @@
   "script": "고정 깊이가 단계 수를 막자 2018년 Universal Transformers가 블록 하나를 깊이 방향으로 재사용하고 토큰마다 멈추게 했습니다."
  },
  {
-  "n": 24,
+  "n": 25,
   "key": "s1_background/roadmap-each-answer-raised-the-next-question#3",
   "session": "A",
   "section": "s1_background",
@@ -554,7 +579,7 @@
   "script": "다음 질문은 그 블록이 원리상 무엇까지 계산하는가였고, Giannou 등은 루프가 프로그래밍 가능한 컴퓨터가 된다고 증명했습니다. 그사이 아래 줄의 CoT는 토큰을 써서 단계를 늘렸습니다."
  },
  {
-  "n": 25,
+  "n": 26,
   "key": "s1_background/roadmap-each-answer-raised-the-next-question#4",
   "session": "A",
   "section": "s1_background",
@@ -588,7 +613,7 @@
   "script": "2025년에는 증명이 언어 모델로 옮겨 갑니다. Huginn이 3.5B에서 루프를 학습시켰고, MoR는 토큰마다 깊이를 달리했고, Ouro는 7.7T 토큰까지 사전학습했습니다."
  },
  {
-  "n": 26,
+  "n": 27,
   "key": "s1_background/roadmap-each-answer-raised-the-next-question#5",
   "session": "A",
   "section": "s1_background",
@@ -624,7 +649,7 @@
   "script": "올해 가을 RLT는 깊이를 토큰 사이로 이어 가며 시간 축의 반복을 되살립니다. Astra 상자는 확인되지 않은 보도라서 따로 표시했습니다. 이제 두 번째 칸, Universal Transformers로 들어갑니다."
  },
  {
-  "n": 27,
+  "n": 28,
   "key": "s2_q1/cover-q2#1",
   "session": "A",
   "section": "s2_q1",
@@ -650,7 +675,7 @@
   "script": "Q2는 루프가 원리상 무엇을 계산할 수 있고, 학습이 그 계산을 찾아내는지를 묻습니다. 앞의 물음은 증명으로 답할 수 있고 뒤의 물음은 학습시켜 재 보아야 답할 수 있습니다. 그래서 이 절에서는 결과마다 증명인지 측정인지를 먼저 가리겠습니다."
  },
  {
-  "n": 28,
+  "n": 29,
   "key": "s2_q1/universal-transformers-reuse-one-block-again-and#1",
   "session": "A",
   "section": "s2_q1",
@@ -670,7 +695,7 @@
   "script": "Universal Transformers의 Figure 1입니다. 위치가 위아래로 쌓여 있고 시간은 오른쪽으로 흐릅니다. 왼쪽 열의 h1부터 hm까지가 각 위치의 상태이고 처음 값은 토큰 임베딩입니다. 거기서 뻗어 나가는 교차 화살표가 self-attention이고 모든 위치가 다른 위치의 이전 상태를 봅니다."
  },
  {
-  "n": 29,
+  "n": 30,
   "key": "s2_q1/universal-transformers-reuse-one-block-again-and#2",
   "session": "A",
   "section": "s2_q1",
@@ -690,7 +715,7 @@
   "script": "attention 출력에 transition function이 위치별로 적용됩니다. 화면 수식처럼 attention 출력에 transition을 더하고 LayerNorm을 거친 값이 다음 상태가 됩니다. 이때 매 단계 time-step 임베딩이 더해져서 공유 블록이 지금 몇 번째 단계인지를 압니다."
  },
  {
-  "n": 30,
+  "n": 31,
   "key": "s2_q1/universal-transformers-reuse-one-block-again-and#3",
   "session": "A",
   "section": "s2_q1",
@@ -710,7 +735,7 @@
   "script": "그다음이 이 논문의 전부입니다. 같은 블록이 한 번 더 돕니다. 오른쪽으로 가는 시간축은 토큰을 세지 않고 refinement 단계를 셉니다. 토큰은 그대로 두고 같은 토큰을 한 번 더 다듬습니다."
  },
  {
-  "n": 31,
+  "n": 32,
   "key": "s2_q1/universal-transformers-reuse-one-block-again-and#4",
   "session": "A",
   "section": "s2_q1",
@@ -730,7 +755,7 @@
   "script": "위쪽 괄호가 설계의 요점입니다. 가중치는 위치 사이에서도 단계 사이에서도 묶여 있습니다. 단계 수 T를 고정하면 이 모델은 층마다 같은 가중치를 쓰는 T층 Transformer입니다. T가 1이면 보통의 Transformer로 돌아갑니다."
  },
  {
-  "n": 32,
+  "n": 33,
   "key": "s2_q1/universal-transformers-reuse-one-block-again-and#5",
   "session": "A",
   "section": "s2_q1",
@@ -750,7 +775,7 @@
   "script": "여기에 ACT를 얹습니다. Adaptive Computation Time의 약자입니다. 각 위치가 스스로 언제 멈출지 정하고, 멈춘 위치의 상태는 다른 위치가 모두 멈출 때까지 그대로 복사됩니다. 토큰마다 생각하는 횟수가 달라진다는 뜻입니다."
  },
  {
-  "n": 33,
+  "n": 34,
   "key": "s2_q1/universal-transformers-reuse-one-block-again-and#6",
   "session": "A",
   "section": "s2_q1",
@@ -770,7 +795,7 @@
   "script": "정리하면 깊이가 루프 횟수가 됩니다. 파라미터는 늘지 않습니다. 2018년에 이미 오늘 질문의 설계가 그대로 나와 있었습니다. 그렇다면 이 모델이 정말로 어려운 입력에 더 많은 단계를 쓰는지가 다음 물음입니다."
  },
  {
-  "n": 34,
+  "n": 35,
   "key": "s2_q1/ut-spent-more-steps-on-the-facts-that-answer-the#1",
   "session": "A",
   "section": "s2_q1",
@@ -790,7 +815,7 @@
   "script": "Figure 3가 그 증거입니다. bAbI 질문 하나에 대해 문장마다 ponder step 수를 막대로 그렸습니다. 질문은 사과가 욕실 전에 어디 있었는가입니다. 가로로 늘어선 문장 대부분은 한 단계 만에 멈춥니다. 무관한 사실은 한 번 보고 버린다는 뜻입니다."
  },
  {
-  "n": 35,
+  "n": 36,
   "key": "s2_q1/ut-spent-more-steps-on-the-facts-that-answer-the#2",
   "session": "A",
   "section": "s2_q1",
@@ -810,7 +835,7 @@
   "script": "사과가 나오는 문장만 다릅니다. John이 사과를 집었다, 욕실로 갔다, 거기에 사과를 버렸다는 문장이 3단계에서 5단계까지 받습니다. 답에 필요한 사실에 단계가 몰렸습니다."
  },
  {
-  "n": 36,
+  "n": 37,
   "key": "s2_q1/ut-spent-more-steps-on-the-facts-that-answer-the#3",
   "session": "A",
   "section": "s2_q1",
@@ -830,7 +855,7 @@
   "script": "예시 하나로 끝나지 않습니다. 테스트 셋 전체에서 답에 사실 셋이 필요한 과제는 평균 3.8단계, 둘이면 3.1단계, 하나면 2.3단계였습니다. 필요한 사실 수가 늘수록 단계가 늘어납니다."
  },
  {
-  "n": 37,
+  "n": 38,
   "key": "s2_q1/ut-spent-more-steps-on-the-facts-that-answer-the#4",
   "session": "A",
   "section": "s2_q1",
@@ -850,7 +875,7 @@
   "script": "단계 수가 질문이 필요로 하는 사실 수를 따라갑니다. 이 논문의 대표 bAbI 오류율은 seed 10개 중 가장 좋은 하나를 고른 값이라서 저희는 이 그림을 루프가 단계를 늘린다는 정성적 증거까지만 받습니다. 그 계산이 원리상 무엇까지 할 수 있는지는 다음 논문이 답합니다."
  },
  {
-  "n": 38,
+  "n": 39,
   "key": "s2_q1/a-fixed-transformer-becomes-a-computer-once-you-#1",
   "session": "A",
   "section": "s2_q1",
@@ -870,7 +895,7 @@
   "script": "UT는 루프가 단계를 늘린다는 사실을 실험으로 보였지만 무엇까지 계산하는지는 말하지 않았습니다. Giannou 등의 2023년 논문이 그 답을 구성으로 줍니다. 큰 상자는 13층 이하의 고정된 Transformer이고 가중치는 모두 손으로 적었습니다. 입력은 천공카드처럼 작업 공간, 메모리, 프로그램 세 칸으로 나뉩니다."
  },
  {
-  "n": 39,
+  "n": 40,
   "key": "s2_q1/a-fixed-transformer-becomes-a-computer-once-you-#2",
   "session": "A",
   "section": "s2_q1",
@@ -890,7 +915,7 @@
   "script": "오른쪽 검은 화살표가 루프입니다. 네트워크를 한 번 지나면 명령 하나가 실행되고 그 출력이 다음 입력이 됩니다. Algorithm 1은 X를 T번 갱신하는 한 줄이고 CPU의 clock cycle과 같은 구조입니다."
  },
  {
-  "n": 40,
+  "n": 41,
   "key": "s2_q1/a-fixed-transformer-becomes-a-computer-once-you-#3",
   "session": "A",
   "section": "s2_q1",
@@ -911,7 +936,7 @@
   "script": "그래서 프로그램이 길어지면 루프 횟수가 늘고 깊이는 그대로입니다. 이 작은 고정 네트워크가 어떤 프로그램까지 돌리는지는 다음 표에 있습니다."
  },
  {
-  "n": 41,
+  "n": 42,
   "key": "s2_q1/every-result-here-is-a-proof-not-a-measurement#1",
   "session": "A",
   "section": "s2_q1",
@@ -936,7 +961,7 @@
   "script": "이 표의 결과는 모두 증명이고 측정은 하나도 없습니다. 숫자는 증명된 크기입니다. 명령 하나짜리 컴퓨터인 SUBLEQ가 9층, 계산기가 12층, 역행렬과 SGD가 13층입니다. 남는 물음은 경사하강법이 이런 가중치를 찾는가입니다. 맨 아래 줄의 Yang 등 2024년 논문이 예라고 답했는데, 프롬프트 속 예시로 회귀를 푸는 작은 과제에서 한 층짜리 루프를 학습한 결과입니다."
  },
  {
-  "n": 42,
+  "n": 43,
   "key": "s2_q1/in-theory-m-loops-can-simulate-m-steps-of-chain-#1",
   "session": "A",
   "section": "s2_q1",
@@ -957,7 +982,7 @@
   "script": "발표 처음에 본 그림을 다시 가져왔습니다. Saunshi의 Theorem 5.4에 따르면 L층 Transformer가 CoT를 m단계 돌리는 계산은, 층을 상수 개만 더한 루프 Transformer가 빈 슬롯 m개를 붙이고 m번 돌려 똑같이 재현합니다. 루프 카운터가 한 번에 슬롯 하나만 갱신하므로 루프 한 번이 CoT 토큰 하나를 쓰는 일과 같아집니다. 그런 가중치가 있다는 존재 결과이고, 학습이 그 가중치를 찾는지는 말하지 않습니다."
  },
  {
-  "n": 43,
+  "n": 44,
   "key": "s2_q1/answer-to-q2#1",
   "session": "A",
   "section": "s2_q1",
@@ -982,7 +1007,7 @@
   "script": "아직 없는 것부터 말하겠습니다. 이 절에서 학습으로 얻은 루프는 Yang의 회귀 과제 하나뿐이었고, Giannou와 Saunshi의 가중치는 손으로 적었거나 있다는 사실만 증명됐습니다. 그 한계 안에서 Q2에 답하면, 원리상 작은 루프는 어떤 프로그램이든 돌립니다. 13층 이하의 고정 네트워크가 루프만으로 SUBLEQ 프로그램을 실행하고, 루프 m번은 CoT m단계를 흉내 냅니다. 학습이 그런 루프를 찾는가에는 작은 과제에서만 예라고 답할 수 있습니다. 다음 물음은 이 학습을 언어 모델 크기로 키울 수 있는가입니다."
  },
  {
-  "n": 44,
+  "n": 45,
   "key": "s3_q2/cover-q3#1",
   "session": "A",
   "section": "s3_q2",
@@ -1008,7 +1033,7 @@
   "script": "Q3에서 아이디어는 실제 언어 모델이 됩니다. 루프 언어 모델을 어떻게 만들고, 규모를 키워도 이득이 남는가. 이 질문은 같은 가중치에서 루프 수만 바꾼 비교와, 루프 없는 짝 모델과의 비교로 확인할 수 있습니다. 이번 세션은 첫 레시피인 Huginn까지 봅니다."
  },
  {
-  "n": 45,
+  "n": 46,
   "key": "s3_q2/huginn-embed-once-loop-a-core-r-times-decode-onc#1",
   "session": "A",
   "section": "s3_q2",
@@ -1028,7 +1053,7 @@
   "script": "Huginn은 Geiping 등이 2025년에 공개한 루프 언어 모델입니다. Figure 2의 왼쪽에서 토큰은 prelude에 한 번만 들어가고, 두 층짜리 P가 토큰을 잠재 벡터 e로 바꿉니다."
  },
  {
-  "n": 46,
+  "n": 47,
   "key": "s3_q2/huginn-embed-once-loop-a-core-r-times-decode-onc#2",
   "session": "A",
   "section": "s3_q2",
@@ -1048,7 +1073,7 @@
   "script": "루프 상태의 출발점 s0는 입력에서 오지 않고 정규분포에서 뽑은 잡음입니다. 출발점이 매번 다르니 답이 출발점에 기대지 않도록 학습됩니다."
  },
  {
-  "n": 47,
+  "n": 48,
   "key": "s3_q2/huginn-embed-once-loop-a-core-r-times-decode-onc#3",
   "session": "A",
   "section": "s3_q2",
@@ -1068,7 +1093,7 @@
   "script": "가운데 초록 블록이 공유 core입니다. 네 층짜리 R 하나를 r번 반복합니다. r이 32이면 유효 깊이는 2 더하기 4 곱하기 32 더하기 2로 132층인데 파라미터는 늘지 않습니다."
  },
  {
-  "n": 48,
+  "n": 49,
   "key": "s3_q2/huginn-embed-once-loop-a-core-r-times-decode-onc#4",
   "session": "A",
   "section": "s3_q2",
@@ -1088,7 +1113,7 @@
   "script": "점선 화살표는 입력을 다시 넣는 길입니다. R은 매 패스마다 현재 상태와 e를 이어 붙여 읽습니다. 저자들은 경사하강법처럼 데이터가 매 단계 들어와야 한다고 설명합니다. 화면의 ⊕는 Q2에서 본 Yang의 같은 발상입니다."
  },
  {
-  "n": 49,
+  "n": 50,
   "key": "s3_q2/huginn-embed-once-loop-a-core-r-times-decode-onc#5",
   "session": "A",
   "section": "s3_q2",
@@ -1108,7 +1133,7 @@
   "script": "마지막이 coda입니다. 두 층짜리 C가 마지막 상태를 다음 토큰 확률로 바꿉니다. 디코딩도 한 번뿐입니다. prelude와 coda를 합쳐 약 1.5B 파라미터이고 가운데 core도 1.5B입니다."
  },
  {
-  "n": 50,
+  "n": 51,
   "key": "s3_q2/huginn-embed-once-loop-a-core-r-times-decode-onc#6",
   "session": "A",
   "section": "s3_q2",
@@ -1128,7 +1153,7 @@
   "script": "구조만 보면 입력을 다시 넣으며 가운데 블록을 도는 루프이고 새로운 것은 크기입니다. 3.5B 파라미터를 800B 토큰으로 학습했고 Frontier의 AMD MI250X GPU 4,096장을 썼습니다."
  },
  {
-  "n": 51,
+  "n": 52,
   "key": "s3_q2/only-the-middle-is-looped-first-and-last-layers-#1",
   "session": "A",
   "section": "s3_q2",
@@ -1150,7 +1175,7 @@
   "script": "왜 앞뒤 층은 루프에서 뺐을까요. 저자들은 고정 깊이 LLM에서 처음과 끝 층은 눈에 띄게 다르고 가운데 층은 서로 바꿔 끼워도 된다는 관찰을 근거로 듭니다. 회색 상자는 저희 해석입니다. prelude와 coda가 없으면 블록 하나가 토큰을 읽는 일부터 쓰는 일까지 모든 역할을 맡아야 합니다. 논문에는 이를 확인한 ablation이 없습니다."
  },
  {
-  "n": 52,
+  "n": 53,
   "key": "s3_q2/train-on-random-loop-counts-backprop-only-the-la#1",
   "session": "A",
   "section": "s3_q2",
@@ -1170,7 +1195,7 @@
   "script": "학습 방법이 Huginn의 알맹이입니다. 매 스텝마다 루프 수 r을 새로 뽑습니다. 분포는 log-normal Poisson으로 평균 33, 최빈값 24이고 꼬리가 150 근처까지 늘어집니다."
  },
  {
-  "n": 53,
+  "n": 54,
   "key": "s3_q2/train-on-random-loop-counts-backprop-only-the-la#2",
   "session": "A",
   "section": "s3_q2",
@@ -1190,7 +1215,7 @@
   "script": "두 번째 장치가 잘라낸 역전파입니다. 기울기는 마지막 8번의 패스만 통과하니 r이 150이어도 메모리는 그대로입니다. 그래도 prelude는 매 패스에 e를 넣기 때문에 기울기를 받습니다."
  },
  {
-  "n": 54,
+  "n": 55,
   "key": "s3_q2/train-on-random-loop-counts-backprop-only-the-la#3",
   "session": "A",
   "section": "s3_q2",
@@ -1211,7 +1236,7 @@
   "script": "여러 깊이로 학습했기 때문에 테스트 때 깊이를 다이얼처럼 돌릴 수 있습니다. 무작위 r이 없으면 모델은 한 깊이에만 맞춰지고, 잘라낸 역전파가 없으면 r이 150일 때 메모리가 감당이 안 됩니다."
  },
  {
-  "n": 55,
+  "n": 56,
   "key": "s3_q2/accuracy-rises-with-loops-then-saturates-task-by#1",
   "session": "A",
   "section": "s3_q2",
@@ -1231,7 +1256,7 @@
   "script": "그 다이얼을 실제로 돌려 본 것이 Q3의 첫 번째 비교입니다. 같은 가중치에서 루프 수만 바꿉니다. Figure 7은 과제별로 r에 따른 정확도입니다. 쉬운 과제는 일찍 멈춥니다. HellaSwag는 r이 8이면 이미 정점 근처입니다."
  },
  {
-  "n": 56,
+  "n": 57,
   "key": "s3_q2/accuracy-rises-with-loops-then-saturates-task-by#2",
   "session": "A",
   "section": "s3_q2",
@@ -1251,7 +1276,7 @@
   "script": "어려운 과제는 r이 32 근처까지 오릅니다. 오른쪽 막대가 Table 4의 GSM8K CoT 정확도입니다. r 1에서 0.00이었다가 r 32에서 42.08이 됩니다. 가중치는 그대로이고 루프 수만 다릅니다."
  },
  {
-  "n": 57,
+  "n": 58,
   "key": "s3_q2/accuracy-rises-with-loops-then-saturates-task-by#3",
   "session": "A",
   "section": "s3_q2",
@@ -1271,7 +1296,7 @@
   "script": "모든 과제에 맞는 깊이는 하나로 정해지지 않습니다. 천장은 문맥의 양에 따라서도 달라서, Figure 9의 ARC-C는 zero-shot에서 8에서 12번쯤 포화하고 25에서 50-shot에서는 32번 근처까지 오릅니다."
  },
  {
-  "n": 58,
+  "n": 59,
   "key": "s3_q2/accuracy-rises-with-loops-then-saturates-task-by#4",
   "session": "A",
   "section": "s3_q2",
@@ -1292,7 +1317,7 @@
   "script": "그러니 추가 루프는 과제가 정한 천장까지만 쓸모가 있습니다. 첫 번째 비교의 답은 예이지만, 몇 번 돌릴지는 과제가 정합니다."
  },
  {
-  "n": 59,
+  "n": 60,
   "key": "s3_q2/each-token-converges-at-its-own-pace#1",
   "session": "A",
   "section": "s3_q2",
@@ -1312,7 +1337,7 @@
   "script": "천장이 과제마다 다르다면 토큰마다도 다를까요. Figure 11에서 행이 토큰, 가로가 패스 수, 색은 128번 돌린 최종 상태까지의 거리입니다. 어두울수록 가깝고, 대부분의 토큰은 30번 안쪽에서 자리를 잡습니다."
  },
  {
-  "n": 60,
+  "n": 61,
   "key": "s3_q2/each-token-converges-at-its-own-pace#2",
   "session": "A",
   "section": "s3_q2",
@@ -1332,7 +1357,7 @@
   "script": "가운데 두 행이 다릅니다. 이 프롬프트는 안전하지 않은 요청이고, 그 알맹이인 ‘really wrong’ 토큰은 60번 패스까지도 고정점에서 멀리 있습니다."
  },
  {
-  "n": 61,
+  "n": 62,
   "key": "s3_q2/each-token-converges-at-its-own-pace#3",
   "session": "A",
   "section": "s3_q2",
@@ -1353,7 +1378,7 @@
   "script": "토큰마다 필요한 깊이가 다르다면 전역 r 하나는 계산을 낭비합니다. 자리를 잡은 토큰도 끝까지 같이 돌기 때문입니다. Huginn에는 토큰마다 멈추는 자리를 학습한 장치가 없습니다."
  },
  {
-  "n": 62,
+  "n": 63,
   "key": "s3_q2/huginn-leaves-three-questions-for-session-b#1",
   "session": "A",
   "section": "s3_q2",
@@ -1382,7 +1407,7 @@
   "script": "Huginn까지 오면 루프 언어 모델은 만들 수 있습니다. 남은 물음은 모두 Huginn 논문 안에서 나옵니다. 맨 위 물음은 방금 본 토큰별 수렴과 이어집니다. Huginn의 early exit는 학습하지 않은 zero-shot KL 문턱값입니다. 가운데 물음은 Q3의 두 번째 비교인데, 루프 없는 짝 모델은 180B 토큰에서 멈췄고 800B에는 기준선이 없습니다. 아래 물음은 저자들이 직접 적은 비용입니다. 잠재 추론은 글로 쓴 CoT보다 감독하기 어렵습니다. 처음의 Astra 헤드라인도 아직 확인하지 않았습니다. 여기서부터는 두 번째 발표자가 이후 연구가 Huginn 위에 무엇을 더했는지로 이어 가겠습니다."
  },
  {
-  "n": 63,
+  "n": 64,
   "key": "s4_q3/what-later-work-stacks-on-huginn#1",
   "session": "B",
   "section": "s4_q3",
@@ -1403,7 +1428,7 @@
   "script": "이어서 Session B를 맡겠습니다. Session B는 Huginn 위에 이후 연구가 무엇을 쌓았는지를 봅니다. 맨 윗줄이 출발점인 Huginn입니다. 공유 core 하나를 r번 돌리고, r은 실행할 때마다 사람이 정합니다. 일찍 멈추는 장치는 학습하지 않은 KL 문턱값 하나뿐입니다. 아래 줄마다 논문 하나가 여기에 한 가지를 더합니다."
  },
  {
-  "n": 64,
+  "n": 65,
   "key": "s4_q3/what-later-work-stacks-on-huginn#2",
   "session": "B",
   "section": "s4_q3",
@@ -1427,7 +1452,7 @@
   "script": "MoR이 더한 것은 토큰별 깊이입니다. 라우터가 토큰마다 루프 수를 정하고, 이 라우터를 사전학습 중에 함께 배웁니다. 토큰마다 따로 멈추는 발상은 Universal Transformers와 ACT에서 왔습니다. 아직 도는 토큰만 key와 value를 남기니 메모리도 줄어듭니다."
  },
  {
-  "n": 65,
+  "n": 66,
   "key": "s4_q3/what-later-work-stacks-on-huginn#3",
   "session": "B",
   "section": "s4_q3",
@@ -1454,7 +1479,7 @@
   "script": "멈추는 자리를 배우는 일은 Ouro가 이어받습니다. 루프마다 exit gate를 두고 그 gate를 학습합니다. 그리고 루프를 7.7T 토큰 사전학습 안에 넣어 규모를 크게 올렸습니다."
  },
  {
-  "n": 66,
+  "n": 67,
   "key": "s4_q3/what-later-work-stacks-on-huginn#4",
   "session": "B",
   "section": "s4_q3",
@@ -1484,7 +1509,7 @@
   "script": "마지막 줄의 RLT는 방향이 다릅니다. 루프의 상태를 다음 토큰으로 넘겨 시간 축의 반복을 되살립니다. 이제 한 줄씩 들어가서 각 논문이 더한 것이 측정에서 얼마나 남는지 보겠습니다."
  },
  {
-  "n": 67,
+  "n": 68,
   "key": "s4_q3/mor-gives-each-token-its-own-number-of-loops#1",
   "session": "B",
   "section": "s4_q3",
@@ -1504,7 +1529,7 @@
   "script": "MoR의 그림은 왼쪽 아래 Loop 1에서 시작합니다. 아홉 토큰이 모두 공유 블록을 한 번 지납니다. 위로 올라가면 라우터가 일부 토큰만 다음 루프로 보냅니다. 점선 네모가 멈춘 토큰이라서 행이 위로 갈수록 가늘어집니다."
  },
  {
-  "n": 68,
+  "n": 69,
   "key": "s4_q3/mor-gives-each-token-its-own-number-of-loops#2",
   "session": "B",
   "section": "s4_q3",
@@ -1524,7 +1549,7 @@
   "script": "오른쪽 행렬이 그 결과입니다. 어떤 깊이에서 아직 도는 토큰만 그 깊이의 key와 value를 저장하고, attention도 그 토큰끼리만 합니다. 멈춘 토큰의 몫만큼 KV 메모리가 줄어듭니다."
  },
  {
-  "n": 69,
+  "n": 70,
   "key": "s4_q3/mor-gives-each-token-its-own-number-of-loops#3",
   "session": "B",
   "section": "s4_q3",
@@ -1544,7 +1569,7 @@
   "script": "Huginn이 남긴 첫 질문은 여기서 답을 얻습니다. 깊이를 학습 뒤 문턱으로 자르지 않고 토큰마다 사전학습 중에 배웁니다. 남는 것은 이 설계가 같은 계산 예산에서도 이기는가입니다."
  },
  {
-  "n": 70,
+  "n": 71,
   "key": "s4_q3/mor-s-equal-flop-win-comes-partly-from-more-toke#1",
   "session": "B",
   "section": "s4_q3",
@@ -1566,7 +1591,7 @@
   "script": "여기서도 무엇이 공정한 비교인지 먼저 봅니다. MoR 논문은 학습 FLOP을 맞춥니다. 360M 기본 모델, 16.5 곱하기 10의 18승 FLOP입니다. 첫 행이 vanilla입니다. 파라미터 315M으로 NLL 2.7824, few-shot 평균 42.3이고 토큰 20B를 봤습니다."
  },
  {
-  "n": 71,
+  "n": 72,
   "key": "s4_q3/mor-s-equal-flop-win-comes-partly-from-more-toke#2",
   "session": "B",
   "section": "s4_q3",
@@ -1589,7 +1614,7 @@
   "script": "둘째 행이 MoR입니다. 파라미터는 167M으로 절반인데 NLL 2.7511, few-shot 43.1로 vanilla를 넘습니다. 그런데 같은 FLOP 안에서 본 토큰이 27B입니다. 같은 예산으로 35% 더 많은 데이터를 봤습니다. 그래서 이 승리는 구조의 공과 데이터의 공이 갈라지지 않습니다."
  },
  {
-  "n": 72,
+  "n": 73,
   "key": "s4_q3/mor-s-equal-flop-win-comes-partly-from-more-toke#3",
   "session": "B",
   "section": "s4_q3",
@@ -1614,7 +1639,7 @@
   "script": "셋째 행은 라우터가 없는 고정 깊이 반복 모델입니다. 이 모델도 few-shot 평균 42.6으로 vanilla를 넘습니다. 그러니 라우터가 더한 몫은 42.6과 43.1 사이입니다. 소수점 한 자리 차이이고 seed는 없습니다. adaptive depth의 증거로 이 표를 내밀기에는 약합니다."
  },
  {
-  "n": 73,
+  "n": 74,
   "key": "s4_q3/at-1b-scale-looping-lifts-reasoning-more-than-pe#1",
   "session": "B",
   "section": "s4_q3",
@@ -1649,7 +1674,7 @@
   "script": "Q1에서 loss 지표는 깊이보다 규모에 반응한다고 했습니다. 그 말을 1B 규모에서 다시 확인합니다. 12층을 한 번 도는 12⊗1은 파라미터가 같은 기준이고, 24층 24⊗1은 깊이와 FLOP이 같은 기준입니다. 왼쪽 수학 문장제에서 12층이 26.7, 24층이 29.3인데 12층을 두 번 돈 12⊗2가 34.3입니다. 파라미터가 절반인 모델이 24층 모델을 넘었습니다."
  },
  {
-  "n": 74,
+  "n": 75,
   "key": "s4_q3/at-1b-scale-looping-lifts-reasoning-more-than-pe#2",
   "session": "B",
   "section": "s4_q3",
@@ -1687,7 +1712,7 @@
   "script": "가운데 reasoning primitives도 같은 모양입니다. 35.7, 47.5, 그리고 두 번 돈 12층이 51.2입니다. 여기서도 루프 모델이 깊이가 같은 모델을 넘었습니다."
  },
  {
-  "n": 75,
+  "n": 76,
   "key": "s4_q3/at-1b-scale-looping-lifts-reasoning-more-than-pe#3",
   "session": "B",
   "section": "s4_q3",
@@ -1728,7 +1753,7 @@
   "script": "오른쪽 perplexity는 낮을수록 좋습니다. 12층이 8.16, 24층이 7.40이고 루프 모델은 7.90에 머뭅니다. 수학에서는 간격을 넘어섰는데 perplexity에서는 3분의 1 정도만 메웠습니다. Q1의 loss 지표가 규모만 가리킨 이유를 이 차이로 일부 설명할 수 있습니다. 이 모양이 수조 토큰에서도 남는지는 Ouro에서 확인합니다."
  },
  {
-  "n": 76,
+  "n": 77,
   "key": "s4_q3/ouro-trains-an-exit-gate-for-every-loop#1",
   "session": "B",
   "section": "s4_q3",
@@ -1748,7 +1773,7 @@
   "script": "Ouro의 그림 왼쪽이 학습입니다. MoR은 가운데 블록만 반복했고 Ouro는 스택 전체를 최대 4번 돕니다. 루프마다 아래쪽에 exit gate가 하나씩 붙어 그 자리에서 멈출 확률을 냅니다. Ouro-1.4B는 24층을 4번 돌고 7.7T 토큰으로 학습했습니다."
  },
  {
-  "n": 77,
+  "n": 78,
   "key": "s4_q3/ouro-trains-an-exit-gate-for-every-loop#2",
   "session": "B",
   "section": "s4_q3",
@@ -1768,7 +1793,7 @@
   "script": "오른쪽이 추론입니다. 루프마다 멈출 확률을 더해 가다가 합이 문턱을 넘으면 그 자리에서 답을 냅니다. 남은 루프는 돌지 않습니다. 문턱 하나로 계산량과 정확도를 맞바꿉니다."
  },
  {
-  "n": 78,
+  "n": 79,
   "key": "s4_q3/ouro-trains-an-exit-gate-for-every-loop#3",
   "session": "B",
   "section": "s4_q3",
@@ -1788,7 +1813,7 @@
   "script": "Huginn의 조기 종료는 학습 뒤에 붙인 KL 문턱이었습니다. Ouro는 같은 일을 수조 토큰 규모에서 학습한 gate로 합니다. 이 모델을 더 큰 dense 모델과 붙여 보겠습니다."
  },
  {
-  "n": 79,
+  "n": 80,
   "key": "s4_q3/a-1-4b-looped-model-beats-a-4b-dense-one-on-math#1",
   "session": "B",
   "section": "s4_q3",
@@ -1824,7 +1849,7 @@
   "script": "Ouro의 대표 비교는 Table 7입니다. 상대는 두세 배 큰 dense 모델 Qwen3 4B이고 평가 파이프라인은 같습니다. 왼쪽 두 묶음이 수학입니다. MATH500에서 82.4 대 59.6, GSM8K에서 78.9 대 72.9입니다. 수학에서는 작은 루프 모델이 6점에서 23점 앞섭니다."
  },
  {
-  "n": 80,
+  "n": 81,
   "key": "s4_q3/a-1-4b-looped-model-beats-a-4b-dense-one-on-math#2",
   "session": "B",
   "section": "s4_q3",
@@ -1864,7 +1889,7 @@
   "script": "오른쪽 두 묶음에서는 그림이 뒤집힙니다. MMLU는 67.3 대 73.2, HumanEval은 74.4 대 77.4로 큰 dense 모델이 앞섭니다. 지식과 코드에서는 아직 파라미터 수가 이깁니다. 방금 본 Saunshi의 1B 결과와 같은 무늬입니다."
  },
  {
-  "n": 81,
+  "n": 82,
   "key": "s4_q3/different-data-and-ouro-s-own-control-favors-no-#1",
   "session": "B",
   "section": "s4_q3",
@@ -1887,7 +1912,7 @@
   "script": "그런데 이 비교는 공정하지 않습니다. 학습 토큰이 Ouro는 7.7T, Qwen3는 36T로 데이터도 recipe도 다릅니다. 오른쪽은 저자들이 직접 돌린 대조 실험입니다. 170M에서 1.3B까지 깊이를 맞춘 비공유 모델이 모든 설정에서 루프 모델보다 높았습니다. 본문의 주장과 부록의 대조군이 반대 방향을 가리킵니다."
  },
  {
-  "n": 82,
+  "n": 83,
   "key": "s4_q3/different-data-and-ouro-s-own-control-favors-no-#2",
   "session": "B",
   "section": "s4_q3",
@@ -1911,7 +1936,7 @@
   "script": "회색 상자는 논문의 주장이 아니라 저희 계산입니다. 24층을 4번 돌면 토큰 하나에 층을 96번 적용하니 4배 깊은 dense 모델과 토큰당 계산량이 비슷합니다. 논문의 2배에서 3배 효율은 파라미터 효율입니다. 같은 FLOP에서의 이득은 이 논문으로도 확인되지 않습니다."
  },
  {
-  "n": 83,
+  "n": 84,
   "key": "s4_q3/looping-past-the-trained-depth-hurts#1",
   "session": "B",
   "section": "s4_q3",
@@ -1942,7 +1967,7 @@
   "script": "이제 몇 번 돌려야 하는가입니다. Ouro-1.4B base를 MMLU에서 루프 수만 바꿔 가며 잰 결과입니다. 학습 깊이는 4이고 점선이 그 자리입니다. 루프 한 번이면 41.2입니다."
  },
  {
-  "n": 84,
+  "n": 85,
   "key": "s4_q3/looping-past-the-trained-depth-hurts#2",
   "session": "B",
   "section": "s4_q3",
@@ -1974,7 +1999,7 @@
   "script": "두 번이면 60.4로 크게 오릅니다."
  },
  {
-  "n": 85,
+  "n": 86,
   "key": "s4_q3/looping-past-the-trained-depth-hurts#3",
   "session": "B",
   "section": "s4_q3",
@@ -2007,7 +2032,7 @@
   "script": "학습 깊이인 네 번에서 67.5로 가장 높습니다. 여기까지는 Huginn의 곡선과 같습니다."
  },
  {
-  "n": 86,
+  "n": 87,
   "key": "s4_q3/looping-past-the-trained-depth-hurts#4",
   "session": "B",
   "section": "s4_q3",
@@ -2042,7 +2067,7 @@
   "script": "여덟 번을 돌리면 64.5로 내려갑니다. 2.6B Thinking 모델은 AIME24에서 더 이른 3번에서 정점입니다. 그래서 몇 번 돌릴지의 답은 학습한 깊이입니다. Ouro에서는 4번입니다."
  },
  {
-  "n": 87,
+  "n": 88,
   "key": "s4_q3/rlt-sept-12-infinite-temporal-depth-zero-experim#1",
   "session": "B",
   "section": "s4_q3",
@@ -2062,7 +2087,7 @@
   "script": "이제 처음 표의 마지막 줄, RLT입니다. 지금까지의 루프는 한 토큰 안에서 깊이를 늘렸고 RLT는 그 깊이를 토큰 사이로 잇습니다. 규모 검증은 Ouro가 맡았으니 여기서 볼 것은 설계입니다. Astra 보도 열흘 뒤인 9월 12일 Princeton의 Zhang이 혼자 낸 기술 보고서였고 표어가 ‘infinite temporal depth’였습니다. 왼쪽 causal encoder는 보통 Transformer처럼 모든 토큰을 병렬로 읽습니다."
  },
  {
-  "n": 88,
+  "n": 89,
   "key": "s4_q3/rlt-sept-12-infinite-temporal-depth-zero-experim#2",
   "session": "B",
   "section": "s4_q3",
@@ -2082,7 +2107,7 @@
   "script": "오른쪽 recurrent decoder는 encoder 출력과 바로 앞 토큰의 마지막 decoder 상태를 합쳐 받고, 그 상태를 다음 토큰으로 넘깁니다. t번째 토큰까지 오면 decoder 스택을 t번 지난 셈입니다. 토큰당 깊이는 고정이고 자라는 쪽은 토큰 수입니다. Session A에서 루프는 RNN의 반복을 깊이 축으로 옮긴 것이었는데, RLT는 그 반복을 다시 시간 축으로 돌려놓습니다."
  },
  {
-  "n": 89,
+  "n": 90,
   "key": "s4_q3/rlt-sept-12-infinite-temporal-depth-zero-experim#3",
   "session": "B",
   "section": "s4_q3",
@@ -2102,7 +2127,7 @@
   "script": "그리고 9월 12일판에는 실험이 없었습니다. 제안한 48 더하기 48층 모델은 학습된 적이 없습니다. 보고서 스스로 추론 이득, 하드웨어 효율, RL 확장은 아직 확립되지 않았다고 적었습니다."
  },
  {
-  "n": 90,
+  "n": 91,
   "key": "s4_q3/rlt-october-three-seed-toy-results-failures-incl#1",
   "session": "B",
   "section": "s4_q3",
@@ -2122,7 +2147,7 @@
   "script": "그 설계안이 10월에 어떻게 됐는지가 이 그림입니다. 26M 파라미터쯤 되는 모델로 알고리즘 과제를 돌린 세 seed 결과입니다. 회색 띠가 학습 길이, 점선이 보통 Transformer입니다. parity는 40비트 이하로 학습하고 256비트에서 쟀는데 RLT는 100퍼센트입니다. Transformer는 우연 수준인 50퍼센트입니다."
  },
  {
-  "n": 91,
+  "n": 92,
   "key": "s4_q3/rlt-october-three-seed-toy-results-failures-incl#2",
   "session": "B",
   "section": "s4_q3",
@@ -2142,7 +2167,7 @@
   "script": "저자들은 실패도 함께 적었습니다. swap을 뺀 표준 S5는 모든 모델이 우연 수준에 머물고, 덧셈은 8자리를 넘으면 모두 무너집니다. 한 과제는 seed에 따라 18, 20, 99퍼센트가 나왔습니다. seed 셋으로는 같은 설정의 결과도 이만큼 흔들립니다."
  },
  {
-  "n": 92,
+  "n": 93,
   "key": "s4_q3/rlt-october-three-seed-toy-results-failures-incl#3",
   "session": "B",
   "section": "s4_q3",
@@ -2163,7 +2188,7 @@
   "script": "마지막 줄은 저희 해석입니다. RLT의 깊이는 토큰을 더 읽을수록 자랍니다. 토큰 수를 늘려 깊이를 얻으니 토큰을 더 쓰지 않고 오래 생각할 수 있느냐는 오늘의 질문에는 답하지 않습니다. 잘 된 parity도 토큰마다 상태 하나를 갱신하면 풀리는 과제입니다."
  },
  {
-  "n": 93,
+  "n": 94,
   "key": "s4_q3/answer-to-q3#1",
   "session": "B",
   "section": "s4_q3",
@@ -2188,7 +2213,7 @@
   "script": "Q3는 루프 언어 모델을 어떻게 만들고 규모를 키워도 이득인지 물었습니다. Huginn이 가운데 블록을 반복하는 recipe를 세웠고, MoR과 Ouro는 멈출 시점을 라우터와 gate로 배우게 했습니다. 이득은 무엇을 같게 두느냐에 따라 갈립니다. 파라미터를 같게 두면 루프가 이깁니다. Saunshi와 Ouro 모두 수학에서 파라미터 절반 이하의 루프 모델이 더 큰 모델을 넘었습니다. FLOP과 데이터를 함께 맞춘 비교는 아직 없습니다. MoR의 승리에는 더 많은 토큰이 섞였고 Ouro의 자체 대조군은 루프 없는 쪽을 가리켰습니다. 학습한 깊이를 넘기면 정확도가 내려간다는 단서도 붙습니다. 그러면 이 recipe가 얼마나 새로운지 묻게 됩니다."
  },
  {
-  "n": 94,
+  "n": 95,
   "key": "s4_q3/is-it-new-the-idea-is-from-2018-recipe-and-scale#1",
   "session": "B",
   "section": "s4_q3",
@@ -2208,7 +2233,7 @@
   "script": "Raschka는 Astra 보도 당일 블로그에서 루프를 층 재사용일 뿐인 작은 구조 변경이라고 불렀습니다. 그림은 Session A에서 본 2018년의 Universal Transformers입니다. 2020년에는 Kaplan 등이 scaling law 연구에서 Universal Transformers를 함께 쟀습니다. 루프는 Astra 이전에 측정까지 된 아이디어였습니다."
  },
  {
-  "n": 95,
+  "n": 96,
   "key": "s4_q3/is-it-new-the-idea-is-from-2018-recipe-and-scale#2",
   "session": "B",
   "section": "s4_q3",
@@ -2229,7 +2254,7 @@
   "script": "2018년 이후 달라진 것은 학습 recipe와 규모입니다. recipe는 Huginn에서 본 장치들입니다. 매 반복 입력을 다시 넣고, 반복 수를 무작위로 뽑고, 마지막 몇 번만 역전파하고, norm을 안정시킵니다. 규모는 Huginn의 800B 토큰에서 Ouro의 7.7T 토큰까지 커졌습니다. 이제 Raschka가 반응했던 Astra 보도로 돌아갑니다."
  },
  {
-  "n": 96,
+  "n": 97,
   "key": "s5_q4/what-openai-confirmed-and-what-it-didn-t#1",
   "session": "B",
   "section": "s5_q4",
@@ -2253,7 +2278,7 @@
   "script": "발표 맨 처음에 9월 2일의 보도를 띄웠습니다. GPT-6 Astra가 루프를 쓰고 그 때문에 CoT가 가려진다는 기사였습니다. 이제 그 보도를 확인된 것과 아닌 것으로 나눕니다. 왼쪽 열은 OpenAI가 system card에 직접 적은 내용입니다. monitorability는 크게 떨어졌고, 카드는 그 이유를 대부분 Astra의 CoT가 더 짧고 덜 정보적이기 때문이라고 설명합니다. controllability 상승도 아키텍처 변화 때문은 아니라고 적었습니다. 오른쪽 열의 두 주장은 익명 내부자를 인용한 기사 한 건에 기댑니다. 그러니 루프가 그 하락의 원인인지는 아직 열려 있습니다."
  },
  {
-  "n": 97,
+  "n": 98,
   "key": "s5_q4/cover-q4#1",
   "session": "B",
   "section": "s5_q4",
@@ -2279,7 +2304,7 @@
   "script": "Q4는 루프를 가져갈 만한가, 그리고 무엇을 잃는가입니다. 얻는 쪽은 Q3에서 봤습니다. 학습한 깊이 안에서 파라미터당 이득이 있었습니다. 잃는 쪽을 재려면 질문을 바꿔야 합니다. Astra 안은 들여다볼 수 없기 때문입니다. 그래서 공개된 루프 모델에서 루프만 바꿨을 때 CoT를 읽기가 더 어려워지는지를 묻습니다. 같은 모델의 루프 수를 바꾸는 비교와, 루프 모델을 루프 없는 모델 옆에 세우는 비교가 그 답을 줍니다."
  },
  {
-  "n": 98,
+  "n": 99,
   "key": "s5_q4/plant-a-hint-then-check-if-the-cot-admits-using-#1",
   "session": "B",
   "section": "s5_q4",
@@ -2303,7 +2328,7 @@
   "script": "그 측정이 10월 2일에 나온 Wang, Balappanawar, Zhang의 preprint입니다. 측정 방식부터 정합니다. 문제에 ‘I guess the answer is A’ 같은 힌트를 심고 모델이 CoT를 쓰고 답하게 합니다. 힌트 때문에 답이 바뀐 경우만 모아서, CoT가 힌트를 썼다고 monitor가 알아채는 비율이 monitorability입니다. 그 위에 힌트를 언급하지 말라는 압박을 더합니다. 같은 모델에서 루프 수만 바꾸니 비교가 공정합니다."
  },
  {
-  "n": 99,
+  "n": 100,
   "key": "s5_q4/more-loops-on-the-same-model-hid-the-hint-on-log#1",
   "session": "B",
   "section": "s5_q4",
@@ -2323,7 +2348,7 @@
   "script": "Fig. 2는 과제 여덟 개와 평균을 늘어놓은 그림입니다. 가로축이 루프 수 T이고, 초록이 기본, 주황이 숨기라는 압박, 보라가 감시받는다고 알려 준 조건입니다. Logic 패널의 주황 선을 따라가면 Ouro 1.4B에서 T가 4에서 8로 가는 동안 77.9에서 41.8로 떨어집니다. Science와 Engineering도 떨어집니다."
  },
  {
-  "n": 100,
+  "n": 101,
   "key": "s5_q4/more-loops-on-the-same-model-hid-the-hint-on-log#2",
   "session": "B",
   "section": "s5_q4",
@@ -2343,7 +2368,7 @@
   "script": "같은 주황 선이 Health와 Safety에서는 내려가지 않습니다. 1.4B의 Health는 오히려 오릅니다. 힌트가 조건으로 들어가는 Knowledge, Preference, Law는 90에서 100 사이에 그대로 머뭅니다."
  },
  {
-  "n": 101,
+  "n": 102,
   "key": "s5_q4/more-loops-on-the-same-model-hid-the-hint-on-log#3",
   "session": "B",
   "section": "s5_q4",
@@ -2363,7 +2388,7 @@
   "script": "압박이 없는 초록 선의 평균은 거의 움직이지 않습니다. 경쟁 설명도 막아 두었습니다. 정답률과 CoT 길이가 원인일 수 있는데, 32개 셀에서 본 상관은 마이너스 0.126과 0.248로 둘 다 유의하지 않습니다. CoT는 짧아지지도 않았습니다."
  },
  {
-  "n": 102,
+  "n": 103,
   "key": "s5_q4/more-loops-on-the-same-model-hid-the-hint-on-log#4",
   "session": "B",
   "section": "s5_q4",
@@ -2384,7 +2409,7 @@
   "script": "깊이가 힌트를 숨긴 때는 압박이 있을 때, 그리고 Logic 같은 일부 과제에서만입니다. 평균이나 Health만 보면 아무 일도 없습니다."
  },
  {
-  "n": 103,
+  "n": 104,
   "key": "s5_q4/but-t-6-and-8-are-past-ouro-s-trained-depth#1",
   "session": "B",
   "section": "s5_q4",
@@ -2419,7 +2444,7 @@
   "script": "여기서 Q3의 그래프를 다시 가져옵니다. Ouro 1.4B의 MMLU는 T가 4일 때 67.45로 가장 높고 8에서 64.49로 내려갑니다. 학습한 깊이는 T가 4까지입니다. 그런데 방금 본 하락은 그 바깥인 T 6과 8에서 측정됐습니다. 더 깊이 생각해서 힌트가 필요 없어졌을 수도 있고, 학습 범위 밖에서 하던 대로 못 하게 됐을 수도 있습니다. 이 설계로는 둘을 가를 수 없습니다. T만 바꾼 강점이 학습 분포 밖에서는 약점이 됩니다."
  },
  {
-  "n": 104,
+  "n": 105,
   "key": "s5_q4/a-looped-model-vs-six-non-looped-ones-no-penalty#1",
   "session": "B",
   "section": "s5_q4",
@@ -2446,7 +2471,7 @@
   "script": "두 번째 비교는 루프 수 대신 모델을 바꿉니다. 루프 모델 Nanbeige4.2-3B를 파라미터 수나 층수나 유효 깊이를 맞춘 루프 없는 모델 여섯과 견줍니다. 기본 조건의 평균은 Nanbeige가 81.35, 여섯 가운데 최고가 76.92, 최저가 66.08입니다. 숨기라는 압박 아래서도 7개 중 2등입니다. 계열도 학습 데이터도 다르니 저자들 말대로 인과 비교는 아닙니다. 그래도 학습 범위 안에서 쓴 루프가 monitorability를 깎았다는 흔적은 여기 없습니다."
  },
  {
-  "n": 105,
+  "n": 106,
   "key": "s5_q4/answer-to-q4#1",
   "session": "B",
   "section": "s5_q4",
@@ -2471,7 +2496,7 @@
   "script": "학습한 깊이까지는 가져갈 만합니다. 얻는 것은 Q3에서 본 파라미터당 이득이고, 루프 구조 자체가 치르는 읽기 비용은 이번 측정에서 보이지 않았습니다. 루프 모델 하나를 루프 없는 모델 여섯과 견줬을 때 손해가 없었기 때문입니다. 잃는 것은 조건이 겹칠 때 나타났습니다. 같은 모델에서 루프를 늘리고 힌트를 숨기라고 하자 Logic의 CoT에서 힌트의 흔적이 77.9에서 41.8로 줄었습니다. 그 깊은 루프는 Ouro가 학습한 깊이 밖이었고, 근거는 작은 공개 모델을 다룬 연구 한 편입니다. 그래서 Astra의 monitorability 하락을 루프 탓으로 돌릴 근거는 아직 없습니다."
  },
  {
-  "n": 106,
+  "n": 107,
   "key": "s5_q4/verdict-on-the-headlines#1",
   "session": "B",
   "section": "s5_q4",
@@ -2492,7 +2517,7 @@
   "script": "이제 9월의 헤드라인 두 개로 돌아가 판정하겠습니다. 측정된 것부터입니다. 루프는 파라미터당으로 수학과 추론을 올렸고, Saunshi와 Ouro가 같은 방향을 가리켰습니다. 루프를 더 돌려 얻는 이득은 학습한 깊이에서 멈췄습니다."
  },
  {
-  "n": 107,
+  "n": 108,
   "key": "s5_q4/verdict-on-the-headlines#2",
   "session": "B",
   "section": "s5_q4",
@@ -2515,7 +2540,7 @@
   "script": "측정되지 않은 칸에는 헤드라인이 기대는 두 가지가 들어갑니다. 같은 데이터와 같은 FLOP에서 루프가 이겼다는 결과는 아직 없습니다. Astra의 구조는 OpenAI가 밝히지 않았습니다. 루프 덕분에 답이 좋아졌다는 보도 문장은 이 두 빈칸을 모두 건너뛰어야 성립합니다."
  },
  {
-  "n": 108,
+  "n": 109,
   "key": "s5_q4/verdict-on-the-headlines#3",
   "session": "B",
   "section": "s5_q4",
@@ -2541,7 +2566,7 @@
   "script": "세 번째 칸은 검증보다 확산이 빨랐던 경우입니다. RLT는 실험 없는 설계안으로 먼저 퍼졌고 장난감 결과는 10월에야 붙었습니다. Astra는 유료 기사 한 건이 연구 논의의 방향까지 정했습니다. 회색 줄은 근거 논문들의 결론이 아니고 저희 판정입니다. 최전선 규모의 루프는 그럴듯하지만 아직 확립되지 않았습니다."
  },
  {
-  "n": 109,
+  "n": 110,
   "key": "s5_q4/where-claims-ran-ahead-of-measurements#1",
   "session": "B",
   "section": "s5_q4",
@@ -2577,7 +2602,7 @@
   "script": "같은 판정을 오늘 다룬 자료 여섯으로 넓혔습니다. 카드마다 위에는 인용된 주장, 아래에는 그 주장이 서 있던 조건을 적었습니다. UT의 bAbI state of the art는 10개 seed 가운데 최고치였습니다. Giannou의 결과는 증명이고 학습해서 잰 모델은 없습니다. MoR의 같은 FLOP 승리 뒤에는 35퍼센트 많은 토큰이 있었고, Ouro의 효율은 외부 모델과 견준 값이었습니다. Astra와 RLT는 방금 본 그대로입니다. 다음 논문을 읽을 때 저희가 먼저 볼 자리는 카드의 아랫줄입니다."
  },
  {
-  "n": 110,
+  "n": 111,
   "key": "s6_synthesis/four-questions-four-answers#1",
   "session": "B",
   "section": "s6_synthesis",
@@ -2600,7 +2625,7 @@
   "script": "네 질문의 답을 한 표에 모았습니다. 답 열을 위에서 아래로 읽으면 칸마다 조건이 하나씩 붙어 있습니다. Q2의 어떤 프로그램이든 계산한다는 답은 증명 위의 말이고, 학습으로 찾은 루프는 작은 과제에 그쳤습니다. Q3와 Q4의 조건은 학습한 깊이에 걸립니다. 그 깊이는 Huginn의 GSM8K가 루프를 돌릴수록 오르던 곡선에서 처음 보였습니다. Ouro는 4번을 넘기자 MMLU가 내려갔고, Q4에서 힌트가 사라진 구간도 그 바깥이었습니다. 맨 아래 줄의 헤드라인은 그대로입니다. Astra의 루프는 확인되지 않았고 RLT는 설계안에서 장난감 결과까지 왔습니다."
  },
  {
-  "n": 111,
+  "n": 112,
   "key": "s6_synthesis/back-to-the-bitter-lesson-do-loops-scale#1",
   "session": "B",
   "section": "s6_synthesis",
@@ -2621,7 +2646,7 @@
   "script": "Session A는 Sutton의 Bitter Lesson으로 시작했습니다. 계산을 늘리는 만큼 좋아지는 일반적 방법이 결국 이긴다는 주장이었고, Transformer가 LSTM을 앞선 것을 그 사례로 놓았습니다. 같은 잣대를 루프에 대 보겠습니다. 파라미터 축으로는 scale합니다. 작은 루프 모델이 큰 모델을 수학과 추론에서 따라잡았습니다. 계산, 지연, 학습 깊이 쪽에서도 그럴까요."
  },
  {
-  "n": 112,
+  "n": 113,
   "key": "s6_synthesis/back-to-the-bitter-lesson-do-loops-scale#2",
   "session": "B",
   "section": "s6_synthesis",
@@ -2652,7 +2677,7 @@
   "script": "저희의 잠정 답은 병목 다섯 개입니다. 계산은 가장 오래된 병목입니다. Kaplan 등은 2020년에 이미 Universal Transformers가 파라미터 수 대비로는 조금 낫지만 파라미터당 계산을 더 쓴다고 보고했고, 같은 데이터와 같은 FLOP의 승리는 지금도 없습니다. 지연은 측정한 값이 없고 구조에서 끌어낸 저희 추론입니다. 반복은 앞 반복이 끝나야 시작하니 루프를 늘리면 토큰 하나를 내는 시간이 늘어납니다. 메모리는 MoR이 풀려던 문제입니다. 가중치를 묶어도 루프마다 KV 캐시를 따로 두면 메모리가 줄지 않습니다. 학습에서는 Huginn이 마지막 8번만 역전파했고 실패한 run도 둘 있었습니다. 천장은 학습 깊이입니다. 그 너머에서 정확도가 내려갔고, Ouro의 장난감 모델에서는 루프를 늘려도 저장되는 지식이 파라미터당 약 2 bit 그대로였습니다. 마지막 줄도 저희 해석입니다. Transformer는 RNN의 시간 축 순차 연산을 없애 병렬로 학습하면서 scale했습니다. 루프는 같은 순차성을 깊이 축으로 다시 들여옵니다."
  },
  {
-  "n": 113,
+  "n": 114,
   "key": "s6_synthesis/conclusion#1",
   "session": "B",
   "section": "s6_synthesis",
@@ -2671,7 +2696,7 @@
   "script": "첫 슬라이드의 질문으로 돌아갑니다. 모델이 토큰을 더 쓰는 대신 층을 다시 써서 더 오래 생각할 수 있는가. 학습한 깊이까지는 그렇습니다. Huginn은 루프를 돌릴수록 정확도가 올랐고, Ouro는 학습 깊이인 네 번에서 가장 높았습니다. 그 너머는 아직 아닙니다. Ouro는 여덟 번에서 네 번보다 낮았습니다. 그리고 루프가 더한 계산은 읽기가 더 어려웠습니다. Wang의 측정에서 같은 모델이 T 6과 8로 가는 동안 힌트를 쓴 흔적이 CoT에서 사라졌습니다."
  },
  {
-  "n": 114,
+  "n": 115,
   "key": "s6_synthesis/conclusion#2",
   "session": "B",
   "section": "s6_synthesis",
@@ -2694,7 +2719,7 @@
   "script": "이 답을 바꿀 결과부터 말하겠습니다. 같은 데이터와 같은 FLOP으로 dense 모델과 규모 있게 맞붙은 비교가 나오면 Q3의 빈칸이 채워집니다. 학습한 깊이 너머에서도 정확도가 오르는 학습법이 나오면 답의 첫 줄에서 단서가 빠집니다. 루프 자체를 읽는 방법이 나와야 읽기 어렵다는 말을 토큰 밖에서 확인할 수 있습니다. 그때까지 다음 헤드라인 앞에서는 누가 주장하는지, 무엇을 쟀는지, 무엇과 비교했는지를 묻겠습니다. 오늘 Astra와 RLT에 던진 질문도 이 셋이었습니다."
  },
  {
-  "n": 115,
+  "n": 116,
   "key": "s6_synthesis/discussion#1",
   "session": "Discussion",
   "section": "s6_synthesis",
@@ -2717,7 +2742,7 @@
   "script": "발표는 여기까지이고 이제 여러분의 생각을 듣고 싶습니다. 화면에 질문 셋을 함께 올렸습니다. 맨 위 질문은 수업에서 만든 Othello 아레나 에이전트입니다. 거기에 루프를 넣는다면 어디에 어떻게 넣겠습니까. 함께 적은 후보는 저희 생각이고 검증한 결과는 없습니다. 가운데 질문은 안전입니다. 추론이 루프 안으로 들어가면 CoT 대신 무엇을 감시해야 할까요. 루프 수나 잠재 경로의 probe를 후보로 적었지만 어느 것도 아직 검증되지 않았습니다. 아래 질문은 일반화입니다. 루프는 parity에서 길이를 외삽했지만 덧셈에서는 못 했고, 학습 깊이 너머에서는 정확도를 잃었습니다. 이것을 일반화라고 부를 수 있는지, ARC-AGI처럼 단계의 새 조합을 요구하는 과제에도 도움이 될지 묻고 싶습니다. 어느 질문에서 시작해도 좋습니다."
  },
  {
-  "n": 116,
+  "n": 117,
   "key": "s6_synthesis/thank-you#1",
   "session": "B",
   "section": "s6_synthesis",

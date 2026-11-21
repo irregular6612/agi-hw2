@@ -48,7 +48,7 @@ AGI26F HW2 · Team 5 (Juhyeon Park, Youngho Kim) · 2026-11-23 · 발표는 영�
 | # | 제목 | 내용 / 출처 |
 |---|---|---|
 | 1 | Thinking Longer Without Writing More | 제목 |
-| 2–3 | Sept 2026: a report said GPT-6 Astra loops, and it went viral | Raschka 그림 1 + 보도 인용 → "OpenAI 미확인, 끝에서 다시 본다" (`astra.md`) |
+| 2–4 | Sept 2026: one scoop said GPT-6 Astra loops, and it spread in two days | 소문 카드 4장(편집 가능 도형): The Information 9/1 원 기사 → TechCrunch 9/2 · X @altryne 9/2 · Fortune 9/3(사실처럼 서술) → "모두 유료 기사 하나에서 출발, OpenAI 미확인, 끝에서 다시 본다" (`astra-rumor.md`, `astra.md`) |
 | 4–5 | Research followed: “looped” papers at ICLR jumped to 189 | ICLR 2024·2025·2026 = 3·4·11 → ICLR 2027 = 189(모델 의미 175). 검색 색인 기준, 투고 ≠ 결과 (`iclr-counts.md`) |
 | 6 | Guiding question | 이끄는 질문 + 오늘의 세 질문 + "재귀" 각주 |
 | 7 | Four questions for today | |
@@ -187,7 +187,7 @@ flowchart LR
 
 ## 논문 배정 (v7)
 
-과제 페이지 참고문헌 8개는 모두 들어 있다: UT(#28–37), Giannou(#38–41), Yang(#41 한 줄), Huginn(#45–62), MoR(#64, #67–72), Ouro(#65, #76–86), RLT(#66, #87–92), Raschka(#2–3, #94–95). 우리가 추가한 것: ICLR 투고 수(#4–5), Kaplan·Sutton·LSTM·Vaswani·Battaglia(Part 1), Saunshi(#9–11, #13, #20, #42, #73–75), Astra 시스템 카드(#96), cotmon(#98–104).
+과제 페이지 참고문헌 8개는 모두 들어 있다: UT(#28–37), Giannou(#38–41), Yang(#41 한 줄), Huginn(#45–62), MoR(#64, #67–72), Ouro(#65, #76–86), RLT(#66, #87–92), Raschka(#94–95, 훅의 기사 본문 인용 출처). 우리가 추가한 것: ICLR 투고 수(#4–5), Kaplan·Sutton·LSTM·Vaswani·Battaglia(Part 1), Saunshi(#9–11, #13, #20, #42, #73–75), Astra 시스템 카드(#96), cotmon(#98–104).
 
 ## 시간과 cut list
 
@@ -262,4 +262,10 @@ flowchart LR
 - 토론을 한 장(#115)으로 합침. Part 5 소개 장과 토론 3장은 없앰.
 - Huginn 결과는 핵심 둘(반복 수에 따른 성능, 토큰별 수렴)만 남기고 실패 run·잠재 사고의 모양을 뺌.
 - Session B 첫 장을 "Huginn 위에 무엇이 쌓였나"(#63–66)로 바꿈. MoR·Ouro·RLT 그림은 2단계로 줄여 깊은 아키텍처 설명을 피함.
+
+### 2026-11-21 (v7.1) 도입 훅 교체
+- 훅(#2)의 Raschka 그림 1을 뺐다. Raschka 글은 소문을 반박하는 해설이고, 소문 자체가 아니기 때문이다.
+- 대신 소문이 퍼진 경로를 카드 4장으로 보인다(3 build): The Information 원 기사(9/1, 유료, 익명 내부자) → TechCrunch(9/2) · X 글(9/2, 타임라인 도배) · Fortune(9/3, "has employed"로 사실처럼 서술) → 모두 한 기사로 거슬러 올라가고 OpenAI는 구조를 확인하지 않았다.
+- 근거: `sources/astra-rumor.md` 신설. Fortune의 "OpenAI가 루프 사용 범위를 제한했다"는 Fortune의 풀어쓰기이고 직접 인용이 아니어서 확인으로 쓰지 않는다.
+- build가 1장 늘어 117 build. 이 기록 위 표의 #5 이후 번호는 한 칸씩 밀린다(표 번호는 고치지 않음). s1 목표 9.25분 → 10.25분, Session A 23:04 / 25:00.
 

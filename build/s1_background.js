@@ -20,22 +20,37 @@ module.exports = function () {
     },
   });
 
-  // #2 hook: the Astra report went viral
-  for (let k = 0; k < 2; k++) {
+  // #2 hook: the rumor itself (sources/astra-rumor.md) — one scoop, then two days of amplification
+  const card = (s, { x, y, w, h }, src, date, head, quote, on, big = false) => {
+    s.addShape("roundRect", { x, y, w, h, rectRadius: 0.06, fill: { color: on ? "FFFFFF" : "F7F7F7" }, line: { color: on ? T.gold : T.faint, width: on ? 2 : 1 } });
+    text(s, [
+      { text: `${src}  `, options: { bold: true, color: on ? T.gold : T.gray } },
+      { text: date, options: { color: T.gray, fontSize: big ? 15 : 13, breakLine: true } },
+      { text: head, options: { bold: true, color: on ? T.ink : T.past, breakLine: !!quote } },
+      ...(quote ? [{ text: quote, options: { italic: true, color: on ? T.gray : T.faint, fontSize: big ? 19 : 13 } }] : []),
+    ], { x: x + 0.15, y: y + 0.08, w: w - 0.3, h: h - 0.16 }, { fontSize: big ? 24 : 16, valign: big ? "middle" : "top", paraSpaceAfter: big ? 14 : 3 });
+  };
+  for (let k = 0; k < 3; k++) {
     add({
-      crumb: INTRO, title: "Sept 2026: a report said GPT-6 Astra loops, and it went viral",
-      cite: "Efrati & Palazzolo, The Information, 2 Sept 2026, as reproduced in S. Raschka, “OpenAI Astra and Looped Transformers”, Ahead of AI, 2 Sept 2026, Fig. 1",
+      crumb: INTRO, title: "Sept 2026: one scoop said GPT-6 Astra loops, and it spread in two days",
+      cite: "The Information, 1 Sept 2026 (paywalled; body text as reproduced in Raschka, Ahead of AI, 2 Sept, Fig. 1); TechCrunch, 2 Sept; A. Volkov on X, 2 Sept; Fortune, 3 Sept",
       draw: (s) => {
-        image(s, "astra-raschka-figure1.png", { x: T.X, y: 1.35, w: 7.6, h: 5.4 }, "left");
-        text(s, [
-          { text: "The Information, Sept 2", options: { bold: true, color: T.gold, breakLine: true } },
-          { text: "OpenAI's Astra uses “recurrent depth or looped transformer,” which “obscures” its chain of thought.", options: { breakLine: true } },
-        ], { x: 8.4, y: 1.5, w: 4.5, h: 2.4 }, { fontSize: 20, paraSpaceAfter: 8, color: k === 0 ? T.ink : T.past });
-        if (k === 1) {
+        card(s, { x: T.X, y: 1.45, w: 5.7, h: 4.4 }, "The Information", "Tue 1 Sept · paywalled · unnamed insiders",
+          "“OpenAI Technique in ‘Astra’ Model Sparks Security Concerns”",
+          "The technique, “known as recurrent depth or looped transformer,” obscures some or all of the chain of thought.", k !== 1, true);
+        if (k >= 1) {
+          const R = { x: 6.45, w: 6.4, h: 1.4 };
+          card(s, { ...R, y: 1.45 }, "TechCrunch", "Wed 2 Sept", "“OpenAI’s new reasoning technique alarms AI safety experts”",
+            "Redwood CEO: “extremely concerned by the reporting”", k === 1);
+          card(s, { ...R, y: 2.95 }, "X · @altryne", "Wed 2 Sept", "“loop transformers”, “recurrent depth” and “Neuralese” all over the timeline", null, k === 1);
+          card(s, { ...R, y: 4.45 }, "Fortune", "Thu 3 Sept", "States it as fact: OpenAI “has employed” recurrent depth in part of Astra",
+            "Ex-OpenAI safety researcher: “violating one of the few redlines”", k === 1);
+        }
+        if (k === 2) {
           text(s, [
-            { text: "OpenAI has not confirmed it.", options: { bold: true, breakLine: true } },
-            { text: "We come back to this claim at the end of the talk.", options: { color: T.gray } },
-          ], { x: 8.4, y: 4.2, w: 4.5, h: 1.8 }, { fontSize: 20, paraSpaceAfter: 8 });
+            { text: "All of it traces back to one paywalled scoop. ", options: { bold: true } },
+            { text: "OpenAI never confirmed the architecture. We return to this claim at the end.", options: { color: T.gray } },
+          ], { x: T.X, y: 5.98, w: 12.4, h: 0.8 }, { fontSize: 19 });
         }
       },
     });
