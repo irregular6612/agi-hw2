@@ -21,38 +21,58 @@ module.exports = function () {
     },
   });
 
-  // #2 hook: the rumor itself (sources/astra-rumor.md) — one scoop, then two days of amplification
-  const card = (s, { x, y, w, h }, src, date, head, quote, on, big = false) => {
+  // Astra itself: Altman's words and the jump on ARC-AGI-3 (sources/astra-launch.md)
+  for (let k = 0; k < 2; k++) {
+    add({
+      crumb: INTRO, title: "Sept 2026: OpenAI ships GPT-6 Astra",
+      cite: "Sources podcast (A. Heath), 1 Sept 2026, 46:20; ARC Prize, “OpenAI's GPT-6 Astra on ARC-AGI-3”, 3 Sept 2026 (Standard harness); photo: Steve Jurvetson, “Sam Altman speaking at TED” (cropped), CC BY 2.0, via Wikimedia Commons",
+      draw: (s) => {
+        const ph = image(s, "altman-photo.png", { x: T.X, y: 1.35, w: 3.0, h: 2.8 }, "left");
+        text(s, [
+          { text: "“Astra feels like it kind of reached human parity on using computers … one of those steps along the path to AGI.”", options: { italic: true, breakLine: true } },
+          { text: "Sam Altman, 1 Sept 2026", options: { color: T.gray, fontSize: 16 } },
+        ], { x: T.X, y: ph.y + ph.h + 0.15, w: 5.6, h: 2.3 }, { fontSize: 20, paraSpaceAfter: 6 });
+        if (k === 1) {
+          text(s, "ARC-AGI-3 score (%), same test setup, checked by ARC Prize", { x: 6.6, y: 1.35, w: 6.3, h: 0.4 }, { fontSize: 16, color: T.gray });
+          bars(s, { x: 6.6, y: 1.8, w: 6.3, h: 4.7 }, {
+            max: 70, fmt: (v) => `${v.toFixed(1)}%`, labelSize: 15, current: 2,
+            bars: [
+              { label: "GPT-5.6 Sol", value: 7.8, color: T.base },
+              { label: "Claude Opus 5\n(previous best)", value: 30.2, color: T.navy },
+              { label: "GPT-6 Astra", value: 62.7, color: T.gold },
+            ],
+          });
+        }
+      },
+    });
+  }
+
+  // #2 hook: the rumor as it spread, from sources anyone can read in full (sources/astra-rumor.md)
+  const card = (s, { x, y, w, h }, src, date, head, quote, on) => {
     s.addShape("roundRect", { x, y, w, h, rectRadius: 0.06, fill: { color: on ? "FFFFFF" : "F7F7F7" }, line: { color: on ? T.gold : T.faint, width: on ? 2 : 1 } });
     text(s, [
       { text: `${src}  `, options: { bold: true, color: on ? T.gold : T.gray } },
-      { text: date, options: { color: T.gray, fontSize: big ? 15 : 13, breakLine: true } },
+      { text: date, options: { color: T.gray, fontSize: 14, breakLine: true } },
       { text: head, options: { bold: true, color: on ? T.ink : T.past, breakLine: !!quote } },
-      ...(quote ? [{ text: quote, options: { italic: true, color: on ? T.gray : T.faint, fontSize: big ? 19 : 13 } }] : []),
-    ], { x: x + 0.15, y: y + 0.08, w: w - 0.3, h: h - 0.16 }, { fontSize: big ? 24 : 16, valign: big ? "middle" : "top", paraSpaceAfter: big ? 14 : 3 });
+      ...(quote ? [{ text: quote, options: { italic: true, color: on ? T.gray : T.faint, fontSize: 16 } }] : []),
+    ], { x: x + 0.18, y: y + 0.12, w: w - 0.36, h: h - 0.24 }, { fontSize: 20, valign: "top", paraSpaceAfter: 8 });
   };
-  for (let k = 0; k < 3; k++) {
+  const CARDS = [
+    ["X · @altryne", "Wed 2 Sept", "“loop transformers”, “recurrent depth” and “Neuralese” all over the timeline", "A thread explaining why everyone was suddenly talking about it"],
+    ["LessWrong · R. Arike", "Wed 2 Sept", "“How concerned should we be about Astra’s recurrent architecture?”", "Says the report likens Astra’s approach to Geiping et al.’s recurrent depth"],
+    ["TechCrunch", "Wed 2 Sept", "“OpenAI’s new reasoning technique alarms AI safety experts”", "Redwood CEO: “extremely concerned by the reporting”"],
+    ["Astral Codex Ten · S. Alexander", "Fri 25 Sept", "“At Long Last, We Have Created Neuralese Recurrence”", "The thought itself goes back into the loop, instead of a text scratchpad"],
+  ];
+  for (let k = 0; k < 2; k++) {
     add({
-      crumb: INTRO, title: "Sept 2026: one scoop said GPT-6 Astra loops, and it spread in two days",
-      cite: "The Information, 1 Sept 2026 (paywalled; body text as reproduced in Raschka, Ahead of AI, 2 Sept, Fig. 1); TechCrunch, 2 Sept; A. Volkov on X, 2 Sept; Fortune, 3 Sept",
+      crumb: INTRO, title: "Sept 2026: “GPT-6 Astra loops” spread across X and blogs",
+      cite: "A. Volkov on X, 2 Sept 2026; R. Arike, LessWrong, 2 Sept 2026; R. Brandom, TechCrunch, 2 Sept 2026; S. Alexander, Astral Codex Ten, 25 Sept 2026",
       draw: (s) => {
-        card(s, { x: T.X, y: 1.45, w: 5.7, h: 4.4 }, "The Information", "Tue 1 Sept · paywalled · unnamed insiders",
-          "“OpenAI Technique in ‘Astra’ Model Sparks Security Concerns”",
-          "The technique, “known as recurrent depth or looped transformer,” obscures some or all of the chain of thought.", k !== 1, true);
-        if (k >= 1) {
-          const R = { x: 6.45, w: 6.4, h: 1.4 };
-          card(s, { ...R, y: 1.45 }, "TechCrunch", "Wed 2 Sept", "“OpenAI’s new reasoning technique alarms AI safety experts”",
-            "Redwood CEO: “extremely concerned by the reporting”", k === 1);
-          card(s, { ...R, y: 2.95 }, "X · @altryne", "Wed 2 Sept", "“loop transformers”, “recurrent depth” and “Neuralese” all over the timeline", null, k === 1);
-          card(s, { ...R, y: 4.45 }, "Fortune", "Thu 3 Sept", "States it as fact: OpenAI “has employed” recurrent depth in part of Astra",
-            "Ex-OpenAI safety researcher: “violating one of the few redlines”", k === 1);
-        }
-        if (k === 2) {
-          text(s, [
-            { text: "All of it traces back to one paywalled scoop. ", options: { bold: true } },
-            { text: "OpenAI never confirmed the architecture. We return to this claim at the end.", options: { color: T.gray } },
-          ], { x: T.X, y: 5.98, w: 12.4, h: 0.8 }, { fontSize: 19 });
-        }
+        CARDS.forEach(([src, date, head, quote], i) => {
+          const row = Math.floor(i / 2);
+          if (row > k) return;
+          card(s, { x: i % 2 ? 6.75 : T.X, y: 1.45 + row * 2.6, w: 6.1, h: 2.35 }, src, date, head, quote, row === k);
+        });
       },
     });
   }
@@ -62,30 +82,30 @@ module.exports = function () {
   for (let k = 0; k < 2; k++) {
     add({
       crumb: INTRO, title: "Research followed: “looped” papers at ICLR jumped to 189",
-      cite: "OpenReview search API, term “looped” in title, abstract or keywords, all submissions incl. withdrawn and desk-rejected; retrieved 21 Nov 2026",
+      cite: "OpenReview search API, term “looped” in title, abstract or keywords; retrieved 21 Nov 2026",
       draw: (s) => {
         text(s, "ICLR submissions mentioning “looped”", { x: T.X, y: 1.35, w: 7.5, h: 0.4 }, { fontSize: 16, color: T.gray });
         bars(s, { x: T.X, y: 1.8, w: 7.5, h: 5.0 }, {
           max: 200, reveal: k === 0 ? 3 : 4, current: k === 0 ? 2 : 3, fmt: (v) => String(v), labelSize: 15,
           bars: ic.map(([l, v], i) => ({ label: l, value: v, color: i === 3 ? T.gold : T.navy })),
         });
-        text(s, [
-          { text: k === 0 ? "A handful a year, 2024–2026." : "189 for ICLR 2027, of which 175 use it for a model.", options: { bold: true, breakLine: true } },
-          { text: "Search-index counts, not a full scan. A submission is attention, not a result.", options: { color: T.gray } },
-        ], { x: 8.4, y: 2.2, w: 4.5, h: 3.0 }, { fontSize: 20, paraSpaceAfter: 12 });
+        if (k === 1) {
+          text(s, "189 for ICLR 2027, of which 175 use it for a model.", { x: 8.4, y: 2.2, w: 4.5, h: 1.5 }, { fontSize: 20, bold: true });
+          s.addShape("irregularSeal1", { x: 8.7, y: 3.7, w: 3.6, h: 2.5, fill: { color: T.gold }, line: { color: "FFFFFF", width: 2 } });
+          text(s, "Impact!", { x: 8.7, y: 3.7, w: 3.6, h: 2.5 }, { fontSize: 30, bold: true, color: "FFFFFF", align: "center", valign: "middle" });
+        }
       },
     });
   }
 
   // #3 guiding question + today's three questions
   add({
-    id: "guiding-question", crumb: INTRO, cite: "AGI26F HW2 course page, Looped Transformer topic",
+    id: "guiding-question", crumb: INTRO,
     notes: "This is the question the course asked. Today: what it is, what it can do, and whether it is worth adopting.",
     draw: (s) => {
       text(s, "Guiding question", { x: 1.0, y: 1.6, w: 11.3, h: 0.5 }, { fontSize: 20, color: T.gold, bold: true });
       text(s, "Can a model think longer by reusing its layers instead of writing more tokens?", { x: 1.0, y: 2.2, w: 11.3, h: 1.9 }, { fontSize: 38, bold: true });
       text(s, "Today: what is it · what can it do · is it worth adopting?", { x: 1.0, y: 4.35, w: 11.3, h: 0.6 }, { fontSize: 24, color: T.navy });
-      text(s, "“Recursion” here means repetition inside the network. Topic 9's recursion is system-level self-improvement.", { x: 1.0, y: 5.6, w: 11.3, h: 0.5 }, { fontSize: 16, color: T.gray });
     },
   });
 
@@ -97,23 +117,20 @@ module.exports = function () {
       QS.forEach((q, i) => {
         const y = 1.6 + i * 1.15;
         text(s, q.id, { x: T.X, y, w: 0.9, h: 0.6 }, { fontSize: 30, bold: true, color: T.gold });
-        text(s, q.full, { x: 1.5, y: y + 0.05, w: 9.4, h: 0.9 }, { fontSize: 22, bold: true });
-        text(s, q.session, { x: 11.0, y: y + 0.1, w: 1.9, h: 0.5 }, { fontSize: 16, color: T.gray, align: "right" });
+        text(s, q.full, { x: 1.5, y: y + 0.05, w: 11.3, h: 0.9 }, { fontSize: 22, bold: true });
       });
     },
   });
 
   // #5 what we want
   add({
-    crumb: CRUMB, title: "What we want: AI that thinks deeply enough to solve hard problems",
+    crumb: CRUMB, title: "What we want: AI that thinks deeply enough to solve hard problems", cite: "Animation ours: the two ways side by side",
     draw: (s) => {
       text(s, [
         { text: "Deep thinking = many steps of computation before the answer.", options: { bold: true, breakLine: true } },
-        { text: "Two ways the field has tried so far:", options: { color: T.gray, breakLine: true } },
-        { text: "1  Stack more layers.", options: { breakLine: true } },
-        { text: "2  Let the model write a longer chain of thought.", options: {} },
-      ], { x: T.X, y: 1.7, w: 12.4, h: 3.6 }, { fontSize: 26, paraSpaceAfter: 14 });
-      text(s, "[ours] Our framing of the goal, not a claim from a paper.", { x: T.X, y: 5.8, w: 12.4, h: 0.5 }, { fontSize: 16, color: T.gray });
+        { text: "Two ways the field has tried so far: 1  stack more layers,  2  write a longer chain of thought.", options: { color: T.gray } },
+      ], { x: T.X, y: 1.3, w: 12.4, h: 1.0 }, { fontSize: 21, paraSpaceAfter: 6 });
+      image(s, "gif/two_ways_stack_vs_cot.gif", { x: T.X, y: 2.45, w: 12.45, h: 4.4 });
     },
   });
 
@@ -140,9 +157,9 @@ module.exports = function () {
 
   // #7 drawn: fixed depth
   add({
-    crumb: CRUMB, cite: `${UT}, Sec. 1 and App. B`,
+    crumb: CRUMB,
     title: "The price: depth caps a Transformer's steps per token",
-    notes: "Each layer is one sequential step. A forward pass has L of them, no matter how hard the token is. With finite precision, a fixed-depth model cannot be computationally universal (UT, App. B).",
+    notes: "Each layer is one sequential step. A forward pass has L of them, no matter how hard the token is.",
     draw: (s) => {
       const x = 2.2, w = 3.0, h = 0.48, gap = 0.12, y0 = 5.55;
       text(s, "token in", { x, y: y0 + 0.62, w, h: 0.4 }, { fontSize: 16, color: T.gray, align: "center" });
@@ -161,19 +178,7 @@ module.exports = function () {
         { text: "One pass = at most L steps in a row.", options: { bold: true, breakLine: true } },
         { text: "A problem that needs more steps must spread its work over more tokens, or more passes." },
       ], { x: 8.6, y: 2.2, w: 4.3, h: 2.2 }, { fontSize: 19, paraSpaceAfter: 10 });
-      text(s, "UT (2018): the Transformer “foregoes RNNs' inductive bias towards learning iterative or recursive transformations.”",
-        { x: 8.6, y: 4.6, w: 4.3, h: 1.5 }, { fontSize: 15, italic: true, color: T.gray });
     },
-  });
-
-  // #8 way 2: chain of thought (Saunshi Fig 4, left)
-  const cot = { label: "Way 2, chain of thought: each pass writes one token, which is fed back in.", body: "More steps cost more tokens. Huginn: verbalizing every step “appears wasteful”; Ouro: CoT is added in post-training and bloats the context.", box: [0.03, 0, 0.37, 1] };
-  const loop = { label: "Looped model: each pass updates every position in place; the thoughts (red) cost no tokens.", body: "An RNN's recurrence, moved from time to depth: Universal Transformers, 2018. Both are test-time scaling; CoT thinks outside the model, the loop inside it.", box: [0.64, 0, 0.99, 1] };
-  figSeq({
-    crumb: CRUMB, cite: `${SAUNSHI}, Fig. 4; Geiping et al. 2025, Sec. 1; Zhu et al. 2025, Sec. 1`,
-    titles: ["Today's models get around the cap by writing tokens"],
-    fig: "saunshi-fig4.png", layout: "top", items: [cot],
-    notes: ["Blue bar = the whole model. Red outline = the newest thought."],
   });
 
   // RNN vs Transformer in motion: the same 6 tokens, read sequentially vs in parallel (figures/gif, build/gif/make_gifs.py)
@@ -205,6 +210,16 @@ module.exports = function () {
       draw: (s) => table(s, { x: T.X, y: 1.5, w: 12.4 }, ["", "RNN (LSTM)", "Transformer"], rows, { reveal: k + 1, current: k, colW: [2.0, 5.2, 5.2], size: 19 }),
     });
   }
+
+  // #8 way 2: chain of thought (Saunshi Fig 4, left)
+  const cot = { label: "Way 2, chain of thought: each pass writes one token, which is fed back in.", body: "More steps cost more tokens: every intermediate step has to be written out and read back.", box: [0.03, 0, 0.37, 1] };
+  const loop = { label: "Looped model: each pass updates every position in place; the thoughts (red) cost no tokens.", body: "An RNN's repetition, moved from time to depth: tokens are still processed in parallel. Universal Transformers, 2018. CoT thinks outside the model, the loop inside it.", box: [0.64, 0, 0.99, 1] };
+  figSeq({
+    crumb: CRUMB, cite: `${SAUNSHI}, Fig. 4`,
+    titles: ["Today's models get around the cap by writing tokens"],
+    fig: "saunshi-fig4.png", layout: "top", items: [cot],
+    notes: ["Blue bar = the whole model. Red outline = the newest thought."],
+  });
 
   // #12–14 Bitter Lesson: claim → measurement → our link
   const bl = [
@@ -254,17 +269,16 @@ module.exports = function () {
   });
 
   // roadmap, era by era: bridge into Q2
-  const caps = [
-    [["Two ways to model sequences. ", true], ["RNNs repeat one rule step by step; Transformers drop recurrence to train in parallel, but fix the depth. ACT learns when to stop.", false]],
-    [["Q: fixed depth caps the steps per token. ", true], ["Universal Transformers reuse one block across depth and halt per token.", false]],
-    [["Q: what can a looped block compute in principle? ", true], ["Giannou: a programmable computer (proof). Meanwhile, chain of thought adds steps by writing tokens.", false]],
-    [["Q: can we train it at LM scale? ", true], ["Huginn. Does every token need the same depth? MoR. Does it hold in pretraining? Ouro.", false]],
-    [["Q: can depth continue across tokens? ", true], ["RLT brings back recurrence over time. And a headline: does GPT-6 Astra loop?", false]],
+  const caps = [   // rewritten by GPT-6 Astra (21 Nov): a plain question, then the work that answers it
+    [["How did models process text before looped Transformers? ", true], ["RNNs repeat a step, Transformers enable parallel training with fixed depth, and ACT learns when to stop.", false]],
+    [["Can a Transformer take more steps without adding layers? ", true], ["Universal Transformers reuse the same block of layers and use ACT to decide per token when to stop.", false]],
+    [["What could a Transformer compute if we kept looping it? ", true], ["Giannou proves a looped Transformer can run programs, while chain of thought adds steps by writing intermediate text.", false]],
+    [["Can we train language models to use these loops? ", true], ["Huginn trains a looped language model, MoR chooses loops per token, and Ouro tests larger scale pretraining with learned stopping.", false]],
+    [["Can computation carry over from one token to the next? ", true], ["RLT carries internal information from one token to the next, while GPT-6 Astra's reported use of loops remains unconfirmed.", false]],
   ];
   for (let k = 0; k < caps.length; k++) {
     add({
       crumb: ["Roadmap"], title: "Roadmap: each answer raised the next question",
-      cite: "Arrows show the question each step left open, not citations. Gold boxes: the six papers this talk covers.",
       draw: (s) => {
         roadmap(s, k);
         s.addShape("rect", { x: T.X, y: 5.55, w: 12.4, h: 1.3, fill: { color: "F7F7F7" }, line: { type: "none" } });

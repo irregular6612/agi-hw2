@@ -292,3 +292,11 @@ flowchart LR
 - 4페이지 소문 장의 출처(The Information, TechCrunch, X @altryne, Fortune)를 Thank you 장 참고문헌에 추가했다(`build/add_rumor_refs.py`, 다시 실행해도 중복 없음).
 - Session A 대본 62 build를 GPT-6 Astra(Codex CLI)로 새로 썼다. 요청문은 `build/script/BRIEF-astra.ko.md`. 화면 읽는 법부터 말하기, 화면 내용 빠짐없이 짚기, 용어 첫 등장 시 정의, 어려운 장에 시간 몰아주기가 핵심이다. 손본 곳은 인사 추가, "Security Concerns" 번역, 25분에 맞춘 세 문장 삭제뿐이다.
 - Session A 24:57 / 25:00(여유 3초). s1 10.5분, s2 7.75분, s3 6.75분. 최종 덱 89장(Session A 62 + Session B 27).
+
+### 2026-11-21 (v7.6) 사용자 피드백 대량 반영
+- 훅: Astra 공개 장 신설(울트먼 사진·발언, ARC-AGI-3 막대 7.8 / 30.2 / 62.7, `sources/astra-launch.md`). 소문 장은 전문 공개 출처 4개(X @altryne, LessWrong, TechCrunch, Astral Codex Ten)로 교체, ICLR 장에 Impact 도형.
+- 문구 삭제: course page 출처, recursion 각주, "our framing", ICLR 단서, 로드맵 화살표 설명, Session A/B 표시, em-dash.
+- Q1: What we want에 층 쌓기 vs CoT GIF. RNN vs Transformer를 The price 바로 뒤로 이동. 13장 UT 인용·14장 Huginn/Ouro 언급 삭제. 로드맵 질문은 Astra가 다시 씀.
+- Q2: UT·Giannou 앞에 질문 장. ACT는 UT 단계 5–8로(UT 그림 확대 → Graves Fig. 2). bAbI 셋업 장. UT remark 삭제. Giannou 표 제목 변경, 프로그램별 GIF 4개, Yang 전부 삭제.
+- Q3: Huginn 소개 장, 세 블록 장(수식 + 입출력 GIF), "가운데만 루프" 장 삭제.
+- 대본: 바뀐 41 build는 Astra, Astra 공개 장과 What we want는 직접 작성. Session A 26:04 / 25:00(1분 4초 초과), 줄일 곳은 미정.

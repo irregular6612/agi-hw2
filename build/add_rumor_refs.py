@@ -13,6 +13,7 @@ REFS = [
     "Efrati, Palazzolo & Drew, “OpenAI Technique in ‘Astra’ Model Sparks Security Concerns”, The Information, 1 Sept 2026",
     "Brandom, “OpenAI’s new reasoning technique alarms AI safety experts”, TechCrunch, 2 Sept 2026 · A. Volkov (@altryne), post on X, 2 Sept 2026",
     "Kahn, “Safety experts warn novel design of OpenAI’s Astra model could make future AI agents harder to monitor”, Fortune, 3 Sept 2026",
+    "Arike, “How concerned should we be about Astra’s recurrent architecture?”, LessWrong, 2 Sept 2026 · S. Alexander, “The Specter of Neuralese”, Astral Codex Ten, 25 Sept 2026",
 ]
 
 prs = Presentation(DECK)

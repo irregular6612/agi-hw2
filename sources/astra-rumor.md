@@ -37,6 +37,16 @@ All pages read in the browser on 21 Nov 2026. Quotes below are copied from the p
   - Fortune's paraphrase (not a direct quote): Pachocki and other OpenAI researchers said "it had limited the extent to which the looped Transformer architecture is used so that the model's reasoning remains legible." [Caution: this is Fortune's wording. None of the direct quotes we have (here, TechCrunch, Raschka) contains an explicit admission that Astra loops. Treat as "reported," not "confirmed."]
 - Fortune's explainer line "Studies have shown looped Transformers can achieve the same performance as standard ones while using 50% to 90% less computing power" has no citation. Do not reuse it.
 
+## 5. Full-text commentary used on the slide since v7.6 (read 21 Nov 2026)
+- R. Arike, "How concerned should we be about Astra's recurrent architecture?", LessWrong, 2 Sept 2026. https://www.lesswrong.com/posts/PLisnSFir8y5AHkmP/how-concerned-should-we-be-about-astra-s-recurrent
+  - "Yesterday, The Information reported that OpenAI's upcoming model, Astra, is built with a looped transformer architecture."
+  - "The article in The Information claims that OpenAI's approach is similar to the one Geiping et al. introduced in Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach" (= Huginn).
+  - Quotes Pachocki ("within a factor of two of GPT-4") and Greenblatt (a configurable "dial").
+- S. Alexander, "The Specter Of Neuralese", Astral Codex Ten, 25 Sept 2026. https://www.astralcodexten.com/p/the-specter-of-neuralese
+  - Section I heading: "At Long Last, We Have Created Neuralese Recurrence, From The Classic Sci-Fi Novel “Don't Create Neuralese Recurrence”".
+  - Explains neuralese recurrence as sending the resulting thought back to the first layer instead of writing a text scratchpad.
+- The slide (v7.6) no longer shows The Information card (paywalled) or Fortune; it shows X @altryne, LessWrong, TechCrunch, Astral Codex Ten, all readable in full.
+
 ## Evidence status (for the slide)
 - Origin: one paywalled scoop with unnamed sources (1 Sept).
 - Within ~48 hours: TechCrunch repeated it, safety researchers reacted, X was flooded, Fortune stated it as fact.

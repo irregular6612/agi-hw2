@@ -55,6 +55,44 @@ module.exports = function () {
   
   }
 
+  // Huginn introduced before its internals
+  add({
+    crumb: ["Q3", "Huginn"], cite: `${HUG}, Abstract, Sec. 1, 4.2 and 5`,
+    title: "Huginn: a 3.5B language model that thinks by looping",
+    draw: (s) => {
+      const facts = [
+        ["What", "A language model with a recurrent block in the middle, trained from scratch."],
+        ["Scale", "3.5B parameters, about 800B training tokens, 4,096 GPUs on the Frontier supercomputer."],
+        ["Idea", "To think harder, run the middle block more times. No extra tokens are written."],
+      ];
+      facts.forEach(([h, b], i) => {
+        const y = 1.6 + i * 1.2;
+        text(s, h, { x: T.X, y, w: 1.6, h: 0.9 }, { fontSize: 22, bold: true, color: T.gold });
+        text(s, b, { x: 2.2, y, w: 10.6, h: 0.9 }, { fontSize: 22 });
+      });
+    },
+  });
+
+  // Three block types, each with its equation and an input → output GIF (build/gif/make_gifs_huginn.py)
+  add({
+    crumb: ["Q3", "Huginn"], cite: `${HUG}, Sec. 3.1–3.2 and 4.1; animation ours, values illustrative`,
+    title: "Three kinds of blocks: token → latent → latent → token",
+    draw: (s) => {
+      const COLS = [
+        ["Prelude P · embedding", "e = P(x)", "2 layers, run once", "gif/huginn_prelude.gif"],
+        ["Recurrent block R", "s₀ ~ N(0, σ²I),  sᵢ = R(e, sᵢ₋₁)", "4 layers, run r times", "gif/huginn_recurrent.gif"],
+        ["Coda C · unembedding", "p = C(s_r)", "2 layers, run once", "gif/huginn_coda.gif"],
+      ];
+      COLS.forEach(([name, eq, size, gif], i) => {
+        const x = T.X + i * 4.17, w = 4.0;
+        text(s, name, { x, y: 1.3, w, h: 0.45 }, { fontSize: 22, bold: true, color: T.gold, align: "center" });
+        text(s, eq, { x, y: 1.8, w, h: 0.45 }, { fontSize: 19, bold: true, align: "center" });
+        image(s, gif, { x, y: 2.45, w, h: 3.6 });
+        text(s, size, { x, y: 6.15, w, h: 0.4 }, { fontSize: 16, color: T.gray, align: "center" });
+      });
+    },
+  });
+
   figSeq({
     crumb: ["Q3", "Huginn"], cite: `${HUG}, Fig. 2 and Sec. 3.1–3.2`,
     title: "Huginn: embed once, loop a core r times, decode once",
@@ -63,10 +101,9 @@ module.exports = function () {
       { label: "The prelude embeds once.", body: "Two layers P map the input tokens to e.", box: [0.03, 0.05, 0.25, 0.3] },
       { label: "The state starts from noise.", body: "s₀ is random, so the answer should not depend on where the loop starts.", box: [0.13, 0.33, 0.29, 0.62] },
       { label: "One shared core runs r times.", body: "Four layers R, reused: r = 32 gives an effective depth of 132 layers with no new parameters.", box: [0.29, 0.32, 0.69, 0.62] },
-      { label: "The input is re-injected at every pass.", body: "Each R reads [sᵢ, e]: Yang's ⊕, at LLM scale.", box: [0.23, 0.08, 0.66, 0.36] },
+      { label: "The input is re-injected at every pass.", body: "Each R reads [sᵢ, e], so the loop never loses the input.", box: [0.23, 0.08, 0.66, 0.36] },
       { label: "The coda decodes the final state.", body: "Two layers C turn s_R into next-token probabilities.", box: [0.69, 0.05, 0.94, 0.45] },
     ],
-    remark: "Same recipe as Yang, scaled up: 3.5B parameters trained on 800B tokens.",
     notes: [
       "e = P(x). Prelude and coda together hold about 1.5B parameters.",
       "s₀ ~ N(0, σ²I). With input injection this promotes path independence (Anil et al. 2022).",
@@ -77,7 +114,7 @@ module.exports = function () {
     ],
   });
 
-  add({
+  if (OPTIONAL) add({   // cut 21 Nov (v7.6): not needed for the talk's flow
     crumb: ["Q3", "Huginn"], cite: `${HUG}, Sec. 3.1`,
     title: "Only the middle is looped: first and last layers differ",
     notes: "Read the quote, then flag the grey box clearly as our framing. The course page states the 'every role' reason as fact; the paper never tests it.",
@@ -163,7 +200,7 @@ module.exports = function () {
   }
 
   add({
-    crumb: ["Q3", "Handoff"], title: "Huginn leaves three questions for Session B",
+    crumb: ["Q3", "Handoff"], title: "Huginn leaves three open questions",
     cite: `${HUG}, Sec. 4.2, 6.1 and App. A`,
     notes: "Presenter switch here. Each open question maps to what Session B covers next.",
     draw: (s) => {

@@ -1,6 +1,6 @@
 // Part 2 "Idea: put a loop into the Transformer" — Q2: what can a looped Transformer compute, and can training find it?  (Session A)
-const { T, add, figSeq, image, text, table, bars, remark } = require("./lib");
-const { cover, answer } = require("./common");
+const { T, add, figSeq, image, text, table, bars, remark, spotlight, steps } = require("./lib");
+const { cover, answer, question } = require("./common");
 
 const UT = 'Dehghani, Gouws, Vinyals, Uszkoreit, Kaiser, "Universal Transformers", ICLR 2019';
 const GIA = 'Giannou, Rajput, Sohn, Lee, Lee, Papailiopoulos, "Looped Transformers as Programmable Computers", ICML 2023';
@@ -20,19 +20,67 @@ module.exports = function () {
     },
   });
 
-  figSeq({
-    crumb: ["Q2", "UT"], cite: `${UT}, Fig. 1 and Sec. 2`,
-    title: "Universal Transformers reuse one block again and again",
-    fig: "ut-fig1.png", layout: "top",
-    items: [
+  question("q-ut", "Can one block, used again and again, think in more steps, and know when to stop?", ["Q2", "UT"]);
+
+  const UT_ITEMS = [
       { label: "Each position keeps a state, and attention mixes them.", body: "h₁…hₘ start as the token embeddings.", box: [0, 0.15, 0.29, 0.8] },
       { label: "A transition function updates every position.", body: "Hᵗ = LayerNorm(Aᵗ + Transition(Aᵗ)).", box: [0.3, 0.2, 0.53, 0.78] },
       { label: "Then the same block runs again.", body: "The time axis counts refinement steps, not tokens.", box: [0.53, 0.2, 1.0, 0.95] },
       { label: "Weights are tied across positions and steps.", body: "With T fixed, this is a T-layer Transformer whose layers share weights.", box: [0.14, 0, 0.92, 0.22] },
-      { label: "With ACT, each position decides when to stop.", body: "A halted position is copied forward until every position halts." },
-    ],
-    remark: "Depth becomes a loop count, without adding parameters.",
-    notes: ["", "A time-step embedding is added at every step, so the shared block knows which step it is on.", "", "", "ACT = Adaptive Computation Time (Graves 2016)."],
+  ];
+  figSeq({
+    crumb: ["Q2", "UT"], cite: `${UT}, Fig. 1 and Sec. 2`,
+    title: "Universal Transformers reuse one block again and again",
+    fig: "ut-fig1.png", layout: "top",
+    items: UT_ITEMS,
+    notes: ["", "A time-step embedding is added at every step, so the shared block knows which step it is on.", "", ""],
+  });
+
+  // ACT inside the UT sequence (steps 5–8): zoom from one position of UT Fig. 1 into Graves 2016 Fig. 2
+  const ACT_ITEMS = [
+    { label: "Inside one position, the same transition runs again and again.", body: "Adaptive Computation Time (ACT, Graves 2016) lets that position take several steps before it is done.", box: [0.61, 0.17, 0.69, 0.72] },
+    { label: "Each step outputs a halting score h.", body: "Stop once the scores add up to 1 − ε (ε = 0.01). The last step takes the remainder R.", box: [0.72, 0.17, 0.81, 0.72] },
+    { label: "The result is the weighted average of the steps.", body: "Training adds a ponder cost, so the model does not think forever.", box: [[0.68, 0.70, 0.80, 0.86], [0.53, 0.0, 0.77, 0.19]] },
+    { label: "UT applies this halting rule to every position, along depth.", body: "A halted position is copied forward until every position halts, or a step cap is reached." },
+  ];
+  const ALL_UT = [...UT_ITEMS, ...ACT_ITEMS];
+  ACT_ITEMS.forEach((it, j) => {
+    add({
+      crumb: ["Q2", "UT"], cite: `${UT}, Fig. 1, Sec. 2.2 and App. C; zoomed view: Graves, "Adaptive Computation Time for Recurrent Neural Networks", arXiv:1603.08983, 2016, Fig. 2`,
+      title: "Universal Transformers reuse one block again and again",
+      draw: (s) => {
+        const ut = image(s, "ut-fig1.png", { x: T.X, y: 1.35, w: 6.2, h: 2.0 }, "left");
+        const zb = { x: ut.x + 0.30 * ut.w, y: ut.y + 0.20 * ut.h, w: 0.23 * ut.w, h: 0.58 * ut.h };   // one position's transition
+        s.addShape("rect", { ...zb, fill: { type: "none" }, line: { color: T.gold, width: 2 } });
+        const P = { x: 7.0, y: 1.35, w: 5.9, h: 4.6 };
+        const g = image(s, "act-graves-fig2.png", P);
+        s.addShape("rect", { x: g.x - 0.05, y: g.y - 0.05, w: g.w + 0.1, h: g.h + 0.1, fill: { type: "none" }, line: { color: T.gold, width: 2 } });
+        s.addShape("line", { x: zb.x + zb.w, y: zb.y, w: g.x - 0.05 - (zb.x + zb.w), h: 0, line: { color: T.gold, width: 1, dashType: "dash" } });
+        s.addShape("line", { x: zb.x + zb.w, y: zb.y + zb.h, w: g.x - 0.05 - (zb.x + zb.w), h: 0.6, line: { color: T.gold, width: 1, dashType: "dash" } });
+        text(s, "Zoom: one position, with ACT", { x: P.x, y: g.y + g.h + 0.08, w: P.w, h: 0.3 }, { fontSize: 13, color: T.gray, align: "right" });
+        spotlight(s, g, it.box);
+        steps(s, ALL_UT, UT_ITEMS.length + j, { x: T.X, y: ut.y + ut.h + 0.9, w: 6.2, h: 2.8 }, { onlyCurrent: true });
+      },
+    });
+  });
+
+  // bAbI setup before the ponder-time result
+  add({
+    crumb: ["Q2", "UT"], cite: `${UT}, Sec. 3.1 and App. D.1`,
+    title: "The test: bAbI, questions about short stories",
+    draw: (s) => {
+      text(s, [
+        "20 synthetic tasks. Each is a short story of simple sentences, then a question.",
+        "Some questions need 1 supporting fact, some 2, some 3.",
+        "UT reads each sentence as one position; the question is one more position.",
+        "Ponder time = how many loop steps a position takes before ACT halts it.",
+      ].map((t, i) => ({ text: `${i + 1}  ${t}`, options: { breakLine: true } })), { x: T.X, y: 1.6, w: 12.4, h: 3.2 }, { fontSize: 22, paraSpaceAfter: 14 });
+      s.addShape("rect", { x: T.X, y: 5.0, w: 12.4, h: 1.2, fill: { color: "F7F7F7" }, line: { type: "none" } });
+      text(s, [
+        { text: "Example question  ", options: { bold: true, color: T.gold } },
+        { text: "“Where was the apple before the bathroom?” The story is long; only a few of its sentences are about the apple." },
+      ], { x: T.X + 0.25, y: 5.05, w: 11.9, h: 1.1 }, { fontSize: 19, valign: "middle" });
+    },
   });
 
   figSeq({
@@ -46,6 +94,8 @@ module.exports = function () {
     ],
     remark: "Steps track how many facts a question needs. Caveat: the headline bAbI errors are the best of 10 seeds.",
   });
+
+  question("q-giannou", "If we keep looping one fixed Transformer, what can it compute?", ["Q2", "Giannou"]);
 
   figSeq({
     crumb: ["Q2", "Giannou"], cite: `${GIA}, Fig. 1, Sec. 3–5 and Alg. 1`,
@@ -73,24 +123,36 @@ module.exports = function () {
   
   }
 
-  add({
-    crumb: ["Q2", "Giannou"], cite: `${GIA}, Table 1, Lemmas 4, 12, 13, 15 and Thm. 4`,
-    title: "Every result here is a proof, not a measurement",
-    notes: "The paper abstract says 13 layers, Theorem 1 says fewer than 13; we write ≤ 13. There are no experiments: these are sizes proved on paper.",
-    draw: (s) => {
-      table(s, { x: T.X, y: 1.55, w: 8.0 }, ["Program the looped network runs", "Layers", "Heads"], [
-        ["SUBLEQ (one-instruction computer)", "9", "2"],
-        ["Calculator: add, multiply, inverse, sqrt", "12", "m"],
-        ["Matrix inversion", "13", "1"],
-        ["SGD on a neural network", "13", "1"],
-      ], { colW: [5.6, 1.2, 1.2], size: 18 });
-      text(s, [
-        { text: "Constant depth, any program.", options: { bold: true, breakLine: true } },
-        { text: "But nothing here is trained or measured. Can gradient descent find such weights?", options: { breakLine: true } },
-        { text: "Yang et al. 2024: yes for in-context regression, a small task, with one looped layer.", options: { color: T.gray } },
-      ], { x: 8.9, y: 1.6, w: 4.0, h: 3.0 }, { fontSize: 19, paraSpaceAfter: 10 });
-    },
-  });
+  // What a looped network can run: overview, then one GIF per program (build/gif/make_gifs_giannou.py)
+  const PROGS = [
+    ["SUBLEQ (one-instruction computer)", "9", "2", "giannou_subleq.gif"],
+    ["Calculator: add, multiply, inverse, sqrt", "12", "m", "giannou_calculator.gif"],
+    ["Matrix inversion", "13", "1", "giannou_matrix_inverse.gif"],
+    ["SGD on a neural network", "13", "1", "giannou_sgd.gif"],
+  ];
+  for (let k = -1; k < PROGS.length; k++) {
+    add({
+      crumb: ["Q2", "Giannou"], cite: `${GIA}, Table 1, Lemmas 4, 12, 13, 15 and Thm. 4${k >= 0 ? "; animation ours, values illustrative" : ""}`,
+      title: "Looping lets one small fixed network run real programs",
+      notes: k < 0 ? "The paper abstract says 13 layers, Theorem 1 says fewer than 13; we write ≤ 13. These sizes are constructions on paper, not trained models." : undefined,
+      draw: (s) => {
+        const rows = PROGS.map(([p, l, h]) => [p, l, h]);
+        if (k < 0) {
+          table(s, { x: T.X, y: 1.55, w: 8.0 }, ["Program the looped network runs", "Layers", "Heads"], rows, { colW: [5.6, 1.2, 1.2], size: 18 });
+          text(s, "The depth stays fixed. A longer program just means more loops.", { x: 8.9, y: 1.6, w: 4.0, h: 2.0 }, { fontSize: 20, bold: true });
+          return;
+        }
+        const [p, l, h] = PROGS[k];
+        text(s, [
+          { text: `${k + 1} / ${PROGS.length}  `, options: { color: T.gray } },
+          { text: p, options: { bold: true, color: T.gold } },
+          { text: `   ${l} layers · ${h} head${h === "1" ? "" : "s"}`, options: { color: T.gray } },
+        ], { x: T.X, y: 1.25, w: 12.4, h: 0.5 }, { fontSize: 20 });
+        image(s, `gif/${PROGS[k][3]}`, { x: T.X, y: 1.85, w: 12.45, h: 5.1 });
+      },
+    });
+  }
+
 
   if (OPTIONAL) {   // cut for time (storyline v6); set OPTIONAL = true to restore
   figSeq({
@@ -146,12 +208,12 @@ module.exports = function () {
   });
 
   answer("Q2", {
-    short: "In principle, a small loop can run any program. Training has found such loops only on small tasks.",
+    short: "In principle, a small looped Transformer can run any program.",
     evidence: [
       { t: "UT reuses one block along depth and lets each token decide when to stop.", src: "UT Fig. 1, Sec. 2" },
       { t: "A looped network of ≤ 13 layers can run any SUBLEQ program.", src: "Giannou Table 1" },
       { t: "m loops can simulate m chain-of-thought steps.", src: "Saunshi Thm. 5.4" },
-      { t: "Giannou trains nothing; Yang trains a loop only on in-context regression.", src: "→ Huginn", kind: "but" },
+      { t: "These weights are set by hand. Whether training finds such loops in a language model is Q3.", src: "→ Huginn", kind: "but" },
     ],
   });
 };

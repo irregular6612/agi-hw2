@@ -20,13 +20,13 @@ from pptx.opc.constants import RELATIONSHIP_TYPE as RT
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "build" / "out"
-HANDOFF = "Huginn leaves three questions for Session B"
+HANDOFF = ("Huginn leaves three open questions", "Huginn leaves three questions for Session B")  # new, old title
 R_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 
 
 def handoff_index(prs):
     for i, s in enumerate(prs.slides):
-        if any(sh.has_text_frame and sh.text_frame.text == HANDOFF for sh in s.shapes):
+        if any(sh.has_text_frame and sh.text_frame.text in HANDOFF for sh in s.shapes):
             return i
     raise SystemExit(f"handoff slide not found: {HANDOFF!r}")
 

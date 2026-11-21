@@ -2,10 +2,10 @@
 const { T, add, text, ledger } = require("./lib");
 
 const QS = [
-  { id: "Q1", short: "Where does depth stall?", full: "Where do today's two ways to think deeper — more layers, longer CoT — get stuck?", session: "Session A", papers: "Kaplan 2020 · Saunshi 2025 · RNN vs Transformer", strip: [] },
-  { id: "Q2", short: "What can a loop do?", full: "What can a looped Transformer compute in principle, and can training find it?", session: "Session A", papers: "Universal Transformers 2018 · Giannou 2023 · Yang 2024", strip: ["UT", "GI"] },
+  { id: "Q1", short: "Where does depth stall?", full: "Where do today's two ways to think deeper, more layers and longer CoT, get stuck?", session: "Session A", papers: "Kaplan 2020 · Saunshi 2025 · RNN vs Transformer", strip: [] },
+  { id: "Q2", short: "What can a loop do?", full: "What can a looped Transformer compute in principle, and can training find it?", session: "Session A", papers: "Universal Transformers 2018 · Giannou 2023 · Saunshi 2025", strip: ["UT", "GI"] },
   { id: "Q3", short: "How to build, scale it?", full: "How do we build a looped language model, and does it pay off at scale?", session: "Sessions A–B", papers: "Huginn 2025 · MoR 2025 · Ouro 2025 · RLT 2026", strip: ["HU", "MOR", "OU", "RLT"] },
-  { id: "Q4", short: "Worth adopting?", full: "Is it worth adopting — and what do we lose?", session: "Session B", papers: "GPT-6 Astra system card · CoT monitorability of looped LMs 2026", strip: [] },
+  { id: "Q4", short: "Worth adopting?", full: "Is it worth adopting, and what do we lose?", session: "Session B", papers: "GPT-6 Astra system card · CoT monitorability of looped LMs 2026", strip: [] },
 ];
 const before = (id) => QS.slice(0, QS.findIndex((q) => q.id === id)).map((q) => q.id);
 
@@ -86,10 +86,18 @@ function cover(id, notes) {
     draw: (s) => {
       text(s, q.id, { x: T.X, y: 1.5, w: 4, h: 1.0 }, { fontSize: 54, bold: true, color: T.gold });
       text(s, q.full, { x: T.X, y: 2.55, w: 12.2, h: 1.9 }, { fontSize: 36, bold: true });
-      text(s, `${q.session} · ${q.papers}`, { x: T.X, y: 4.6, w: 12.2, h: 0.5 }, { fontSize: 18, color: T.gray });
+      text(s, q.papers, { x: T.X, y: 4.6, w: 12.2, h: 0.5 }, { fontSize: 18, color: T.gray });
       strip(s, q.strip);
       ledger(s, QS, { answered: before(id), current: id });
     },
+  });
+}
+
+// One-sentence question slide placed before a paper: what the next slides will show.
+function question(id, q, crumb = null) {
+  add({
+    id, crumb,
+    draw: (s) => text(s, q, { x: 1.0, y: 2.3, w: 11.3, h: 2.6 }, { fontSize: 40, bold: true, align: "center", valign: "middle" }),
   });
 }
 
@@ -113,4 +121,4 @@ function answer(id, { short, evidence, notes }) {
   });
 }
 
-module.exports = { QS, cover, answer, roadmap, strip, seg };
+module.exports = { QS, cover, answer, roadmap, strip, seg, question };
