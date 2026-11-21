@@ -305,3 +305,18 @@ flowchart LR
 - Giannou 프로그램 장을 표 한 장으로 합쳤다. 각 줄 가운데에 그 프로그램이 무엇인지만 보여 주는 그림(`figures/giannou-task-*.png`, `build/gif/make_task_icons.py`): SUBLEQ 명령 정의, 계산기 식과 연산, A·A⁻¹ = I, 손실 곡선을 내려가는 SGD.
 - 루프가 프로그램을 돌리는 GIF 4 build(이전 48–51)는 뺐다(GIF 파일과 대본은 보관). Theorem 5.4 장은 그대로.
 - Session A 24:40 / 25:00. 최종 덱 95장.
+
+### 2026-11-22 (v8) 대본 전면 교체, 참고문헌 정리
+- 덱 95장 노트를 모두 새로 썼다(한국어, 그대로 읽는 대본). 요청문 `scratchpad/script-v8/BRIEF.md`의 핵심: 이어지는 말투, 장마다 앞 장을 받고 다음 장으로 넘김, 화면 안내, 필요 없는 단서 금지. 네 묶음(1–26, 27–49, 50–68, 69–95)을 병렬로 쓰고 이음매와 분량을 손봤다.
+- Session B 노트는 `build/script/ko/session_b.md`(## B69…B95)에 두고 `build/apply_session_b_notes.py`가 최종 덱에 넣는다. 영호님의 이전 한·영 노트는 커밋 74ce3c2에 남아 있다.
+- 참고문헌은 `build/set_references.py`가 관리한다(13줄, 덱이 실제로 인용하는 것만). `add_rumor_refs.py`는 삭제.
+- 빌드 순서: `node build/build.js` → `merge_session_b.py` → `set_references.py` → `apply_session_b_notes.py`.
+- 시간: Session A 25:52 / 25:00(52초 초과), Session B 24:40 / 25:00.
+- Fable 블라인드 흐름 평가 결과는 대화에 정리(Q4 앞에 Astra 사례, Saunshi 예고, 후반 문법 통일 등). 반영 여부 미정.
+
+### 2026-11-22 (v8.1) RNN 비교를 UT 앞 한 장으로
+- RNN vs Transformer GIF와 표(4 build)를 뺐다. 대신 UT 바로 앞에 "Plant the RNN's inductive bias inside the Transformer"(2 build): Vaswani Fig. 1(`figures/vaswani-fig1.png`)과 펼친 RNN(Graves Fig. 1)을 나란히 두고, 둘째 build에서 "블록 하나를 RNN처럼 깊이 방향으로 되풀이 = UT"로 잇는다.
+- ACT는 3단계로(종료 점수와 가중 평균을 한 단계로). UT 시퀀스 1–7.
+- ICLR 장의 Impact 도형 삭제.
+- Session B 노트는 `build/script/session_b.ko.md`로 옮기고, 핸드오프 다음 장부터 순서대로 붙인다(쪽번호 변화에 안전).
+- 최종 덱 92장. Session A 25:09 / 25:00, Session B 24:40.

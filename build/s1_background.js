@@ -91,8 +91,6 @@ module.exports = function () {
         });
         if (k === 1) {
           text(s, "189 for ICLR 2027, of which 175 use it for a model.", { x: 8.4, y: 2.2, w: 4.5, h: 1.5 }, { fontSize: 20, bold: true });
-          s.addShape("irregularSeal1", { x: 8.7, y: 3.7, w: 3.6, h: 2.5, fill: { color: T.gold }, line: { color: "FFFFFF", width: 2 } });
-          text(s, "Impact!", { x: 8.7, y: 3.7, w: 3.6, h: 2.5 }, { fontSize: 30, bold: true, color: "FFFFFF", align: "center", valign: "middle" });
         }
       },
     });
@@ -181,35 +179,7 @@ module.exports = function () {
     },
   });
 
-  // RNN vs Transformer in motion: the same 6 tokens, read sequentially vs in parallel (figures/gif, build/gif/make_gifs.py)
-  add({
-    crumb: CRUMB, title: "Same sentence, two ways to read it: step by step, or all at once",
-    cite: "Animation ours, structure per Vaswani et al. 2017, Sec. 1 and Table 1 (sequential operations per layer)",
-    draw: (s) => {
-      image(s, "gif/rnn_vs_transformer.gif", { x: T.X, y: 1.3, w: 12.45, h: 4.75 });
-      text(s, "When generating text, both still write one token at a time. The gap is in training and in reading the prompt.", { x: T.X, y: 6.15, w: 12.4, h: 0.5 }, { fontSize: 17, color: T.gray });
-    },
-  });
-
-  // #9–11 RNN vs Transformer, row by row
-  const rows = [
-    ["Strength",
-      "Same weights at every step; constant cost per step. Iterative computation comes naturally.",
-      "Trains on the whole sequence in parallel. Any token reaches any other in one step."],
-    ["Weakness",
-      "One step at a time: O(n) sequential operations, so no parallel training within a sequence. Distant information fades (vanishing gradients).",
-      "Fixed depth caps the steps per token. Attention costs O(n²·d). Weak on inputs longer than in training."],
-    ["Inductive bias",
-      "Sequentiality: the same rule, applied step after step.",
-      "[ours] Almost none about order or distance: every token interacts with every other; order comes only from position encodings."],
-  ];
-  for (let k = 0; k < rows.length; k++) {
-    add({
-      crumb: CRUMB, title: "RNNs read step by step; Transformers read all at once",
-      cite: "Hochreiter & Schmidhuber 1997 (abstract); Vaswani et al. 2017, Sec. 1, 3.5, Table 1; Battaglia et al. 2018, Table 1; UT Sec. 1",
-      draw: (s) => table(s, { x: T.X, y: 1.5, w: 12.4 }, ["", "RNN (LSTM)", "Transformer"], rows, { reveal: k + 1, current: k, colW: [2.0, 5.2, 5.2], size: 19 }),
-    });
-  }
+  // RNN vs Transformer GIF + table: cut 22 Nov (v8.1); the idea moved to the slide before UT (s2_q1.js)
 
   // #8 way 2: chain of thought (Saunshi Fig 4, left)
   const cot = { label: "Way 2, chain of thought: each pass writes one token, which is fed back in.", body: "More steps cost more tokens: every intermediate step has to be written out and read back.", box: [0.03, 0, 0.37, 1] };

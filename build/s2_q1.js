@@ -22,6 +22,34 @@ module.exports = function () {
 
   question("q-ut", "Can one block, used again and again, think in more steps, and know when to stop?", ["Q2", "UT"]);
 
+  // The idea behind UT: plant the RNN's inductive bias (repeat one rule) inside the Transformer
+  for (let k = 0; k < 2; k++) {
+    add({
+      crumb: ["Q2", "UT"], title: "Plant the RNN's inductive bias inside the Transformer",
+      cite: `Vaswani et al., "Attention Is All You Need", NeurIPS 2017, Fig. 1; Graves, arXiv:1603.08983, 2016, Fig. 1 (RNN); ${UT}, Sec. 1`,
+      draw: (s) => {
+        text(s, "Transformer", { x: T.X, y: 1.25, w: 4.4, h: 0.4 }, { fontSize: 20, bold: true, align: "center" });
+        const tf = image(s, "vaswani-fig1.png", { x: T.X, y: 1.7, w: 4.4, h: 3.55 });
+        spotlight(s, tf, [0.48, 0.17, 0.75, 0.72], { veil: k === 1 });
+        text(s, "N different layers, each used once. No bias toward repeating a rule.", { x: T.X, y: 5.3, w: 4.4, h: 0.8 }, { fontSize: 16, color: T.gray, align: "center" });
+        text(s, "RNN", { x: 7.6, y: 1.25, w: 5.25, h: 0.4 }, { fontSize: 20, bold: true, align: "center" });
+        const rnn = image(s, "act-graves-fig1.png", { x: 7.6, y: 1.9, w: 5.25, h: 3.1 });
+        spotlight(s, rnn, [0.04, 0.42, 0.96, 0.6], { veil: k === 1 });
+        text(s, "Bias toward iteration: the same rule S, applied step after step.", { x: 7.6, y: 5.3, w: 5.25, h: 0.8 }, { fontSize: 16, color: T.gray, align: "center" });
+        if (k === 0) {
+          text(s, "+", { x: 5.4, y: 2.9, w: 1.6, h: 1.0 }, { fontSize: 54, bold: true, color: T.gold, align: "center" });
+          return;
+        }
+        s.addShape("rightArrow", { x: 5.25, y: 3.0, w: 1.9, h: 0.75, fill: { color: T.gold }, line: { type: "none" }, flipH: true });
+        s.addShape("rect", { x: T.X, y: 6.05, w: 12.4, h: 0.75, fill: { color: T.paleGold }, line: { type: "none" } });
+        text(s, [
+          { text: "Universal Transformers: ", options: { bold: true, color: T.gold } },
+          { text: "keep attention across positions, and repeat one block along depth, the way an RNN repeats S." },
+        ], { x: T.X + 0.2, y: 6.05, w: 12.0, h: 0.75 }, { fontSize: 18, valign: "middle" });
+      },
+    });
+  }
+
   const UT_ITEMS = [
       { label: "Each position keeps a state, and attention mixes them.", body: "h₁…hₘ start as the token embeddings.", box: [0, 0.15, 0.29, 0.8] },
       { label: "A transition function updates every position.", body: "Hᵗ = LayerNorm(Aᵗ + Transition(Aᵗ)).", box: [0.3, 0.2, 0.53, 0.78] },
@@ -39,8 +67,7 @@ module.exports = function () {
   // ACT inside the UT sequence (steps 5–8): zoom from one position of UT Fig. 1 into Graves 2016 Fig. 2
   const ACT_ITEMS = [
     { label: "Inside one position, the same transition runs again and again.", body: "Adaptive Computation Time (ACT, Graves 2016) lets that position take several steps before it is done.", box: [0.61, 0.17, 0.69, 0.72] },
-    { label: "Each step outputs a halting score h.", body: "Stop once the scores add up to 1 − ε (ε = 0.01). The last step takes the remainder R.", box: [0.72, 0.17, 0.81, 0.72] },
-    { label: "The result is the weighted average of the steps.", body: "Training adds a ponder cost, so the model does not think forever.", box: [[0.68, 0.70, 0.80, 0.86], [0.53, 0.0, 0.77, 0.19]] },
+    { label: "Each step outputs a halting score h, and the steps are averaged by these scores.", body: "Stop once the scores add up to 1 − ε (ε = 0.01). A ponder cost keeps the model from thinking forever.", box: [[0.72, 0.17, 0.81, 0.72], [0.68, 0.70, 0.80, 0.86], [0.53, 0.0, 0.77, 0.19]] },
     { label: "UT applies this halting rule to every position, along depth.", body: "A halted position is copied forward until every position halts, or a step cap is reached." },
   ];
   const ALL_UT = [...UT_ITEMS, ...ACT_ITEMS];
