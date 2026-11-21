@@ -16,6 +16,13 @@ Source checked: arXiv v7 PDF (downloaded 2026-11-21), Sec 1, Sec 3.5, Sec 4, Tab
 - **Order comes only from positional encodings.** Because the model has "no recurrence and no convolution", position information must be injected separately (Sec 3.5).
 - **Shorter paths make long-range dependencies easier to learn** (Sec 4, citing Hochreiter et al.). This is the paper's stated reason for comparing path lengths.
 
+## Decoder structure (Fig. 1, Sec. 3.1) — used for the decoder-vs-loop animation
+
+- The decoder is a stack of N = 6 identical layers, each with its own weights. Each layer has three sub-layers: masked multi-head self-attention, multi-head attention over the encoder output, and a position-wise feed-forward network. A residual connection and layer normalization ("Add & Norm") wrap every sub-layer.
+- The masking keeps position i from attending to later positions, so predictions depend only on earlier outputs.
+- Output: a linear layer and a softmax turn the top decoder output into next-token probabilities. Input: embeddings plus positional encodings.
+- Our animation draws a decoder-only stack (as in today's LMs): it leaves out encoder-decoder attention and Add & Norm, and uses 4 layers instead of 6 to fit.
+
 ## Not in the paper
 
 - The paper does not use the phrase "inductive bias". Our #2 sentence on the Transformer's inductive bias is our characterization, supported by Sec 3.5 (no built-in order) and Battaglia et al. 2018 (`battaglia.md`).

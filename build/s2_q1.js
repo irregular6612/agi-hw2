@@ -11,6 +11,15 @@ const OPTIONAL = false;   // optional slides cut for time
 module.exports = function () {
   cover("Q2", "The idea: bring the RNN's recurrence into the Transformer, along depth. Then: how far can that go in principle, and can training find it?");
 
+  // before UT: one token's path through a stacked decoder vs a looped block (figures/gif/decoder_vs_looped.gif)
+  add({
+    crumb: ["Q2", "Idea"], title: "One token's path: up four layers, or four times round one block",
+    cite: "Animation ours: decoder-only sketch after Vaswani et al. 2017, Fig. 1 and Sec. 3.1; loop as in Dehghani et al. 2019 (UT)",
+    draw: (s) => {
+      image(s, "gif/decoder_vs_looped.gif", { x: T.X, y: 1.25, w: 12.45, h: 5.55 });
+    },
+  });
+
   figSeq({
     crumb: ["Q2", "UT"], cite: `${UT}, Fig. 1 and Sec. 2`,
     title: "Universal Transformers reuse one block again and again",

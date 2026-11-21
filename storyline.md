@@ -281,3 +281,8 @@ flowchart LR
 - 빌드 순서가 바뀌었다. `node build/build.js`는 이제 `build/out/generated.pptx`(코드로 만든 전체 덱)를 쓴다. 이어서 `python3 build/merge_session_b.py`가 generated의 Session A와 현재 최종 덱의 Session B를 합쳐 최종 덱을 다시 쓴다. 그래서 다시 빌드해도 영호님 장은 유지된다(python-pptx 필요).
 - 코드 쪽 s4·s5·s6과 그 대본은 최종 덱에 쓰이지 않는다. `timing.md`의 Session B 시간도 최종 덱과 맞지 않는다.
 - v2 파일(`looped-transformers_v2.pptx`)은 휴지통으로 옮겼다.
+
+### 2026-11-21 (v7.4) UT 앞 디코더 vs 루프 GIF
+- Q2 표지와 UT Figure 1 사이에 새 장 "One token's path: up four layers, or four times round one block"(#30)을 넣었다. `figures/gif/decoder_vs_looped.gif`: 왼쪽은 가중치가 다른 디코더 층 4개를 한 번 오르고, 오른쪽은 블록 하나를 4번 돈다. 금색 점이 마지막 토큰의 경로이고, 두 쪽 모두 Softmax에서 다음 토큰을 내어 입력 끝에 붙인다.
+- 그림은 Vaswani Fig. 1 디코더를 decoder-only로 줄인 것(encoder-decoder attention과 Add & Norm 생략, 층 6 → 4). 근거는 `sources/vaswani.md`의 Decoder structure 절.
+- 최종 덱 92장(Session A 65장 + Session B 27장). s2 목표 7.25분. Session A 24:25 / 25:00, 여유 35초.

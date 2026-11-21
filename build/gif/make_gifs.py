@@ -498,6 +498,144 @@ def cot_vs_loop_slots():
     save_gif("cot_vs_loop_slots", frames, dur)
 
 
+# ---------------------------------------------------------------- 7. One token's path: stacked decoder vs looped block
+def decoder_vs_looped():
+    """Decoder-only sketch after Vaswani et al. 2017, Fig. 1 (Sec. 3.1); loop as in Universal Transformers.
+    Both sides apply a block 4 times to the newest position; left has 4 sets of weights, right has 1."""
+    W, H = 1250, 600
+    NL, BH, BG, BW = 4, 70, 10, 380
+    BOT = 475                         # bottom of the left stack
+    SM = (120, 152)                   # Linear + Softmax box (y0, y1)
+    OUT = (68, 104)                   # predicted token box
+    EMB = (487, 513)
+    TOK = (526, 558)
+    WORDS = ["the", "cat", "sat"]
+    LCOL = [C["prelude"], C["core"], C["coda"], "#9C7BB5"]
+    RB = (300, 300 + BH)              # the right block (top, bottom)
+    frames, dur = [], []
+
+    def ltop(k):  # top y of left layer k (1 = bottom)
+        return BOT - k * BH - (k - 1) * BG
+
+    def block(cv, cx, top, color, label, glow_y=None):
+        x = cx - BW / 2
+        cv.box(x, top, BW, BH, fill=mix(C["white"], color, 0.28), line=mix(C["white"], color, 0.9), width=2)
+        strips = [(top + 5, "Feed-forward"), (top + 37, "Masked self-attention")]
+        for sy, name in strips:
+            on = glow_y is not None and sy - 2 <= glow_y <= sy + 30
+            cv.box(x + 12, sy, BW - 24, 28, fill=C["pale"] if on else C["white"], line=C["gold"] if on else C["faint"], width=2 if on else 1, r=5)
+            cv.text(cx, sy + 14, name, 17, C["ink"], bold=on, anchor="mm")
+        cv.text(x + BW + 10, top + BH / 2, label, 17, C["gray"], anchor="lm") if label else None
+
+    def io(cv, cx, out_word, appended):
+        cv.box(cx - 150, SM[0], 300, SM[1] - SM[0], fill=C["light"], line=C["gray"], width=1)
+        cv.text(cx, (SM[0] + SM[1]) / 2, "Linear + Softmax", 18, C["ink"], anchor="mm")
+        cv.box(cx - 150, EMB[0], 300, EMB[1] - EMB[0], fill=C["light"], line=C["gray"], width=1)
+        cv.text(cx, (EMB[0] + EMB[1]) / 2, "Embedding + position", 17, C["ink"], anchor="mm")
+        words = WORDS + (["on"] if appended else [])
+        x0 = cx - (len(WORDS) + 1) * 70 / 2
+        for i, w in enumerate(words):
+            cur = (w == "sat" and not appended) or (w == "on" and appended)
+            cv.box(x0 + i * 70, TOK[0], 62, TOK[1] - TOK[0], fill=C["pale"] if cur else C["light"], line=C["gold"] if cur else C["faint"], width=2)
+            cv.text(x0 + i * 70 + 31, (TOK[0] + TOK[1]) / 2, w, 19, C["ink"], bold=cur, anchor="mm")
+        if out_word:
+            cv.box(cx - 40, OUT[0], 80, OUT[1] - OUT[0], fill=C["pale"], line=C["gold"], width=3)
+            cv.text(cx, (OUT[0] + OUT[1]) / 2, out_word, 20, C["ink"], bold=True, anchor="mm")
+        return x0 + 2 * 70 + 31  # x of "sat"
+
+    def along(pts, t):
+        """Point at fraction t of the polyline pts."""
+        seg = [math.hypot(b[0] - a[0], b[1] - a[1]) for a, b in zip(pts, pts[1:])]
+        d = t * sum(seg)
+        for (a, b), L in zip(zip(pts, pts[1:]), seg):
+            if d <= L or L == seg[-1]:
+                f = 0 if L == 0 else min(1, d / L)
+                return a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f
+            d -= L
+        return pts[-1]
+
+    def dot(cv, p):
+        if p:
+            cv.d.ellipse([(p[0] - 9) * S, (p[1] - 9) * S, (p[0] + 9) * S, (p[1] + 9) * S], fill=C["gold"], outline=C["white"], width=2 * S)
+
+    def left(cv, x0, phase, k, t):
+        cx = x0 + 330
+        cv.text(x0, 8, "Transformer: 4 distinct layers", 26, bold=True)
+        cv.text(x0, 44, "4 sets of weights; the token climbs the stack once", 20, C["gray"])
+        sat = io(cv, cx, "on" if phase in ("out", "append", "hold") else None, phase in ("append", "hold"))
+        for i in range(1, NL + 1):  # arrows between parts, then the layers
+            cv.arrow(cx, ltop(i) + BH + BG - 1 if i > 1 else EMB[0] - 1, cx, ltop(i) + BH + 2, C["faint"], 2, 7)
+        cv.arrow(cx, ltop(NL) - 1, cx, SM[1] + 2, C["faint"], 2, 7)
+        cv.arrow(cx, SM[0] - 1, cx, OUT[1] + 2, C["faint"], 2, 7)
+        p = None
+        if phase == "embed":
+            p = along([(sat, TOK[0]), (cx, EMB[1]), (cx, BOT)], t)
+        elif phase == "pass":
+            p = (cx, ltop(k) + BH - t * BH)
+        elif phase == "gap":
+            p = (cx, ltop(k) - t * BG)
+        elif phase == "head":
+            p = along([(cx, ltop(NL)), (cx, OUT[1])], t)
+        for i in range(1, NL + 1):
+            block(cv, cx, ltop(i), LCOL[i - 1], f"Layer {i}", p[1] if p and phase == "pass" and i == k else None)
+        lay = k if phase in ("pass", "gap") else (NL if phase in ("head", "out", "append", "hold") else 0)
+        cv.text(x0 + 6, (ltop(NL) + BOT) / 2 - 12, f"layer {lay} of {NL}", 22, C["gold"] if phase in ("pass", "gap") else C["navy"], bold=True, anchor="lm")
+        cv.text(x0 + 6, (ltop(NL) + BOT) / 2 + 16, "own weights each", 16, C["gray"], anchor="lm")
+        dot(cv, p)
+
+    def right(cv, x0, phase, k, t):
+        cx = x0 + 315
+        top, bot = RB
+        cv.text(x0, 8, "Looped: 1 block, run 4 times", 26, bold=True)
+        cv.text(x0, 44, "1 set of weights; the token goes round the same block", 20, C["gray"])
+        sat = io(cv, cx, "on" if phase in ("out", "append", "hold") else None, phase in ("append", "hold"))
+        loop = [(cx, top), (cx, top - 14), (cx + BW / 2 + 28, top - 14), (cx + BW / 2 + 28, bot + 14), (cx, bot + 14), (cx, bot)]
+        hot = phase == "back"
+        for a, b in zip(loop[1:-2], loop[2:-1]):
+            cv.line(*a, *b, C["gold"] if hot else C["faint"], 3 if hot else 2)
+        cv.arrow(*loop[-2], *loop[-1], C["gold"] if hot else C["faint"], 3 if hot else 2, 8)
+        cv.arrow(cx, EMB[0] - 1, cx, bot + 2, C["faint"], 2, 7)
+        cv.arrow(cx, top - 1, cx, SM[1] + 2, C["gold"] if phase == "head" else C["faint"], 2, 7)
+        cv.arrow(cx, SM[0] - 1, cx, OUT[1] + 2, C["faint"], 2, 7)
+        cv.text(cx + BW / 2 + 38, (top + bot) / 2, "× 4", 26, C["gold"], bold=True, anchor="lm")
+        p = None
+        if phase == "embed":
+            p = along([(sat, TOK[0]), (cx, EMB[1]), (cx, bot)], t)
+        elif phase == "pass":
+            p = (cx, bot - t * BH)
+        elif phase == "back":
+            p = along(loop, t)
+        elif phase == "head":
+            p = along([(cx, top), (cx, OUT[1])], t)
+        block(cv, cx, top, C["core"], None, p[1] if p and phase == "pass" else None)
+        done = {"idle": 0, "embed": 0, "pass": k - 1, "back": k, "head": NL}.get(phase, NL)
+        cur = k if phase in ("pass", "back") else done
+        cv.text(x0 + 6, (top + bot) / 2 - 12, f"pass {cur} of {NL}", 20, C["gold"] if phase in ("pass", "back") else C["navy"], bold=True, anchor="lm")
+        cv.text(x0 + 6, (top + bot) / 2 + 16, "same weights", 16, C["gray"], anchor="lm")
+        dot(cv, p)
+
+    def draw(lphase, rphase, k, t):
+        cv = Canvas(W, H)
+        left(cv, 8, lphase, k, t)
+        cv.line(W / 2 + 2, 10, W / 2 + 2, H - 30, C["faint"], 1)
+        right(cv, W / 2 + 22, rphase, k, t)
+        caption(cv, "Decoder-only sketch after Vaswani et al. 2017, Fig. 1 (encoder-decoder attention, Add & Norm omitted). Gold dot = the newest token's path")
+        return cv.frame()
+
+    seq = [("idle", "idle", 0, 0, 900)]
+    seq += [("embed", "embed", 0, i / 4, 80) for i in range(5)]
+    for k in range(1, NL + 1):
+        seq += [("pass", "pass", k, i / 5, 90) for i in range(6)]
+        if k < NL:  # left crosses the gap into the next layer; right goes round the loop
+            seq += [("gap", "back", k, i / 4, 80) for i in range(1, 5)]
+    seq += [("head", "head", NL, i / 3, 90) for i in range(4)]
+    seq += [("out", "out", NL, 0, 900), ("append", "append", NL, 0, 600), ("hold", "hold", NL, 0, 1800)]
+    for lp, rp, k, t, ms in seq:
+        frames.append(draw(lp, rp, k, t))
+        dur.append(ms)
+    save_gif("decoder_vs_looped", frames, dur)
+
+
 if __name__ == "__main__":
     import sys
     todo = sys.argv[1:] or ["cot_vs_loop", "huginn_loop", "mor_routing", "ouro_exit", "rnn_vs_transformer", "cot_vs_loop_slots"]
