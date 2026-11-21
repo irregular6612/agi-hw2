@@ -175,6 +175,16 @@ module.exports = function () {
     notes: ["Blue bar = the whole model. Red outline = the newest thought."],
   });
 
+  // RNN vs Transformer in motion: the same 6 tokens, read sequentially vs in parallel (figures/gif, build/gif/make_gifs.py)
+  add({
+    crumb: CRUMB, title: "Same sentence, two ways to read it: step by step, or all at once",
+    cite: "Animation ours, structure per Vaswani et al. 2017, Sec. 1 and Table 1 (sequential operations per layer)",
+    draw: (s) => {
+      image(s, "gif/rnn_vs_transformer.gif", { x: T.X, y: 1.3, w: 12.45, h: 4.75 });
+      text(s, "When generating text, both still write one token at a time. The gap is in training and in reading the prompt.", { x: T.X, y: 6.15, w: 12.4, h: 0.5 }, { fontSize: 17, color: T.gray });
+    },
+  });
+
   // #9–11 RNN vs Transformer, row by row
   const rows = [
     ["Strength",

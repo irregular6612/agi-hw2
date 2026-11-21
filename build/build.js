@@ -9,7 +9,7 @@ const TALK = {
   sessions: { A: 25, B: 25 },               // minutes; Discussion (20 min) is not scripted time
   // target minutes per section, set with the storyline; spoken script + clicks must fit them
   sections: {
-    s1_background: { session: "A", min: 10.25 }, s2_q1: { session: "A", min: 6.5 }, s3_q2: { session: "A", min: 6.25 },
+    s1_background: { session: "A", min: 10.75 }, s2_q1: { session: "A", min: 6.75 }, s3_q2: { session: "A", min: 6.25 },
     s4_q3: { session: "B", min: 12 }, s5_q4: { session: "B", min: 7.25 }, s6_synthesis: { session: "B", min: 4.25 },
   },
 };
@@ -43,5 +43,5 @@ fs.writeFileSync(path.join(OUT, "timing.md"), `# Timing (${lang})\n\n${clock.rep
 console.log(clock.report.split("\n").filter((l) => l.startsWith("- ")).join("\n"));
 if (stale.length) console.warn(`script keys with no slide (${stale.length}):`, stale.join(", "));
 
-const out = path.join(OUT, only.length ? `draft-${only.join("+")}.pptx` : "looped-transformers.pptx");
+const out = path.join(OUT, only.length ? `draft-${only.join("+")}.pptx` : "generated.pptx");
 pptx.write({ outputType: "nodebuffer" }).then(splitNoteParagraphs).then((b) => { fs.writeFileSync(out, b); console.log("wrote", out); });

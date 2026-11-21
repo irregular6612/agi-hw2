@@ -42,6 +42,9 @@ Saunshi 등의 2025년 논문이 이 틈을 짚습니다. 많은 추론 문제�
 ## s1_background/today-s-models-get-around-the-cap-by-writing-tok#1
 지금의 모델들은 토큰 쪽을 택했습니다. 이것이 두 번째 길이고 그림은 Saunshi 논문의 Figure 4 왼쪽입니다. 파란 막대가 모델 전체, 빨간 테두리가 방금 쓴 생각입니다. 패스마다 토큰 하나를 써서 다시 넣으니 단계가 늘면 토큰도 늘어납니다. Huginn의 저자들은 이를 낭비로 보았고 Ouro의 저자들은 문맥이 불어난다고 지적합니다.
 
+## s1_background/same-sentence-two-ways-to-read-it-step-by-step-o#1
+표로 들어가기 전에 두 모델이 같은 문장을 어떻게 읽는지 움직임으로 보겠습니다. 왼쪽 RNN은 h2를 계산하려면 h1이 끝나야 해서 여섯 단어에 여섯 걸음이 듭니다. 오른쪽 Transformer는 attention으로 여섯 자리를 한 걸음에 함께 계산합니다. 층 하나마다 순차 단계가 RNN은 길이만큼, Transformer는 한 번입니다. 아래 회색 줄처럼 글을 생성할 때는 둘 다 한 토큰씩 씁니다. 차이는 학습과 프롬프트를 읽는 단계에서 납니다.
+
 ## s1_background/rnns-read-step-by-step-transformers-read-all-at-#1
 그렇다면 Transformer는 왜 깊이를 고정한 채로 만들어졌을까요. 왼쪽 RNN은 매 걸음 같은 가중치를 써서 반복 계산을 자연스럽게 표현합니다. 오른쪽 Transformer는 시퀀스 전체를 병렬로 학습하고 어느 토큰이든 한 단계 만에 다른 토큰에 닿습니다.
 

@@ -356,8 +356,150 @@ def ouro_exit():
     save_gif("ouro_exit", frames, dur)
 
 
+# ---------------------------------------------------------------- 5. RNN vs Transformer (sequential vs parallel)
+def rnn_vs_transformer():
+    """Same 6-token input, same clock. Structure from sources/vaswani.md (Sec. 1, Table 1)."""
+    W, H = 1250, 470
+    WORDS = ["the", "cat", "sat", "on", "the", "mat"]
+    N, TOK, GAP = len(WORDS), 74, 24
+    CY, CH, TY, TH = 125, 50, 265, 46  # state cells, input tokens (y, height)
+    frames, dur = [], []
+
+    def cells(cv, x0, state):
+        """state[i]: 'wait' | 'active' | 'done'."""
+        xs = lambda i: x0 + 14 + i * (TOK + GAP)
+        for i, w in enumerate(WORDS):
+            on = state[i] == "active"
+            cv.box(xs(i), TY, TOK, TH, fill=C["pale"] if on else C["light"], line=C["gold"] if on else C["faint"], width=3 if on else 2)
+            cv.text(xs(i) + TOK / 2, TY + TH / 2, w, 22, C["ink"], bold=on, anchor="mm")
+            st = state[i]
+            fill = {"wait": C["white"], "active": C["gold"], "done": C["blue"]}[st]
+            cv.box(xs(i), CY, TOK, CH, fill=fill, line=C["navy"] if st != "wait" else C["faint"], width=2, dash=st == "wait")
+            cv.text(xs(i) + TOK / 2, CY + CH / 2, f"h{i + 1}", 22, C["white"] if st == "active" else (C["navy"] if st == "done" else C["faint"]), bold=st != "wait", anchor="mm")
+        return xs
+
+    def rnn(cv, x0, t, pulse):
+        """t = current step (1..N), or N + 1 when finished."""
+        cv.text(x0 + 6, 8, "RNN: one position per step", 26, bold=True)
+        cv.text(x0 + 6, 46, "h(t) needs h(t−1), so step t waits for step t−1", 20, C["gray"])
+        state = ["done" if i + 1 < t else "active" if i + 1 == t else "wait" for i in range(N)]
+        xs = cells(cv, x0, state)
+        for i in range(N):
+            act = i + 1 == t
+            cv.arrow(xs(i) + TOK / 2, TY - 3, xs(i) + TOK / 2, CY + CH + 4, C["gold"] if act else C["faint"], 3 if act else 2, 8)
+            if i:
+                cv.arrow(xs(i - 1) + TOK + 2, CY + CH / 2, xs(i) - 3, CY + CH / 2, C["gold"] if act else (C["navy"] if i + 1 < t else C["faint"]), 3 if act else 2, 8)
+        if 1 <= t <= N and pulse:  # the cell being computed blinks
+            cv.box(xs(t - 1) - 5, CY - 5, TOK + 10, CH + 10, line=C["gold"], width=2, r=10)
+        k = min(t, N)
+        cv.text(x0 + 6, 340, f"step {k} of {N}", 26, C["gold"] if t <= N else C["navy"], bold=True)
+        cv.text(x0 + 180, 342, "done" if t > N else f"{N - k} positions still waiting", 22, C["navy"] if t > N else C["gray"], bold=t > N)
+
+    def transformer(cv, x0, t, pulse):
+        cv.text(x0 + 6, 8, "Transformer: every position in one step", 26, bold=True)
+        cv.text(x0 + 6, 46, "each h(i) attends to all tokens up to i, all at once", 20, C["gray"])
+        state = ["wait" if t == 0 else "active" if t == 1 else "done"] * N
+        xs = cells(cv, x0, state)
+        for i in range(N):  # causal attention: token i feeds cells i..N, all in the same step
+            for j in range(i, N):
+                if t == 0:
+                    continue
+                col = C["gold"] if t == 1 else C["faint"]
+                cv.line(xs(i) + TOK / 2, TY - 3, xs(j) + TOK / 2, CY + CH + 3, mix(C["white"], col, 0.85 if t == 1 else 0.6), 2 if t == 1 else 1)
+        if t == 1 and pulse:
+            cv.box(xs(0) - 5, CY - 5, xs(N - 1) + TOK + 5 - (xs(0) - 5), CH + 10, line=C["gold"], width=2, r=10)
+        cv.text(x0 + 6, 340, f"step {min(t, 1)} of 1", 26, C["navy"] if t > 1 else C["gold"], bold=True)
+        cv.text(x0 + 180, 342, "all 6 positions at once" if t <= 1 else "done", 22, C["gray"] if t <= 1 else C["navy"], bold=t > 1)
+
+    def draw(t, pulse=False, end=False):
+        cv = Canvas(W, H)
+        rnn(cv, 8, t, pulse)
+        cv.line(W / 2 + 2, 10, W / 2 + 2, 380, C["faint"], 1)
+        transformer(cv, W / 2 + 22, t, pulse)
+        if end:
+            cv.text(W / 2, 412, "Sequential steps per layer:  RNN O(n),  Transformer O(1)", 22, C["navy"], bold=True, anchor="mm")
+        caption(cv, "Reading a 6-token input (training, or the prompt). Structure per Vaswani et al. 2017, Sec. 1, Table 1")
+        return cv.frame()
+
+    frames.append(draw(0)); dur.append(1000)
+    for t in range(1, N + 1):
+        for p in (True, False, True):
+            frames.append(draw(t, p)); dur.append(160)
+        frames.append(draw(t)); dur.append(450)
+    frames.append(draw(N + 1, end=True)); dur.append(3200)
+    save_gif("rnn_vs_transformer", frames, dur)
+
+
+# ---------------------------------------------------------------- 6. Thm 5.4: m CoT steps ⇔ m loops on m blank slots
+def cot_vs_loop_slots():
+    """Saunshi Thm 5.4 proof idea (sources/saunshi.md): in loop t only position n+t is updated."""
+    W, H = 1250, 435
+    M, NIN, TOK, GAP = 4, 3, 54, 10
+    frames, dur = [], []
+
+    def panel(cv, x0, mode, k, phase, pulse):
+        loop = mode == "loop"
+        cv.text(x0, 8, "Looped model: m loops on m blank slots" if loop else "Chain of thought: writes a token per step", 26, bold=True)
+        cv.text(x0, 44, "loop t updates only slot t; no token is written" if loop else "each step runs all L layers, then writes one token", 20, C["gray"])
+        xs = lambda i: x0 + 16 + i * (TOK + GAP)
+        bar = (x0 + 6, 165, (NIN + M) * (TOK + GAP) + 10, 60)
+        row = NIN + (M if loop else k)
+        for i in range(row):  # input row (bottom)
+            extra = i >= NIN
+            cv.box(xs(i), 265, TOK, 46, fill=C["pale"] if extra else C["light"], line=C["gold"] if extra else C["faint"])
+            lab = (f"s{i - NIN + 1}" if loop else f"t{i - NIN + 1}") if extra else f"x{i + 1}"
+            cv.text(xs(i) + TOK / 2, 288, lab, 22, C["gray"] if loop and extra else C["ink"], anchor="mm")
+            cv.arrow(xs(i) + TOK / 2, 263, xs(i) + TOK / 2, bar[1] + bar[3] + 3, C["faint"], 2, 7)
+        cv.box(*bar, fill=C["blue"], line=C["navy"])
+        if phase == "pass":  # a gold band sweeps up through the layers
+            by = bar[1] + bar[3] - 14 - pulse * (bar[3] - 14)
+            cv.box(bar[0] + 4, by, bar[2] - 8, 14, fill=C["gold"], r=4)
+        cv.text(bar[0] + bar[2] / 2, bar[1] + bar[3] / 2, "Transformer (L + O(1) layers)" if loop else "Transformer (L layers)", 22, C["navy"], bold=True, anchor="mm")
+        if loop:
+            for j in range(M):  # slot states above the bar: filled one per loop
+                i, done = NIN + j, j < k or (j == k and phase == "out")
+                cur = j == k and phase == "out"
+                if done:
+                    cv.box(xs(i), 85, TOK, 46, fill=C["coda"] if cur else mix(C["white"], C["coda"], 0.45), line=C["coda"], width=3 if cur else 2)
+                    cv.text(xs(i) + TOK / 2, 108, f"s{j + 1}", 22, C["white"] if cur else C["ink"], bold=True, anchor="mm")
+                else:
+                    cv.box(xs(i), 85, TOK, 46, line=C["faint"], dash=True)
+                cv.arrow(xs(i) + TOK / 2, bar[1] - 2, xs(i) + TOK / 2, 133, C["coda"] if cur else C["faint"], 2, 7)
+            ax = bar[0] + bar[2] + 20
+            cv.arc_arrow(ax, 198, 22, 95, -90, 90, C["gold"] if phase == "out" else C["faint"], 3)
+            cv.text(x0 + 6, 340, f"loop {k}", 24, bold=True)
+            cv.text(x0 + 116, 340, "tokens written: 0", 24, C["gray"])
+        else:
+            if phase == "out":  # new token above the bar, fed back to the end of the row
+                i = row
+                cv.box(xs(i), 85, TOK, 46, fill=C["pale"], line=C["gold"], width=3)
+                cv.text(xs(i) + TOK / 2, 108, f"t{k + 1}", 22, bold=True, anchor="mm")
+                cv.arrow(xs(i) + TOK / 2, bar[1] - 2, xs(i) + TOK / 2, 133, C["gold"], 2, 8)
+            cv.text(x0 + 6, 340, f"step {k}", 24, bold=True)
+            cv.text(x0 + 116, 340, f"tokens written: {k}", 24, C["gold"] if k else C["gray"], bold=bool(k))
+
+    def draw(k, phase, pulse=0.0, end=False):
+        cv = Canvas(W, H)
+        panel(cv, 8, "cot", k, phase, pulse)
+        cv.line(W / 2 + 2, 10, W / 2 + 2, 365, C["faint"], 1)
+        panel(cv, W / 2 + 22, "loop", k, phase, pulse)
+        if end:
+            cv.text(W / 2, 384, "Same output: slot t on the right plays the role of token t on the left", 22, C["navy"], bold=True, anchor="mm")
+        caption(cv, "Redrawn from Saunshi et al. 2025, Fig. 4; slot-per-loop is the proof idea of Thm. 5.4")
+        return cv.frame()
+
+    frames.append(draw(0, "idle")); dur.append(900)
+    for k in range(M):
+        for p in (0.0, 0.33, 0.66, 1.0):
+            frames.append(draw(k, "pass", p)); dur.append(110)
+        frames.append(draw(k, "out")); dur.append(800)
+        frames.append(draw(k + 1, "idle")); dur.append(400)
+    frames.append(draw(M, "idle", end=True)); dur.append(3000)
+    save_gif("cot_vs_loop_slots", frames, dur)
+
+
 if __name__ == "__main__":
-    cot_vs_loop()
-    huginn_loop()
-    mor_routing()
-    ouro_exit()
+    import sys
+    todo = sys.argv[1:] or ["cot_vs_loop", "huginn_loop", "mor_routing", "ouro_exit", "rnn_vs_transformer", "cot_vs_loop_slots"]
+    for name in todo:
+        globals()[name]()

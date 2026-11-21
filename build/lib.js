@@ -155,6 +155,7 @@ function timing(script, lang, { sessions: budgets, sections: targets = {} }) {
 // ---------- images, highlight and dim ----------
 function pngSize(file) {
   const b = fs.readFileSync(file);
+  if (b.toString("ascii", 0, 3) === "GIF") return { w: b.readUInt16LE(6), h: b.readUInt16LE(8) };
   return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) };
 }
 

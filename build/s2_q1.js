@@ -1,5 +1,5 @@
 // Part 2 "Idea: put a loop into the Transformer" — Q2: what can a looped Transformer compute, and can training find it?  (Session A)
-const { T, add, figSeq, image, spotlight, text, table, bars, remark } = require("./lib");
+const { T, add, figSeq, image, text, table, bars, remark } = require("./lib");
 const { cover, answer } = require("./common");
 
 const UT = 'Dehghani, Gouws, Vinyals, Uszkoreit, Kaiser, "Universal Transformers", ICLR 2019';
@@ -125,11 +125,9 @@ module.exports = function () {
   add({
     crumb: ["Q2", "Saunshi"], cite: `${SAU}, Fig. 4 and Thm. 5.4`,
     title: "In theory, m loops can simulate m steps of chain of thought",
-    notes: "Callback: this is the figure from the start of the talk. Theorem 5.4: for any L-layer Transformer, a looped one with L + O(1) layers, run m loops on the input plus m blank slots, gives the same output as m CoT steps. Proof idea: a loop counter updates only one slot per loop.",
+    notes: "Callback: the figure from the start of the talk, now animated. Theorem 5.4: for any L-layer Transformer, a looped one with L + O(1) layers, run m loops on the input plus m blank slots, gives the same output as m CoT steps. Proof idea: a loop counter updates only one slot per loop.",
     draw: (s) => {
-      const r = image(s, "saunshi-fig4.png", { x: T.X, y: 1.3, w: 12.45, h: 3.4 });
-      spotlight(s, r, [[0.03, 0, 0.37, 1], [0.64, 0, 0.99, 1]], { veil: false });
-      text(s, "⇔", { x: r.x + r.w * 0.45, y: r.y + r.h * 0.4, w: 1.0, h: 0.8 }, { fontSize: 44, color: T.gold, bold: true, align: "center" });
+      image(s, "gif/cot_vs_loop_slots.gif", { x: T.X, y: 1.25, w: 12.45, h: 3.65 });
       text(s, [
         { text: "Theorem 5.4. ", options: { bold: true } },
         { text: "Any L-layer Transformer running m CoT steps can be matched by a looped one with L + O(1) layers, run for m loops on m blank slots.", options: { breakLine: true } },

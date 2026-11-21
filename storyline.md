@@ -269,3 +269,15 @@ flowchart LR
 - 근거: `sources/astra-rumor.md` 신설. Fortune의 "OpenAI가 루프 사용 범위를 제한했다"는 Fortune의 풀어쓰기이고 직접 인용이 아니어서 확인으로 쓰지 않는다.
 - build가 1장 늘어 117 build. 이 기록 위 표의 #5 이후 번호는 한 칸씩 밀린다(표 번호는 고치지 않음). s1 목표 9.25분 → 10.25분, Session A 23:04 / 25:00.
 
+
+### 2026-11-21 (v7.2) GIF 두 개
+- RNN vs Transformer 표 바로 앞(#15)에 새 장 "Same sentence, two ways to read it"를 넣었다. `figures/gif/rnn_vs_transformer.gif`: 같은 6토큰을 RNN은 6걸음, Transformer는 1걸음(causal attention)으로 읽는 장면. 끝 장면은 Vaswani Table 1의 순차 단계 O(n) vs O(1). 화면 아래에 "생성할 때는 둘 다 한 토큰씩"이라는 단서를 단다.
+- Theorem 5.4 장(#44)의 Saunshi 그림 4 정지 이미지를 `figures/gif/cot_vs_loop_slots.gif`로 바꿨다. 왼쪽 CoT가 토큰 t를 쓸 때 오른쪽 루프는 빈 슬롯 t를 채운다(Thm 5.4 증명 아이디어, `saunshi.md`).
+- GIF 생성: `python3 build/gif/make_gifs.py rnn_vs_transformer cot_vs_loop_slots` (브랜치의 스크립트에 함수 두 개 추가). `lib.js`의 이미지 크기 읽기가 GIF도 처리한다.
+- 118 build. s1 목표 10.75분, s2 6.75분. Session A 23:53 / 25:00.
+
+### 2026-11-21 (v7.3) Session B = 영호님 v2 슬라이드
+- 최종 덱 `build/out/looped-transformers.pptx` = Session A(코드 빌드, 1–64장, Huginn 핸드오프까지) + 영호님 v2의 Session B 27장(65–91장, "What later work stacks on Huginn" → Thank you). 영호님 장은 도형·그림·노트를 그대로 복사했고 쪽번호만 새 위치로 갱신했다.
+- 빌드 순서가 바뀌었다. `node build/build.js`는 이제 `build/out/generated.pptx`(코드로 만든 전체 덱)를 쓴다. 이어서 `python3 build/merge_session_b.py`가 generated의 Session A와 현재 최종 덱의 Session B를 합쳐 최종 덱을 다시 쓴다. 그래서 다시 빌드해도 영호님 장은 유지된다(python-pptx 필요).
+- 코드 쪽 s4·s5·s6과 그 대본은 최종 덱에 쓰이지 않는다. `timing.md`의 Session B 시간도 최종 덱과 맞지 않는다.
+- v2 파일(`looped-transformers_v2.pptx`)은 휴지통으로 옮겼다.
