@@ -9,7 +9,7 @@ const TALK = {
   sessions: { A: 25, B: 25 },               // minutes; Discussion (20 min) is not scripted time
   // target minutes per section, set with the storyline; spoken script + clicks must fit them
   sections: {
-    s1_background: { session: "A", min: 10.75 }, s2_q1: { session: "A", min: 7.25 }, s3_q2: { session: "A", min: 6.25 },
+    s1_background: { session: "A", min: 10.5 }, s2_q1: { session: "A", min: 7.75 }, s3_q2: { session: "A", min: 6.75 },
     s4_q3: { session: "B", min: 12 }, s5_q4: { session: "B", min: 7.25 }, s6_synthesis: { session: "B", min: 4.25 },
   },
 };

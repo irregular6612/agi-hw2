@@ -6,6 +6,7 @@ const SAUNSHI = 'Saunshi, Dikkala, Li, Kumar, Reddi, "Reasoning with Latent Thou
 const UT = 'Dehghani, Gouws, Vinyals, Uszkoreit, Kaiser, "Universal Transformers", ICLR 2019';
 const INTRO = ["Today"];
 const CRUMB = ["Q1", "Background"];
+const OPTIONAL = false;   // optional slides cut for time / flow
 
 module.exports = function () {
   // #1 title
@@ -217,7 +218,8 @@ module.exports = function () {
       { text: "Parallel training let Transformers absorb more compute, and they used long context better.", options: { breakLine: true } },
       { text: "Sutton never mentions Transformers; connecting the two is our reading.", options: { color: T.gray } }],
   ];
-  for (let k = 0; k < bl.length; k++) {
+  // Cut 21 Nov (v7.5): Session B (Youngho) has no Bitter Lesson callback, so the setup is dropped. Set OPTIONAL = true to restore.
+  for (let k = 0; OPTIONAL && k < bl.length; k++) {
     add({
       crumb: CRUMB, title: "Transformers won because they scale: the Bitter Lesson",
       cite: "Sutton, “The Bitter Lesson”, 13 Mar 2019; Kaplan et al., Scaling Laws for Neural Language Models, 2020, Sec. 3.2.1, Fig. 7; Vaswani et al. 2017, Sec. 1",

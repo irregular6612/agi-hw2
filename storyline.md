@@ -286,3 +286,9 @@ flowchart LR
 - Q2 표지와 UT Figure 1 사이에 새 장 "One token's path: up four layers, or four times round one block"(#30)을 넣었다. `figures/gif/decoder_vs_looped.gif`: 왼쪽은 가중치가 다른 디코더 층 4개를 한 번 오르고, 오른쪽은 블록 하나를 4번 돈다. 금색 점이 마지막 토큰의 경로이고, 두 쪽 모두 Softmax에서 다음 토큰을 내어 입력 끝에 붙인다.
 - 그림은 Vaswani Fig. 1 디코더를 decoder-only로 줄인 것(encoder-decoder attention과 Add & Norm 생략, 층 6 → 4). 근거는 `sources/vaswani.md`의 Decoder structure 절.
 - 최종 덱 92장(Session A 65장 + Session B 27장). s2 목표 7.25분. Session A 24:25 / 25:00, 여유 35초.
+
+### 2026-11-21 (v7.5) Bitter Lesson 제거, 참고문헌, Session A 대본 재작성(Astra)
+- Bitter Lesson 3 build를 껐다(`s1_background.js`의 `OPTIONAL`). 영호님 Session B에 회수 장이 없어서 회수되지 않는 복선이 됐기 때문이다. 대본은 ARCHIVE 주석에 남겼다.
+- 4페이지 소문 장의 출처(The Information, TechCrunch, X @altryne, Fortune)를 Thank you 장 참고문헌에 추가했다(`build/add_rumor_refs.py`, 다시 실행해도 중복 없음).
+- Session A 대본 62 build를 GPT-6 Astra(Codex CLI)로 새로 썼다. 요청문은 `build/script/BRIEF-astra.ko.md`. 화면 읽는 법부터 말하기, 화면 내용 빠짐없이 짚기, 용어 첫 등장 시 정의, 어려운 장에 시간 몰아주기가 핵심이다. 손본 곳은 인사 추가, "Security Concerns" 번역, 25분에 맞춘 세 문장 삭제뿐이다.
+- Session A 24:57 / 25:00(여유 3초). s1 10.5분, s2 7.75분, s3 6.75분. 최종 덱 89장(Session A 62 + Session B 27).
