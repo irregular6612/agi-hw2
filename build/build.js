@@ -24,7 +24,10 @@ const sections = only.length ? only : Object.keys(TALK.sections);
 sections.forEach((s) => { section(s, TALK.sections[s].session); require(`./${s}`)(); });
 
 const script = loadScript(path.join(__dirname, "script", lang));
-const clock = timing(script, lang, TALK);
+// Notes are short talking points (script/<lang>); the pace tag is timed on the full read-aloud
+// script kept in script/<lang>-full, since bullet points say nothing about speaking time.
+const fullDir = path.join(__dirname, "script", `${lang}-full`);
+const clock = timing(fs.existsSync(fullDir) ? loadScript(fullDir) : script, lang, TALK);
 
 const pptx = new PptxGenJS();
 pptx.layout = "LAYOUT_WIDE";

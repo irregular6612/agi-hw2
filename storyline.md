@@ -325,3 +325,8 @@ flowchart LR
 - Google Slides 사본: https://docs.google.com/presentation/d/1zwXAHwl6mUyBt7JcUn8uQV_2mBMcW-tJzXsGJ5skZko/edit (링크가 있는 사람 보기 가능). 92장, 노트 포함.
 - 변환 뒤 고친 것(원본과 사본 모두): 로드맵 "Mixture-of-/Recursions" 줄바꿈, UT 1단계의 hₘ 깨짐 → "The states h₁, h₂, …", 65장 "GPT-6 Astra loops … still unchecked" 줄과 대본 문장 삭제.
 - 수업 시트 Team 5 행: I11 슬라이드 링크, J11 Session A 논문(UT, Giannou, Huginn), K11 Session B 논문(MoR, Ouro, RLT).
+
+### 2026-11-22 (v8.3) Session A 노트를 말할 거리 메모로
+- 1–65장 노트를 문장형 대본 대신 슬라이드·build별 짧은 메모(`- ` 줄)로 교체. 화면에서 짚을 곳, 말할 숫자, 다음 장으로 넘기는 말만 남김. 발표자가 자기 말투로 말하기 위함.
+- 문장형 대본(v8)은 `build/script/ko-full/`에 보관. `build.js`는 노트 글은 `script/ko`에서, ⏱ 시간은 `script/ko-full`에서 계산(메모는 말하는 시간을 나타내지 못하므로). Session A 기준 시간 25:05 그대로.
+- Session B 노트(`script/session_b.ko.md`)는 그대로.

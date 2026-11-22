@@ -13,7 +13,7 @@
    "Team 5 · Juhyeon Park, Youngho Kim\nAGI26F · 23 November 2026"
   ],
   "notes": "Session A presenter opens. One sentence: today we ask whether a model can think longer by running its layers again, instead of writing more tokens.",
-  "script": "안녕하십니까, Team 5입니다. 지금은 모델을 더 오래 생각하게 하려면 생각을 글로 길게 쓰게 합니다. 오늘 저희가 묻는 질문은, 그 대신 같은 층을 여러 번 다시 돌려서 글을 더 쓰지 않고도 더 깊이 생각하게 만들 수 있느냐입니다. 이런 모델을 Looped Transformer라고 부릅니다."
+  "script": "- 인사, Team 5\n- 지금 모델은 오래 생각하려면 생각을 글(CoT)로 길게 씀\n- 오늘 질문: 같은 층을 여러 번 다시 돌려서, 글을 더 안 쓰고도 더 깊이 생각할 수 있나\n- 이런 모델 = Looped Transformer"
  },
  {
   "n": 2,
@@ -32,7 +32,7 @@
    "“Astra feels like it kind of reached human parity on using computers … one of those steps along the path to AGI.”Sam Altman, 1 Sept 2026"
   ],
   "notes": null,
-  "script": "이 주제가 왜 지금 뜨거운지부터 보겠습니다. 9월 3일 OpenAI가 GPT-6 Astra를 공개했고, 그 직전 팟캐스트에서 Sam Altman은 Astra가 컴퓨터를 다루는 일에서 사람과 거의 비슷해진 것 같다고, AGI로 가는 길의 한 걸음처럼 느껴졌다고 말했습니다."
+  "script": "- 왜 지금 이 주제인가\n- 9월 3일 OpenAI GPT-6 Astra 공개\n- Altman (공개 직전 팟캐스트): 컴퓨터 다루는 일에서 사람과 거의 비슷, AGI로 가는 한 걸음 같다"
  },
  {
   "n": 3,
@@ -58,7 +58,7 @@
    "62.7%"
   ],
   "notes": null,
-  "script": "오른쪽은 같은 시험 환경에서 ARC Prize가 잰 ARC-AGI-3 점수입니다. GPT-5.6 Sol이 7.8%, 그때까지 최고였던 Claude Opus 5가 30.2%였는데, Astra는 62.7%로 두 배를 넘겼습니다. 그러자 이 모델을 어떻게 만들었느냐를 두고 소문이 돌았습니다."
+  "script": "- ARC-AGI-3, ARC Prize가 같은 조건으로 잰 점수\n- GPT-5.6 Sol 7.8%, 이전 최고 Claude Opus 5 30.2%, Astra 62.7% (두 배 넘게)\n- 그러자 \"어떻게 만들었나\"를 두고 소문"
  },
  {
   "n": 4,
@@ -78,7 +78,7 @@
    "LessWrong · R. Arike  Wed 2 Sept“How concerned should we be about Astra’s recurrent architecture?”Says the report likens Astra’s approach to Geiping et al.’s recurrent depth"
   ],
   "notes": null,
-  "script": "소문은 Astra가 같은 층을 반복해 돌리는 루프 구조를 쓴다는 이야기였습니다. 9월 2일 X는 loop transformers나 Neuralese 같은 말로 뒤덮였는데, Neuralese는 말로 쓰이지 않은 내부 표현입니다. 같은 날 LessWrong의 R. Arike는 보도가 Astra를 Geiping 연구진의 recurrent depth에 견줬다고 전합니다. 이 연구는 뒤에서 Huginn으로 다룹니다."
+  "script": "- 소문: Astra가 같은 층을 반복해 돌리는 루프 구조라는 것\n- 9월 2일 X 타임라인이 loop transformers, Neuralese(글로 안 쓰인 내부 표현) 같은 말로 도배\n- LessWrong R. Arike: 보도가 Astra를 Geiping의 recurrent depth에 견줬다고 전함 (뒤에서 Huginn으로 다룸)"
  },
  {
   "n": 5,
@@ -100,7 +100,7 @@
    "Astral Codex Ten · S. Alexander  Fri 25 Sept“At Long Last, We Have Created Neuralese Recurrence”The thought itself goes back into the loop, instead of a text scratchpad"
   ],
   "notes": null,
-  "script": "안전 쪽의 걱정은 더 컸습니다. TechCrunch 기사에서 Redwood의 CEO는 극도로 우려된다고 했고, Astral Codex Ten은 생각을 글로 적지 않고 루프에 되넣는 방식이라고 설명합니다. 글로 남지 않는 생각은 감시하기 어렵다는 걱정인데, OpenAI가 이 구조를 확인한 적은 없어서 발표 끝에서 다시 짚겠습니다."
+  "script": "- 안전 쪽 걱정이 더 큼\n- TechCrunch: Redwood CEO \"극도로 우려\"\n- Astral Codex Ten: 생각을 글로 안 쓰고 루프에 되넣는 방식\n- 글로 안 남는 생각은 감시가 어렵다는 걱정\n- OpenAI는 구조를 확인한 적 없음, 끝에서 다시"
  },
  {
   "n": 6,
@@ -126,7 +126,7 @@
    "ICLR 2027"
   ],
   "notes": null,
-  "script": "연구 쪽도 움직였습니다. 막대는 ICLR 투고 가운데 looped라는 단어가 들어간 논문 수인데, 2024년 3편, 2025년 4편, 2026년 11편으로 손에 꼽을 정도였습니다."
+  "script": "- 연구 쪽도 움직임\n- 막대 = ICLR 투고 중 \"looped\"가 들어간 논문 수\n- 2024년 3편, 2025년 4편, 2026년 11편: 손에 꼽는 수준"
  },
  {
   "n": 7,
@@ -154,7 +154,7 @@
    "189 for ICLR 2027, of which 175 use it for a model."
   ],
   "notes": null,
-  "script": "그런데 ICLR 2027에서는 189편으로 뛰었고, 그중 175편은 모델을 가리키는 말로 썼습니다. 1년 만에 열 배 넘게 늘면서, 이 주제가 연구의 한가운데로 들어왔습니다."
+  "script": "- ICLR 2027에서 189편 (그중 175편은 모델 이름으로 씀)\n- 1년 만에 열 배 넘게, 연구의 한가운데로"
  },
  {
   "n": 8,
@@ -173,7 +173,7 @@
    "Today: what is it · what can it do · is it worth adopting?"
   ],
   "notes": "This is the question the course asked. Today: what it is, what it can do, and whether it is worth adopting.",
-  "script": "그래서 오늘의 질문은 이렇습니다. 모델이 토큰을 더 쓰는 대신 층을 다시 써서 더 오래 생각할 수 있을까. 루프 모델이 무엇인지, 무엇을 할 수 있는지, 가져다 쓸 만한지로 나눠 보겠습니다."
+  "script": "- 오늘의 질문: 토큰을 더 쓰는 대신 층을 다시 써서 더 오래 생각할 수 있나\n- 나눠서: 루프 모델이 뭔지, 뭘 할 수 있는지, 가져다 쓸 만한지"
  },
  {
   "n": 9,
@@ -198,7 +198,7 @@
    "Is it worth adopting, and what do we lose?"
   ],
   "notes": "Each part answers one question and ends with an 'Answer to Q' slide. Session A takes Q1, Q2 and starts Q3 with Huginn; Session B finishes Q3 and takes Q4.",
-  "script": "이걸 네 질문으로 풀겠습니다. Q1은 층을 쌓는 방법과 생각을 길게 쓰는 방법이 어디서 막히는지, Q2는 루프가 원리상 무엇을 계산하고 학습으로 그걸 찾을 수 있는지 묻습니다. Q3는 루프 언어 모델을 만들고 키우는 법을, Q4는 도입할 가치와 그 대가를 봅니다."
+  "script": "- 네 질문으로 풂\n- Q1 층 쌓기와 CoT는 어디서 막히나\n- Q2 루프는 원리상 뭘 계산하나, 학습으로 찾을 수 있나\n- Q3 루프 언어 모델을 어떻게 만들고 키우나\n- Q4 도입할 가치와 그 대가"
  },
  {
   "n": 10,
@@ -218,7 +218,7 @@
    "Deep thinking = many steps of computation before the answer.Two ways the field has tried so far: 1  stack more layers,  2  write a longer chain of thought."
   ],
   "notes": null,
-  "script": "Q1부터 보겠습니다. 깊이 생각한다는 건 답하기 전에 계산 단계를 많이 거친다는 뜻입니다. 왼쪽은 층을 쌓는 방법으로, 층이 4개에서 8개, 12개로 늘면 토큰당 단계도 늘지만 파라미터 막대도 함께 찹니다. 오른쪽은 chain of thought, 줄여서 CoT로, 모델이 중간 생각을 글로 써 가며 푸는 방식입니다. 층은 4개 그대로 두고 생각 토큰 t1, t2를 써서 입력에 붙이니, 파라미터 대신 토큰이 늘어납니다. 층은 파라미터로, CoT는 토큰으로 값을 치르는 셈입니다."
+  "script": "- Q1 시작. 깊이 생각한다 = 답하기 전에 계산 단계를 많이 거친다\n- 왼쪽 층 쌓기: 4, 8, 12층으로 늘면 단계도 늘지만 파라미터 막대도 같이 참\n- 오른쪽 CoT(중간 생각을 글로 써 가며 푸는 방식): 층 4개 그대로, 생각 토큰 t1, t2를 써서 입력에 붙임\n- 정리: 층은 파라미터로, CoT는 토큰으로 값을 치름"
  },
  {
   "n": 11,
@@ -238,7 +238,7 @@
    "The betA deeper network can think deeper. Progress was measured by scaling laws: test loss follows a power law in parameters, data and compute."
   ],
   "notes": null,
-  "script": "층을 쌓는 쪽의 기대는 더 깊은 네트워크가 더 깊이 생각하리라는 것이었고, 진전은 스케일링 법칙으로 쟀습니다. Kaplan 연구진에 따르면 다음 토큰 예측 오차인 테스트 손실은 파라미터, 데이터, 계산량에 대해 거듭제곱 법칙으로 줄어듭니다."
+  "script": "- 층 쌓기의 기대: 더 깊은 네트워크가 더 깊이 생각할 것\n- 진전은 스케일링 법칙으로 잼 (Kaplan)\n- 테스트 손실(다음 토큰 예측 오차)이 파라미터, 데이터, 계산량에 거듭제곱으로 줄어듦"
  },
  {
   "n": 12,
@@ -259,7 +259,7 @@
    "But the proxy says “bigger,” not “deeper”Performance depends strongly on scale, weakly on model shape such as depth vs. width (on test loss)."
   ],
   "notes": null,
-  "script": "그런데 이 잣대는 더 깊게가 아니라 더 크게를 말합니다. 성능은 전체 규모에는 강하게, 깊이와 너비의 배분에는 약하게 반응했고, 그것도 추론이 아닌 테스트 손실 기준이었습니다."
+  "script": "- 그런데 이 잣대가 말하는 건 \"더 깊게\"가 아니라 \"더 크게\"\n- 전체 규모에는 민감, 깊이와 너비 배분에는 둔감\n- 그것도 추론이 아니라 테스트 손실 기준"
  },
  {
   "n": 13,
@@ -281,7 +281,7 @@
    "Reasoning needs depthMany reasoning problems need large depth but not many parameters. In a standard stack, more depth means more parameters."
   ],
   "notes": null,
-  "script": "그 틈을 Saunshi 연구진이 짚었습니다. 많은 추론 문제는 파라미터보다 깊이를 요구한다는 주장입니다. 그런데 보통의 Transformer는 층마다 가중치가 따로 있어서, 깊이를 늘리면 파라미터도 함께 늘어납니다."
+  "script": "- 그 틈을 Saunshi가 짚음: 많은 추론 문제는 파라미터보다 깊이가 필요\n- 보통 Transformer는 층마다 가중치가 따로라서, 깊이를 늘리면 파라미터도 늘어남"
  },
  {
   "n": 14,
@@ -308,7 +308,7 @@
    "One pass = at most L steps in a row.A problem that needs more steps must spread its work over more tokens, or more passes."
   ],
   "notes": "Each layer is one sequential step. A forward pass has L of them, no matter how hard the token is.",
-  "script": "그래서 치르는 값이 있습니다. 토큰이 아래에서 들어와 Layer 1부터 Layer L까지 오르고, 금색 괄호의 L단계를 마치면 어려운 문제라도 답을 내야 합니다. 더 계산하려면 토큰이나 통과 횟수를 늘리는 수밖에 없습니다. 그래서 지금의 모델들은 다른 길을 택했습니다."
+  "script": "- 치르는 값: 토큰이 Layer 1부터 L까지 한 번 오르면 끝 (금색 괄호, L단계)\n- 어려운 문제여도 L단계 안에 답을 내야 함\n- 더 계산하려면 토큰이나 통과 횟수를 늘리는 수밖에\n- 그래서 지금 모델들은 다른 길을 택함"
  },
  {
   "n": 15,
@@ -328,7 +328,7 @@
    "1  Way 2, chain of thought: each pass writes one token, which is fed back in. More steps cost more tokens: every intermediate step has to be written out and read back."
   ],
   "notes": "Blue bar = the whole model. Red outline = the newest thought.",
-  "script": "그래서 지금의 모델은 토큰을 써서 이 한계를 돌아갑니다. Saunshi 논문 그림의 왼쪽 금색 상자에서 파란 막대가 모델 전체입니다. 입력을 읽고 빨간 t1을 써내면 그게 입력에 붙어 다시 들어가고, 이어서 t2와 t3를 씁니다. 단계를 늘릴수록 중간 단계를 모두 글로 써내고 다시 읽어야 하는 셈입니다."
+  "script": "- 지금 모델은 토큰을 써서 이 한계를 돌아감 (Saunshi 그림 왼쪽)\n- 파란 막대 = 모델 전체\n- 입력 읽고 t1을 써냄, t1이 입력에 붙어 다시 들어감, 이어서 t2, t3\n- 단계를 늘릴수록 중간 단계를 전부 글로 쓰고 다시 읽어야 함"
  },
  {
   "n": 16,
@@ -348,7 +348,7 @@
    "2  Looped model: each pass updates every position in place; the thoughts (red) cost no tokens. An RNN's repetition, moved from time to depth: tokens are still processed in parallel. Universal Transformers, 2018. CoT thinks outside the model, the loop inside it."
   ],
   "notes": "Tan boxes at the bottom right are blank slots that stand in for future CoT tokens.",
-  "script": "이번엔 오른쪽, 루프 모델입니다. 같은 파란 블록을 되풀이해 씁니다. 한 번 지날 때마다 모든 위치의 빨간 상태, 곧 잠재 생각이 제자리에서 갱신되고, 갈색 칸은 CoT라면 쓰였을 토큰의 빈 자리입니다. 생각이 내부에서 이어지니 토큰이 들지 않습니다. 토큰은 여전히 병렬로 처리하고, 반복은 깊이 방향으로만 일어납니다."
+  "script": "- 오른쪽 = 루프 모델, 같은 파란 블록을 되풀이\n- 한 번 돌 때마다 모든 위치의 빨간 상태(잠재 생각)가 제자리에서 갱신\n- 갈색 칸 = CoT였다면 쓰였을 토큰 자리, 여기선 비어 있음, 토큰 비용 없음\n- 토큰은 여전히 병렬 처리, 반복은 깊이 방향으로만"
  },
  {
   "n": 17,
@@ -373,7 +373,7 @@
    "Q4  Worth adopting?"
   ],
   "notes": null,
-  "script": "Q1의 답은 금색 문장입니다. 층은 파라미터로, chain of thought는 토큰으로 값을 치르고, 토큰당 깊이는 고정되어 있습니다. 근거는 세 줄로, 테스트 손실은 깊이보다 규모를 따랐고, 추론은 파라미터보다 깊이를 요구하며, 한 번의 통과는 많아야 L단계입니다. But 줄처럼 CoT는 깊이를 얻는 대신 단계를 전부 토큰으로 써내야 하고, 루프가 노리는 자리가 바로 여기입니다. 이제 연구 지도를 펼쳐 보겠습니다."
+  "script": "- 금색 문장: 층은 파라미터로, CoT는 토큰으로 값을 치르고, 토큰당 깊이는 고정\n- 근거 세 줄: 손실은 깊이보다 규모를 따름 / 추론은 파라미터보다 깊이가 필요 / 한 번 통과는 많아야 L단계\n- But: CoT는 깊이를 얻지만 단계를 전부 토큰으로 써야 함, 루프가 노리는 자리가 여기\n- 넘김: 연구 지도"
  },
  {
   "n": 18,
@@ -400,7 +400,7 @@
    "How did models process text before looped Transformers? RNNs repeat a step, Transformers enable parallel training with fixed depth, and ACT learns when to stop."
   ],
   "notes": null,
-  "script": "지도는 시간순이고, 금색으로 채워질 여섯 상자가 오늘의 논문, 화살표는 남겨진 질문입니다. 출발점은 같은 규칙을 반복하는 RNN, 2016년 언제 멈출지 배우는 ACT, 2017년 병렬 학습 대신 깊이가 고정된 Transformer입니다."
+  "script": "- 시간순 지도. 금색으로 채워질 상자 6개 = 오늘의 논문, 화살표 = 남겨진 질문\n- 출발점 셋: RNN(같은 규칙 반복), ACT 2016(언제 멈출지 학습), Transformer 2017(병렬 학습, 대신 깊이 고정)"
  },
  {
   "n": 19,
@@ -428,7 +428,7 @@
    "Can a Transformer take more steps without adding layers? Universal Transformers reuse the same block of layers and use ACT to decide per token when to stop."
   ],
   "notes": null,
-  "script": "2018년 Universal Transformers는 층을 더하지 않고 같은 블록을 되풀이하고, ACT로 토큰마다 멈출 때를 정했습니다."
+  "script": "- 2018 Universal Transformers: 층을 더하지 않고 같은 블록을 되풀이\n- ACT로 토큰마다 멈출 때를 정함"
  },
  {
   "n": 20,
@@ -458,7 +458,7 @@
    "What could a Transformer compute if we kept looping it? Giannou proves a looped Transformer can run programs, while chain of thought adds steps by writing intermediate text."
   ],
   "notes": null,
-  "script": "다음 질문은 루프를 계속 돌리면 무엇까지 계산할 수 있느냐였고, Giannou 연구진은 루프 Transformer가 프로그램을 실행할 수 있음을 증명했습니다. 같은 시기 점선의 chain of thought는 글로 단계를 늘리는 다른 길로 갔습니다."
+  "script": "- 다음 질문: 루프를 계속 돌리면 무엇까지 계산할 수 있나\n- Giannou: 루프 Transformer가 프로그램을 실행할 수 있음을 증명\n- 같은 시기 점선 CoT: 글로 단계를 늘리는 다른 길"
  },
  {
   "n": 21,
@@ -491,7 +491,7 @@
    "Can we train language models to use these loops? Huginn trains a looped language model, MoR chooses loops per token, and Ouro tests larger scale pretraining with learned stopping."
   ],
   "notes": null,
-  "script": "2025년에는 실제 언어 모델을 학습시킵니다. 2월의 Huginn이 3.5B 규모의 루프 언어 모델을 만들었고, 이어서 Mixture-of-Recursions는 토큰마다 루프 횟수를 고르게 했으며, Ouro는 멈추는 법을 학습하며 7.7T 토큰으로 규모를 키웠습니다."
+  "script": "- 2025년, 실제 언어 모델을 학습\n- Huginn(2월): 3.5B 루프 언어 모델\n- Mixture-of-Recursions: 토큰마다 루프 횟수를 고름\n- Ouro: 멈추는 법을 학습, 7.7T 토큰으로 규모 확장"
  },
  {
   "n": 22,
@@ -526,7 +526,7 @@
    "Can computation carry over from one token to the next? RLT carries internal information from one token to the next, while GPT-6 Astra's reported use of loops remains unconfirmed."
   ],
   "notes": null,
-  "script": "2026년의 질문은 계산을 다음 토큰으로 넘길 수 있느냐입니다. Recurrent Looped Transformer, RLT는 내부 정보를 다음 토큰으로 넘겨, 위쪽 점선처럼 반복을 다시 시간 축으로 가져옵니다. 아래 점선은 처음에 본 Astra 보도로, 아직 확인되지 않았습니다. 이제 지도 왼쪽부터, 루프가 원리상 무엇을 계산하는지 보겠습니다."
+  "script": "- 2026년 질문: 계산을 다음 토큰으로 넘길 수 있나\n- RLT: 내부 정보를 다음 토큰으로 넘김, 반복을 다시 시간 축으로 (위쪽 점선)\n- 아래 점선 = 처음 본 Astra 보도, 아직 미확인\n- 넘김: 지도 왼쪽부터, 루프가 원리상 무엇을 계산하나"
  },
  {
   "n": 23,
@@ -552,7 +552,7 @@
    "Q4  Worth adopting?"
   ],
   "notes": "The idea: bring the RNN's recurrence into the Transformer, along depth. Then: how far can that go in principle, and can training find it?",
-  "script": "이제 두 번째 질문입니다. 루프 Transformer는 원리상 무엇까지 계산할 수 있고, 학습으로 그 능력을 찾아낼 수 있을까요. UT와 Giannou, Saunshi 순서로 보겠습니다."
+  "script": "- Q2: 루프 Transformer는 원리상 무엇까지 계산하나, 학습으로 그 능력을 찾을 수 있나\n- 순서: UT, Giannou, Saunshi"
  },
  {
   "n": 24,
@@ -571,7 +571,7 @@
    "Animation ours: decoder-only sketch after Vaswani et al. 2017, Fig. 1 and Sec. 3.1; loop as in Dehghani et al. 2019 (UT)"
   ],
   "notes": null,
-  "script": "먼저 루프가 보통의 Transformer와 어떻게 다른지 토큰 하나의 길로 비교해 보겠습니다. 아래 금색 점이 가장 최근 토큰인 ‘sat’입니다. 왼쪽에서는 이 점이 색이 다른 층 네 개를 한 번씩 오르는데, 색이 다르다는 건 층마다 가중치가 따로 있다는 뜻입니다.\n오른쪽에는 초록 블록이 하나뿐입니다. 점이 블록을 통과하면 옆길로 다시 내려가서, 같은 가중치로 네 바퀴를 돕니다. 계산은 똑같이 네 번인데 가중치는 한 벌입니다."
+  "script": "- 루프가 보통 Transformer와 뭐가 다른지, 토큰 하나의 길로 비교\n- 금색 점 = 가장 최근 토큰 \"sat\"\n- 왼쪽: 색이 다른 층 4개를 한 번씩 오름 (색이 다르다 = 층마다 가중치가 따로)\n- 오른쪽: 초록 블록 하나, 통과하면 옆길로 다시 내려와 같은 가중치로 4바퀴\n- 계산은 똑같이 4번, 가중치는 한 벌"
  },
  {
   "n": 25,
@@ -589,7 +589,7 @@
    "Can one block, used again and again, think in more steps, and know when to stop?"
   ],
   "notes": null,
-  "script": "이 반복을 실제 모델로 처음 만든 연구가 UT입니다. 블록 하나를 거듭 쓰면 더 많은 단계로 생각하고, 언제 멈출지도 스스로 정할 수 있을까요."
+  "script": "- 이 반복을 실제 모델로 처음 만든 게 UT\n- 질문: 블록 하나를 거듭 쓰면 더 많은 단계로 생각하고, 멈출 때도 스스로 정할 수 있나"
  },
  {
   "n": 26,
@@ -613,7 +613,7 @@
    "+"
   ],
   "notes": null,
-  "script": "UT가 어떤 생각에서 나왔는지 두 그림으로 보겠습니다. 왼쪽은 Attention Is All You Need의 Transformer입니다. 금색 상자의 블록이 N번 쌓여 있는데, 층마다 가중치가 따로 있어서 각 층은 한 번씩만 쓰입니다. 그러니 같은 규칙을 되풀이한다는 가정은 구조 어디에도 없습니다. 오른쪽은 RNN을 시간 방향으로 펼친 그림입니다. 상태 s가 규칙 S를 거쳐 다음 단계로 넘어가는데, 이 S는 단계마다 똑같습니다. 구조 때문에 어떤 규칙을 더 쉽게 배우는 성향을 귀납 편향이라고 하는데, RNN은 같은 일을 되풀이하는 쪽으로 기울어 있습니다. UT 논문은 Transformer가 바로 이 편향을 내려놓았다고 지적합니다."
+  "script": "- UT가 나온 생각, 그림 두 개\n- 왼쪽 Transformer: 금색 블록이 N번 쌓임, 층마다 가중치가 따로라 각 층은 한 번씩만 쓰임\n- 같은 규칙을 되풀이한다는 가정이 구조에 없음\n- 오른쪽 RNN 펼친 그림: 상태 s가 규칙 S를 거쳐 다음으로, S는 매 단계 같음\n- 귀납 편향(구조 때문에 어떤 규칙을 더 쉽게 배우는 성향): RNN은 \"되풀이\" 쪽\n- UT 논문: Transformer가 이 편향을 내려놓았다"
  },
  {
   "n": 27,
@@ -637,7 +637,7 @@
    "Universal Transformers: keep attention across positions, and repeat one block along depth, the way an RNN repeats S."
   ],
   "notes": null,
-  "script": "그렇다면 둘을 합치면 됩니다. Transformer의 블록을 하나만 두고, RNN이 S를 되풀이하듯 그 블록을 깊이 방향으로 되풀이하는 겁니다. 위치 사이는 여전히 어텐션으로 한꺼번에 보니 병렬성은 그대로 지키고, RNN에게서는 되풀이하는 성향만 들여옵니다. 이게 Universal Transformers의 설계입니다. 이제 논문 그림으로 그 구조를 따라가 보겠습니다."
+  "script": "- 그럼 둘을 합침: 블록 하나를, RNN이 S를 되풀이하듯 깊이 방향으로 되풀이\n- 위치 사이는 여전히 어텐션, 병렬성 유지\n- RNN에게서는 되풀이하는 성향만 가져옴\n- = Universal Transformers. 논문 그림으로 구조 따라가기"
  },
  {
   "n": 28,
@@ -657,7 +657,7 @@
    "1  Each position keeps a state, and attention mixes them. The states h₁, h₂, … start as the token embeddings."
   ],
   "notes": null,
-  "script": "UT의 Figure 1은 왼쪽부터 읽습니다. 세로로 놓인 h₁부터 hₘ은 위치마다 하나씩 있는 상태이고, 토큰 임베딩에서 출발합니다. 위첨자 t는 몇 번째 반복인지를 뜻합니다. 금색 상자 안에서 엇갈리는 화살표가 self-attention이고, 모든 위치의 정보를 서로 섞습니다."
+  "script": "- Figure 1, 왼쪽부터\n- h₁, h₂, … = 위치마다 하나씩 있는 상태, 토큰 임베딩에서 출발\n- 위첨자 t = 몇 번째 반복\n- 금색 상자의 엇갈린 화살표 = self-attention, 모든 위치의 정보를 섞음"
  },
  {
   "n": 29,
@@ -677,7 +677,7 @@
    "2  A transition function updates every position. Hᵗ = LayerNorm(Aᵗ + Transition(Aᵗ))."
   ],
   "notes": "A time-step embedding is added at every step, so the shared block knows which step it is on.",
-  "script": "섞인 정보는 위치마다 따로 적용하는 변환, transition function으로 갑니다. 어텐션 결과 A에 변환 결과를 더해 정규화하면 새 상태가 되고, 그래서 h가 t+1로 넘어갑니다."
+  "script": "- 섞인 정보는 위치마다 따로 적용하는 transition function으로\n- 어텐션 결과 A + 변환 결과, 정규화하면 새 상태, h가 t+1로"
  },
  {
   "n": 30,
@@ -697,7 +697,7 @@
    "3  Then the same block runs again. The time axis counts refinement steps, not tokens."
   ],
   "notes": null,
-  "script": "그리고 같은 블록이 한 번 더 돌아 t+2를 만듭니다. 그러니까 아래 시간 축은 다음 토큰으로 가는 순서가 아니라, 같은 토큰들을 몇 번 다듬었는지를 셉니다."
+  "script": "- 같은 블록이 한 번 더 돌아 t+2\n- 아래 시간 축 = 다음 토큰 순서가 아님, 같은 토큰들을 몇 번 다듬었는지"
  },
  {
   "n": 31,
@@ -717,7 +717,7 @@
    "4  Weights are tied across positions and steps. With T fixed, this is a T-layer Transformer whose layers share weights."
   ],
   "notes": null,
-  "script": "위의 괄호처럼 가중치는 위치끼리도, 단계끼리도 같습니다. 그래서 반복을 T번으로 고정하면 가중치가 같은 층 T개를 쌓은 Transformer가 되고, 앞 그림의 오른쪽 블록이 바로 이 모양입니다."
+  "script": "- 위 괄호: 가중치는 위치끼리도, 단계끼리도 같음\n- 반복을 T번으로 고정하면 = 가중치가 같은 층 T개를 쌓은 Transformer (앞 GIF의 오른쪽 블록)"
  },
  {
   "n": 32,
@@ -738,7 +738,7 @@
    "5  Inside one position, the same transition runs again and again. Adaptive Computation Time (ACT, Graves 2016) lets that position take several steps before it is done."
   ],
   "notes": null,
-  "script": "여기에 UT는 멈추는 법을 더합니다. 왼쪽 금색 상자에서 점선을 따라가면 위치 하나를 확대한 그림이 나오는데, 2016년 Graves가 Adaptive Computation Time, 줄여서 ACT를 제안한 그림입니다. 원래는 RNN이 입력 두 개를 처리하는 모습입니다. 금색 가운데 열을 아래부터 보면, 입력 하나에 같은 변환 S를 거듭 적용하면서 중간 상태 s를 쌓아 갑니다."
+  "script": "- UT가 더한 것: 멈추는 법\n- 점선 따라 위치 하나를 확대 = Graves 2016 ACT(Adaptive Computation Time) 그림, 원래는 RNN이 입력 두 개 처리\n- 가운데 금색 열을 아래부터: 입력 하나에 같은 변환 S를 거듭 적용, 중간 상태 s를 쌓음"
  },
  {
   "n": 33,
@@ -759,7 +759,7 @@
    "6  Each step outputs a halting score h, and the steps are averaged by these scores. Stop once the scores add up to 1 − ε (ε = 0.01). A ponder cost keeps the model from thinking forever."
   ],
   "notes": null,
-  "script": "몇 번 돌지는 오른쪽 h 열이 정합니다. 단계마다 0과 1 사이의 종료 점수 h가 나오고, 이 점수의 합이 1에서 엡실론 0.01을 뺀 값에 닿으면 멈춥니다. 그리고 이 점수를 가중치 삼아, 위아래 금색 상자에서 중간 결과들을 평균해 출력 y와 다음 상태 s를 만듭니다. 학습할 때는 반복한 만큼 ponder cost를 더해서, 모델이 끝없이 생각하지 않게 합니다."
+  "script": "- 몇 번 돌지는 오른쪽 h 열이 정함\n- 단계마다 0~1 종료 점수 h, 합이 1−ε(ε=0.01)에 닿으면 멈춤\n- 이 점수를 가중치로 중간 결과를 평균, 출력 y와 다음 상태 s (위아래 금색 상자)\n- 학습 때는 ponder cost: 반복한 만큼 벌점, 끝없이 생각하지 않게"
  },
  {
   "n": 34,
@@ -780,7 +780,7 @@
    "7  UT applies this halting rule to every position, along depth. A halted position is copied forward until every position halts, or a step cap is reached."
   ],
   "notes": null,
-  "script": "다시 UT로 돌아오면, UT는 이 규칙을 위치마다 깊이 방향으로 씁니다. 모든 위치가 함께 갱신되지만 멈추는 때는 제각각입니다. 먼저 멈춘 위치는 상태를 복사해 두고, 모두 멈추거나 반복 상한에 닿으면 끝납니다."
+  "script": "- 다시 UT로: 이 규칙을 위치마다, 깊이 방향으로 씀\n- 모든 위치가 함께 갱신, 멈추는 때는 제각각\n- 먼저 멈춘 위치는 상태 복사, 모두 멈추거나 상한에 닿으면 끝"
  },
  {
   "n": 35,
@@ -801,7 +801,7 @@
    "Example question  “Where was the apple before the bathroom?” The story is long; only a few of its sentences are about the apple."
   ],
   "notes": null,
-  "script": "위치마다 정말 다르게 생각하는지는 bAbI로 확인합니다. 짧은 이야기를 읽고 답하는 합성 과제 20개로, 답에 필요한 근거 문장이 하나인 문제부터 셋인 문제까지 있습니다. UT는 문장과 질문을 한 위치씩 읽고, 각 위치가 멈추기까지 돈 횟수를 ponder time이라 부릅니다. 예시 질문은 화장실에 가기 전 사과가 어디 있었는지인데, 긴 이야기 중 사과 이야기는 몇 문장뿐입니다."
+  "script": "- 위치마다 정말 다르게 생각하나? bAbI로 확인\n- 짧은 이야기 읽고 답하는 합성 과제 20개, 근거 문장이 1개인 문제부터 3개인 문제까지\n- 문장과 질문을 한 위치씩, 각 위치가 멈추기까지 돈 횟수 = ponder time\n- 예시: 화장실 가기 전 사과는 어디 있었나. 긴 이야기 중 사과 얘기는 몇 문장뿐"
  },
  {
   "n": 36,
@@ -821,7 +821,7 @@
    "1  Ponder steps per sentence, for one bAbI question. “Where was the apple before the bathroom?” Most facts stop after one step."
   ],
   "notes": null,
-  "script": "그 질문의 결과입니다. 가로축은 이야기의 문장들이고 맨 오른쪽이 질문, 세로축은 반복 횟수입니다. 보시면 대부분의 문장은 한 번 돌고 바로 멈춥니다."
+  "script": "- 가로 = 이야기 문장들 (맨 오른쪽이 질문), 세로 = 반복 횟수\n- 대부분 문장은 한 번 돌고 멈춤"
  },
  {
   "n": 37,
@@ -841,7 +841,7 @@
    "2  The apple facts get 3–5 steps."
   ],
   "notes": null,
-  "script": "그런데 금색으로 묶은 막대는 다릅니다. John이 사과를 집은 문장은 4번, 화장실로 간 문장은 5번, 사과를 내려놓은 문장은 4번, 질문은 3번 돌았습니다. 사과를 따라가는 데 필요한 문장에만 계산을 더 쓴 셈입니다."
+  "script": "- 금색 막대는 다름\n- 사과를 집은 문장 4번, 화장실 간 문장 5번, 사과를 내려놓은 문장 4번, 질문 3번\n- 사과를 따라가는 데 필요한 문장에만 계산을 더 씀"
  },
  {
   "n": 38,
@@ -861,7 +861,7 @@
    "3  Across the test set: 3.8 steps for 3-fact tasks, 3.1 for 2-fact, 2.3 for 1-fact."
   ],
   "notes": null,
-  "script": "테스트 전체로 평균을 내도 같은 경향입니다. 근거가 셋이면 3.8단계, 둘이면 3.1단계, 하나면 2.3단계를 썼습니다."
+  "script": "- 테스트 전체 평균도 같은 경향\n- 근거 3개 3.8단계, 2개 3.1단계, 1개 2.3단계"
  },
  {
   "n": 39,
@@ -881,7 +881,7 @@
    "Remark: Steps track how many facts a question needs. Caveat: the headline bAbI errors are the best of 10 seeds."
   ],
   "notes": null,
-  "script": "정리하면 반복 횟수가 근거의 수를 따라 움직였습니다. 이제 반복이 원리상 어디까지 갈 수 있는지로 넘어가겠습니다."
+  "script": "- 반복 횟수가 근거 수를 따라 움직임\n- 넘김: 반복이 원리상 어디까지 갈 수 있나"
  },
  {
   "n": 40,
@@ -899,7 +899,7 @@
    "If we keep looping one fixed Transformer, what can it compute?"
   ],
   "notes": null,
-  "script": "고정된 Transformer 하나를 계속 돌리기만 하면, 무엇까지 계산할 수 있을까요."
+  "script": "- 질문 한 문장: 고정된 Transformer 하나를 계속 돌리기만 하면 무엇까지 계산할 수 있나"
  },
  {
   "n": 41,
@@ -919,7 +919,7 @@
    "1  Hand-set weights, a fixed ≤ 13-layer network. The prompt holds scratchpad, memory and the program, like a punchcard."
   ],
   "notes": null,
-  "script": "Giannou는 이 질문에 증명으로 답합니다. 아래 입력은 세 칸으로 나뉘는데, scratchpad는 작업 공간, memory는 데이터, instructions는 프로그램이고, 맨 아래 검은 pointers 띠는 주소 역할을 합니다. 위의 Transformer는 학습한 모델이 아니라, 가중치를 손으로 정한 13층 이하의 망입니다."
+  "script": "- Giannou는 증명으로 답함\n- 아래 입력 세 칸: scratchpad(작업 공간), memory(데이터), instructions(프로그램)\n- 맨 아래 검은 pointers 띠 = 주소\n- 위 Transformer는 학습한 모델이 아님, 가중치를 손으로 정한 13층 이하 망"
  },
  {
   "n": 42,
@@ -939,7 +939,7 @@
    "1  Hand-set weights, a fixed ≤ 13-layer network.2  One pass runs one instruction; the output becomes the next input. for i = 1…T: X ← TF(W; X), like CPU clock cycles."
   ],
   "notes": null,
-  "script": "검은 화살표를 따라가면 출력이 다시 입력이 됩니다. 한 번 통과할 때마다 명령 하나를 실행하고, 가중치 W는 그대로 둔 채 입력 X만 T번 고쳐 씁니다. CPU가 클럭마다 명령을 처리하는 것과 같습니다."
+  "script": "- 검은 화살표: 출력이 다시 입력이 됨\n- 한 번 통과 = 명령 하나 실행, 가중치 W는 그대로, 입력 X만 T번 고쳐 씀\n- CPU가 클럭마다 명령을 처리하는 것과 같음"
  },
  {
   "n": 43,
@@ -960,7 +960,7 @@
    "Remark: Program length becomes loop count, not depth."
   ],
   "notes": null,
-  "script": "그래서 프로그램이 길어져도 깊이는 그대로이고, 루프 횟수만 늘어납니다."
+  "script": "- 프로그램이 길어져도 깊이는 그대로, 루프 횟수만 늘어남"
  },
  {
   "n": 44,
@@ -996,7 +996,7 @@
    "The depth stays fixed. A longer program just means more loops."
   ],
   "notes": "The paper abstract says 13 layers, Theorem 1 says fewer than 13; we write ≤ 13. These sizes are constructions on paper, not trained models.",
-  "script": "이 망이 돌릴 수 있는 프로그램들입니다. 가운데 그림이 프로그램이 하는 일이고, 오른쪽이 층과 헤드 수입니다.\nSUBLEQ는 명령이 하나뿐인 컴퓨터입니다. b에서 a를 빼고, 결과가 0 이하면 c번 줄로 건너뜁니다. 이 명령 하나로 일반 컴퓨터의 계산을 다 할 수 있고, 9층에 헤드 2개면 됩니다. 계산기는 더하기, 곱하기, 역수, 제곱근 같은 연산을 이어 붙여 위와 같은 식을 계산하고, 12층에 헤드 m개를 씁니다. 역행렬은 A를 되돌리는 행렬을 찾는 일이고, SGD는 손실이 줄도록 가중치를 조금씩 옮겨 신경망을 학습시키는 일인데, 둘 다 13층에 헤드 1개입니다."
+  "script": "- 이 망이 돌리는 프로그램들. 가운데 그림 = 프로그램이 하는 일, 오른쪽 = 층과 헤드 수\n- SUBLEQ: 명령 하나짜리 컴퓨터. b에서 a를 빼고 0 이하면 c번 줄로. 이것만으로 범용 계산 가능. 9층, 헤드 2\n- 계산기: 더하기, 곱하기, 역수, 제곱근을 이어 붙여 식 계산. 12층, 헤드 m\n- 역행렬(A를 되돌리는 행렬 찾기), SGD(가중치를 조금씩 옮겨 학습): 둘 다 13층, 헤드 1\n- 아래 줄: 깊이는 고정, 긴 프로그램은 루프를 더 돌 뿐"
  },
  {
   "n": 45,
@@ -1016,7 +1016,7 @@
    "Theorem 5.4. Any L-layer Transformer running m CoT steps can be matched by a looped one with L + O(1) layers, run for m loops on m blank slots.An existence result: such weights exist. It does not say training finds them."
   ],
   "notes": "Callback: the figure from the start of the talk, now animated. Theorem 5.4: for any L-layer Transformer, a looped one with L + O(1) layers, run m loops on the input plus m blank slots, gives the same output as m CoT steps. Proof idea: a loop counter updates only one slot per loop.",
-  "script": "Saunshi는 루프를 chain of thought와 바로 잇습니다. 왼쪽이 CoT, 오른쪽이 루프 모델이고, 오른쪽 입력에는 빈 슬롯 네 개가 더 붙어 있습니다.\n금색 띠를 따라가 보면, 왼쪽은 모델을 한 번 통과할 때마다 토큰을 하나씩 써서 입력에 붙입니다. 오른쪽은 루프마다 빈 슬롯 하나만 채우기 때문에 쓴 토큰 수는 계속 0이고, 마지막에는 슬롯이 토큰 대신 같은 답을 냅니다.\nTheorem 5.4는 이를 일반화해서, L층 모델의 CoT m단계를 층을 상수 개만 더한 루프 모델이 빈 슬롯 m개 위에서 m번 돌아 따라 할 수 있다고 말합니다. 다만 그런 가중치가 있다는 증명이고, 학습으로 찾는다는 보장은 아닙니다."
+  "script": "- Saunshi: 루프를 CoT와 바로 연결\n- 왼쪽 CoT, 오른쪽 루프 모델 (입력에 빈 슬롯 4개 추가)\n- 금색 띠: 왼쪽은 한 번 통과마다 토큰 하나 써서 붙임 / 오른쪽은 루프마다 빈 슬롯 하나 채움, 쓴 토큰 수는 계속 0, 마지막에 같은 답\n- Theorem 5.4: L층 모델의 CoT m단계를, 층을 상수 개만 더한 루프 모델이 빈 슬롯 m개 위에서 m번 돌아 따라 함\n- 그런 가중치가 \"있다\"는 증명. 학습으로 찾는다는 보장은 아님"
  },
  {
   "n": 46,
@@ -1041,7 +1041,7 @@
    "Q4  Worth adopting?"
   ],
   "notes": null,
-  "script": "이제 Q2에 답하겠습니다. 원리상 작은 루프 Transformer 하나는 어떤 프로그램이든 돌릴 수 있습니다. UT는 블록 하나를 다시 쓰며 토큰마다 멈출 때를 정했고, Giannou는 13층 이하의 루프 망으로 어떤 SUBLEQ 프로그램이든 실행했으며, Saunshi는 루프 m번이 CoT m단계를 흉내 냄을 증명했습니다.\n하지만 뒤의 둘은 가중치를 손으로 정했습니다. 언어 모델을 학습시켜도 이런 루프가 생기는지는 Q3에서 Huginn과 함께 보겠습니다."
+  "script": "- 금색: 원리상 작은 루프 Transformer 하나로 어떤 프로그램이든 실행 가능\n- 근거: UT(블록 재사용, 토큰마다 멈출 때 결정) / Giannou(13층 이하 루프 망으로 SUBLEQ 프로그램 실행) / Saunshi(루프 m번이 CoT m단계를 흉내)\n- But: 뒤의 둘은 가중치를 손으로 정함\n- 넘김: 언어 모델을 학습시켜도 이런 루프가 생기나, Q3 Huginn"
  },
  {
   "n": 47,
@@ -1067,7 +1067,7 @@
    "Q4  Worth adopting?"
   ],
   "notes": "From idea to a working language model. Huginn is the first recipe at scale; after it, the second presenter takes over.",
-  "script": "지금까지 본 루프는 사람이 가중치를 손으로 정한 루프였습니다. 그래서 Q3은 루프 언어 모델을 실제로 학습시켜 만들 수 있는지, 규모를 키워도 이득이 남는지를 묻습니다. 금색 논문 네 편 가운데 먼저 Huginn을 보겠습니다."
+  "script": "- 지금까지 본 루프 = 사람이 가중치를 손으로 정한 루프\n- Q3: 루프 언어 모델을 실제로 학습시킬 수 있나, 규모를 키워도 이득이 남나\n- 금색 논문 4편 중 먼저 Huginn"
  },
  {
   "n": 48,
@@ -1092,7 +1092,7 @@
    "To think harder, run the middle block more times. No extra tokens are written."
   ],
   "notes": null,
-  "script": "Huginn은 가운데에 반복 블록을 넣고 처음부터 학습한 언어 모델입니다. 파라미터 3.5B, 학습 토큰 약 800B, Frontier 슈퍼컴퓨터의 GPU 4,096개를 썼으니 루프 모델을 언어 모델 규모까지 끌어올린 셈입니다. 아이디어는 단순해서, 더 생각해야 할 때는 가운데 블록을 더 돌리고 토큰은 더 쓰지 않습니다."
+  "script": "- Huginn: 가운데에 반복 블록을 넣고 처음부터 학습한 언어 모델\n- 3.5B 파라미터, 학습 토큰 약 800B, Frontier GPU 4,096개: 루프 모델을 언어 모델 규모로\n- 아이디어: 더 생각해야 하면 가운데 블록을 더 돌림, 토큰은 더 안 씀"
  },
  {
   "n": 49,
@@ -1120,7 +1120,7 @@
    "2 layers, run once"
   ],
   "notes": null,
-  "script": "토큰 하나가 지나가는 길을 블록 세 개로 나눠 보겠습니다. 작은 색 칸들은 모델 안에서만 쓰는 벡터, 곧 잠재 상태입니다. 왼쪽 파란 Prelude에서는 ‘Hello’가 두 층을 한 번 지나며 칸이 하나씩 채워지고 벡터 e가 됩니다. 이 e는 한 번 만들어 두고 루프가 돌 때마다 다시 꺼내 씁니다.\n\n가운데 초록 Recurrent block이 루프입니다. 출발 상태 s₀는 잡음이고, 매 바퀴 실선으로 오는 이전 상태와 점선으로 오는 e를 이어 붙여 네 층짜리 R에 넣으면, 새 상태가 나와 다시 입구로 돌아갑니다. 카운터가 오르는 동안 잡음이던 칸들이 무늬로 자리 잡는 모습을 보시면 됩니다. 마지막으로 분홍 Coda가 최종 상태를 두 층에 한 번 통과시켜 다음 토큰 확률을 내고, ‘World’가 나옵니다."
+  "script": "- 토큰 하나의 길을 블록 셋으로. 작은 색 칸 = 잠재 상태(모델 안에서만 쓰는 벡터)\n- Prelude(파랑, 2층) token→latent: \"Hello\"가 e가 됨. e는 한 번 만들고 매 바퀴 다시 꺼내 씀\n- Recurrent block(초록, 4층) latent→latent: s₀는 잡음. 매 바퀴 이전 상태(실선)와 e(점선)를 이어 붙여 R에, 새 상태가 다시 입구로. 잡음이 무늬로 자리 잡는 것 보기\n- Coda(분홍, 2층) latent→token: 최종 상태를 다음 토큰 확률로, \"World\""
  },
  {
   "n": 50,
@@ -1140,7 +1140,7 @@
    "1  The prelude embeds once. Two layers P map the input tokens to e."
   ],
   "notes": "e = P(x). Prelude and coda together hold about 1.5B parameters.",
-  "script": "같은 구조를 논문 그림 2로 따라가겠습니다. 왼쪽에서 오른쪽으로 읽고, 색은 방금과 같습니다. 점선은 입력을 다시 넣는 길, 실선은 상태가 넘어가는 길입니다. 먼저 금색 상자 안에서 Prelude의 두 층이 ‘Hello’를 e로 한 번 바꿉니다."
+  "script": "- 같은 구조를 논문 Figure 2로. 왼쪽에서 오른쪽, 색은 방금과 같음\n- 점선 = 입력을 다시 넣는 길, 실선 = 상태가 넘어가는 길\n- 금색 상자: Prelude 2층이 \"Hello\"를 e로 한 번 바꿈"
  },
  {
   "n": 51,
@@ -1160,7 +1160,7 @@
    "2  The state starts from noise. s₀ is random, so the answer should not depend on where the loop starts."
   ],
   "notes": "s₀ ~ N(0, σ²I). With input injection this promotes path independence (Anil et al. 2022).",
-  "script": "다음은 왼쪽 아래 상자로, 루프의 출발 상태 s₀는 무작위로 뽑습니다. 입력에서 출발하지 않고 잡음에서 출발하게 하면, 모델은 어디서 시작하든 같은 답에 닿도록 배우게 됩니다."
+  "script": "- 왼쪽 아래: 루프 출발 상태 s₀는 무작위\n- 잡음에서 출발하게 하면, 어디서 시작하든 같은 답에 닿도록 배움"
  },
  {
   "n": 52,
@@ -1180,7 +1180,7 @@
    "3  One shared core runs r times. Four layers R, reused: r = 32 gives an effective depth of 132 layers with no new parameters."
   ],
   "notes": "Effective depth = 2 + 4·32 + 2 = 132. The core is another 1.5B parameters.",
-  "script": "이어서 가운데 초록 루프입니다. 여러 개로 그려진 R은 사실 같은 네 층을 펼쳐 그린 그림입니다. 그래서 r을 32로 두면 앞뒤 두 층씩을 더해 132층 깊이가 되는데, 파라미터는 늘지 않습니다. Q1에서 본 층 쌓기의 비용을 이렇게 피합니다."
+  "script": "- 가운데 초록 루프: 여러 개 그려진 R = 같은 4층을 펼쳐 그린 것\n- r=32면 앞뒤 2층씩 더해 132층 깊이, 파라미터는 그대로\n- Q1의 층 쌓기 비용을 이렇게 피함"
  },
  {
   "n": 53,
@@ -1200,7 +1200,7 @@
    "4  The input is re-injected at every pass. Each R reads [sᵢ, e], so the loop never loses the input."
   ],
   "notes": "An adapter maps the concatenation [sᵢ, e] from 2h back to h.",
-  "script": "위쪽 점선처럼 e는 모든 R에 다시 들어갑니다. 각 R이 현재 상태와 e를 이어 붙여 읽기 때문에, 루프를 아무리 오래 돌아도 원래 입력을 놓치지 않습니다."
+  "script": "- 위쪽 점선: e가 모든 R에 다시 들어감\n- 각 R이 현재 상태와 e를 같이 읽음, 오래 돌아도 원래 입력을 안 놓침"
  },
  {
   "n": 54,
@@ -1220,7 +1220,7 @@
    "5  The coda decodes the final state. Two layers C turn s_R into next-token probabilities."
   ],
   "notes": "p = C(s_r).",
-  "script": "끝으로 Coda의 두 층이 최종 상태를 다음 토큰 확률로 바꿉니다. 그러면 이 구조를 어떻게 학습시켰는지 보겠습니다."
+  "script": "- Coda 2층: 최종 상태를 다음 토큰 확률로\n- 넘김: 이 구조를 어떻게 학습시켰나"
  },
  {
   "n": 55,
@@ -1240,7 +1240,7 @@
    "1  Sample r for every step. r follows a log-normal Poisson: mean 33, mode 24, with a long tail to ~150."
   ],
   "notes": "τ ~ N(log r̄ − ½σ², σ), r ~ Poisson(e^τ) + 1, with r̄ = 32 and σ = ½.",
-  "script": "Huginn은 학습 단계마다 반복 횟수 r을 새로 뽑습니다. 가로축이 뽑힌 r, 세로축이 확률밀도라서 곡선이 높을수록 자주 뽑힙니다. 세로 점선은 빨강이 최빈값 24.0, 초록이 중앙값 29.0, 파랑이 평균 33.0이고, 오른쪽 꼬리가 약 150까지 뻗어 있어 아주 깊게 도는 경우도 섞입니다."
+  "script": "- 학습 단계마다 반복 횟수 r을 새로 뽑음\n- 가로 = 뽑힌 r, 세로 = 확률밀도 (높을수록 자주 뽑힘)\n- 점선: 최빈값 24.0(빨강), 중앙값 29.0(초록), 평균 33.0(파랑)\n- 오른쪽 꼬리가 약 150까지, 아주 깊게 도는 경우도 섞임"
  },
  {
   "n": 56,
@@ -1260,7 +1260,7 @@
    "1  Sample r for every step.2  Backprop through the last 8 passes only. Memory stays fixed however large r is. The prelude still learns, because e enters every pass."
   ],
   "notes": "Truncated backprop, k = 8. One r per micro-batch, synchronized across workers.",
-  "script": "그런데 150바퀴 전부에 역전파, 그러니까 오차를 거슬러 가중치를 고치는 계산을 하면 메모리가 그만큼 늘어납니다. 그래서 마지막 8바퀴에만 역전파를 합니다. e가 매 바퀴 들어가니 Prelude도 그대로 학습됩니다."
+  "script": "- 150바퀴 전부 역전파하면 메모리가 그만큼 늘어남\n- 그래서 마지막 8바퀴만 역전파\n- e가 매 바퀴 들어가니 Prelude도 그대로 학습됨"
  },
  {
   "n": 57,
@@ -1281,7 +1281,7 @@
    "Remark: Training on many depths is what makes depth a dial at test time."
   ],
   "notes": null,
-  "script": "이렇게 여러 깊이로 학습했기 때문에, 추론할 때 반복 횟수를 다이얼처럼 돌릴 수 있습니다. 이제 다이얼을 돌리면 성능이 오르는지 보겠습니다."
+  "script": "- 여러 깊이로 학습했으니, 추론 때 반복 횟수를 다이얼처럼 돌릴 수 있음\n- 넘김: 다이얼을 돌리면 성능이 오르나"
  },
  {
   "n": 58,
@@ -1301,7 +1301,7 @@
    "1  Easy tasks saturate early. HellaSwag is near its peak by r = 8."
   ],
   "notes": null,
-  "script": "가로축은 추론 때 반복 횟수 1부터 64, 세로축은 성능입니다. 파랑이 HellaSwag, 주황과 초록이 GSM8K CoT를 엄격하게 채점한 Strict와 느슨하게 채점한 Flexible, 빨강이 HumanEval입니다. 쉬운 과제인 HellaSwag는 8번 만에 거의 꼭대기에 닿습니다."
+  "script": "- 가로 = 추론 때 반복 횟수 1~64, 세로 = 성능\n- 파랑 HellaSwag, 주황/초록 GSM8K CoT Strict/Flexible(엄격/느슨한 채점), 빨강 HumanEval\n- 쉬운 HellaSwag는 8번 만에 거의 꼭대기"
  },
  {
   "n": 59,
@@ -1321,7 +1321,7 @@
    "1  Easy tasks saturate early.2  Hard tasks keep climbing to r ≈ 32. GSM8K CoT goes from 0.00 at r = 1 to 42.08 at r = 32 (Table 4)."
   ],
   "notes": "Table 4 (800B tokens): GSM8K CoT strict/flexible 34.80/42.08 at r = 32 vs 0.00/0.00 at r = 1. ARC-C 24.06 → 38.23.",
-  "script": "반면 어려운 과제들은 바닥에 있다가 8번을 지나 가파르게 올라 32번 근처까지 오릅니다. 표 4의 GSM8K CoT Flexible 점수는 반복 1번에 0.00이던 것이 32번에서 42.08이 됩니다. 파라미터가 똑같은 한 모델이 반복 횟수만으로 이만큼 달라집니다."
+  "script": "- 어려운 과제들: 바닥에 있다가 8번 지나 가파르게, 32번 근처까지 오름\n- 표 4: GSM8K CoT Flexible, 반복 1번 0.00에서 32번 42.08\n- 파라미터가 같은 한 모델이 반복 횟수만으로 이만큼"
  },
  {
   "n": 60,
@@ -1341,7 +1341,7 @@
    "1  Easy tasks saturate early.2  Hard tasks keep climbing to r ≈ 32.3  No single depth suits every task. The ceiling depends on the task, and on how much context it gives (Fig. 9)."
   ],
   "notes": "ARC-C saturates at 8–12 iterations zero-shot, about 32 at 25–50-shot.",
-  "script": "그래서 모든 과제에 맞는 깊이 하나는 없습니다. 성능이 평평해지는 지점은 과제마다, 그리고 문맥 양에 따라서도 다릅니다."
+  "script": "- 모든 과제에 맞는 깊이 하나는 없음\n- 평평해지는 지점이 과제마다, 문맥 양마다 다름"
  },
  {
   "n": 61,
@@ -1362,7 +1362,7 @@
    "Remark: Extra loops are useful only up to a ceiling that the task sets."
   ],
   "notes": null,
-  "script": "반복의 이득은 과제가 정한 천장까지입니다. 그러면 한 문장 안의 토큰들은 같은 깊이가 필요할까요."
+  "script": "- 반복의 이득은 과제가 정한 천장까지\n- 넘김: 한 문장 안의 토큰들도 같은 깊이가 필요할까"
  },
  {
   "n": 62,
@@ -1382,7 +1382,7 @@
    "1  Rows are tokens; color is distance to the final state. Darker means closer. Most tokens settle within about 30 passes."
   ],
   "notes": "The final state s* is computed at r = 128. Prompt: an unsafe request about making a bomb.",
-  "script": "한 행이 토큰 하나, 가로축이 반복 횟수입니다. 색은 128번 돌린 최종 상태까지의 거리로, 노랑은 멀고 짙은 보라는 가깝습니다. 대부분의 토큰이 30번쯤 안에 보라로 바뀌며 자리를 잡습니다."
+  "script": "- 한 행 = 토큰 하나, 가로 = 반복 횟수\n- 색 = 128번 돌린 최종 상태까지의 거리 (노랑 멂, 짙은 보라 가까움)\n- 대부분 토큰이 30번쯤 안에 보라로, 자리를 잡음"
  },
  {
   "n": 63,
@@ -1402,7 +1402,7 @@
    "1  Rows are tokens; color is distance to the final state.2  The key words of an unsafe request settle last. “really wrong” stays far from its fixed point for 60 passes."
   ],
   "notes": null,
-  "script": "그런데 이 문장은 위험한 요청이고, 그 핵심 단어 ‘really wrong’은 60번이 지나도록 밝게 남습니다. 더 돌려도 상태가 바뀌지 않는 지점을 고정점이라고 하는데, 다른 토큰들이 일찍 고정점에 닿는 동안 이 두 단어는 가장 늦게 다가갑니다."
+  "script": "- 이 문장은 위험한 요청. 핵심어 \"really wrong\"은 60번이 지나도록 밝게 남음\n- 고정점 = 더 돌려도 상태가 안 바뀌는 지점\n- 다른 토큰은 일찍 고정점에 닿고, 이 두 단어가 가장 늦게"
  },
  {
   "n": 64,
@@ -1423,7 +1423,7 @@
    "Remark: If depth needs differ by token, one global r wastes compute. Q3 picks this up."
   ],
   "notes": null,
-  "script": "토큰마다 필요한 깊이가 다르면, 모든 토큰에 같은 r을 주는 방식은 일찍 끝난 토큰까지 끝까지 돌리며 계산을 낭비합니다. 이 문제는 Q3 뒷부분에서 다시 다룹니다."
+  "script": "- 토큰마다 필요한 깊이가 다름\n- 모든 토큰에 같은 r을 주면, 일찍 끝난 토큰까지 끝까지 돌려 계산 낭비\n- Q3 뒷부분에서 다시"
  },
  {
   "n": 65,
@@ -1451,7 +1451,7 @@
    "→ Q4"
   ],
   "notes": "Presenter switch here. Each open question maps to what Session B covers next.",
-  "script": "Huginn이 남긴 질문은 세 가지입니다. 첫째는 토큰마다 깊이를 스스로 고를 수 있느냐입니다. 지금은 출력 변화를 KL로 재서 문턱 아래면 멈출 뿐, 멈추는 법을 배우지 않습니다. 이건 MoR로 이어집니다. 둘째는 규모를 키워도 통하는지, 몇 번 돌려야 하는지입니다. 루프 없는 비교 모델이 180B 토큰까지뿐이라 800B에서는 맞대어 볼 상대가 없고, 이건 Ouro가 받습니다.\n\n셋째는 속에서 하는 생각을 읽을 수 있느냐로, 저자들도 글로 쓴 chain of thought보다 감독이 어렵다고 적었고 Q4에서 다룹니다. 여기서부터 Huginn 위에 쌓인 연구는 다음 발표자가 이어서 소개하겠습니다."
+  "script": "- Huginn이 남긴 질문 셋\n- 1) 토큰마다 깊이를 스스로 고를 수 있나: 지금은 출력 변화를 KL로 재서 문턱 아래면 멈출 뿐, 멈추는 법을 배우진 않음. MoR로 이어짐\n- 2) 키워도 통하나, 몇 번 돌려야 하나: 루프 없는 비교 모델이 180B 토큰까지뿐이라 800B에서는 비교 상대 없음. Ouro가 받음\n- 3) 속에서 하는 생각을 읽을 수 있나: 저자들도 글로 쓴 CoT보다 감독이 어렵다고 적음. Q4에서\n- 여기서 다음 발표자에게 넘김"
  },
  {
   "n": 66,
